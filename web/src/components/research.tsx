@@ -2,33 +2,43 @@ import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
 import type { LiveSource, QuoteMeta, ScoreBlock } from "@/lib/data";
+import type { Locale } from "@/i18n/config";
+import { numberLocale } from "@/i18n/config";
+import { t } from "@/i18n/messages";
+import { translate } from "@/i18n/engine";
 
 export function Disclaimer({
   text,
   asOf,
   live,
+  locale,
 }: {
   text: string;
   asOf: string;
   live?: { quotes: string; scores: string; fetched_at: string | null };
+  locale: Locale;
 }) {
   return (
     <div className="space-y-2">
       <p className="rounded-lg border border-amber-500/30 bg-amber-500/10 px-3 py-2 text-sm text-amber-100">
-        {text} 快照日期 {asOf}。
+        {translate(locale, text)} {t(locale, "disclaimer.asOf", { asOf })}
       </p>
       {live ? (
         <p className="text-xs text-muted-foreground">
-          报价来源 {liveLabel(live.quotes)} · 研究分数 {live.scores === "live-rescored" ? "Yahoo 覆盖后重算" : "样本财务"}
-          {live.fetched_at ? ` · 行情时间 ${live.fetched_at}` : ""}
+          {t(locale, "disclaimer.quoteSource")} {liveLabel(locale, live.quotes)} · {t(locale, "disclaimer.researchScores")}{" "}
+          {live.scores === "live-rescored"
+            ? t(locale, "disclaimer.liveRescored")
+            : t(locale, "disclaimer.sampleFinancials")}
+          {live.fetched_at ? ` · ${t(locale, "disclaimer.quoteTime")} ${live.fetched_at}` : ""}
         </p>
       ) : null}
     </div>
   );
 }
 
-export function SourceBadge({ source }: { source: QuoteMeta["source"] }) {
-  const label = source === "yahoo" ? "实时 Yahoo" : source === "mixed" ? "实时+样本" : "样本";
+export function SourceBadge({ source, locale }: { source: QuoteMeta["source"]; locale: Locale }) {
+  const label =
+    source === "yahoo" ? t(locale, "source.yahoo") : source === "mixed" ? t(locale, "source.mixed") : t(locale, "source.sample");
   const styles =
     source === "yahoo"
       ? "bg-emerald-500/15 text-emerald-300 border-emerald-500/30"
@@ -42,10 +52,10 @@ export function SourceBadge({ source }: { source: QuoteMeta["source"] }) {
   );
 }
 
-export function FieldSource({ source }: { source: LiveSource }) {
+export function FieldSource({ source, locale }: { source: LiveSource; locale: Locale }) {
   return (
     <span className="ml-1 text-[10px] uppercase tracking-wide text-muted-foreground">
-      {source === "yahoo" ? "Yahoo" : "样本"}
+      {source === "yahoo" ? t(locale, "field.yahoo") : t(locale, "field.sample")}
     </span>
   );
 }
@@ -66,19 +76,19 @@ export function ChangePct({ value }: { value: number | null | undefined }) {
   );
 }
 
-export function Money({ value, currency }: { value: number; currency: string }) {
+export function Money({ value, currency, locale }: { value: number; currency: string; locale: Locale }) {
   return (
     <span className="tabular-nums">
-      {value.toLocaleString(undefined, { maximumFractionDigits: 2 })}{" "}
+      {value.toLocaleString(numberLocale(locale), { maximumFractionDigits: 2 })}{" "}
       <span className="text-xs text-muted-foreground">{currency}</span>
     </span>
   );
 }
 
-function liveLabel(value: string) {
-  if (value === "yahoo") return "Yahoo";
-  if (value === "mixed") return "Yahoo + 样本";
-  return "样本";
+function liveLabel(locale: Locale, value: string) {
+  if (value === "yahoo") return t(locale, "live.yahoo");
+  if (value === "mixed") return t(locale, "live.mixed");
+  return t(locale, "live.sample");
 }
 
 export function MarketBadge({ market }: { market: string }) {
@@ -99,23 +109,31 @@ export function ScorePills({
   composite,
   quality,
   valuation,
+  locale,
 }: {
   composite?: number;
   quality: number;
   valuation: number;
+  locale: Locale;
 }) {
   return (
     <div className="flex flex-wrap gap-2 text-xs">
       {composite !== undefined ? (
-        <span className="rounded-md bg-emerald-500/15 px-2 py-1 text-emerald-300">综合 {composite.toFixed(1)}</span>
+        <span className="rounded-md bg-emerald-500/15 px-2 py-1 text-emerald-300">
+          {t(locale, "score.composite")} {composite.toFixed(1)}
+        </span>
       ) : null}
-      <span className="rounded-md bg-muted px-2 py-1 text-muted-foreground">质量 {quality.toFixed(1)}</span>
-      <span className="rounded-md bg-muted px-2 py-1 text-muted-foreground">估值 {valuation.toFixed(1)}</span>
+      <span className="rounded-md bg-muted px-2 py-1 text-muted-foreground">
+        {t(locale, "score.quality")} {quality.toFixed(1)}
+      </span>
+      <span className="rounded-md bg-muted px-2 py-1 text-muted-foreground">
+        {t(locale, "score.valuation")} {valuation.toFixed(1)}
+      </span>
     </div>
   );
 }
 
-export function FactorList({ score }: { score: ScoreBlock }) {
+export function FactorList({ score, locale }: { score: ScoreBlock; locale: Locale }) {
   return (
     <div className="space-y-3">
       <div className="flex items-baseline justify-between">
@@ -126,17 +144,17 @@ export function FactorList({ score }: { score: ScoreBlock }) {
       {score.factors.map((factor) => (
         <div key={factor.name} className="space-y-1">
           <div className="flex justify-between gap-3 text-sm">
-            <span>{factor.name}</span>
+            <span>{translate(locale, factor.name)}</span>
             <span className="tabular-nums text-muted-foreground">{factor.score.toFixed(0)}</span>
           </div>
           <Progress value={factor.score} />
-          <p className="text-xs text-muted-foreground">{factor.rationale}</p>
+          <p className="text-xs text-muted-foreground">{translate(locale, factor.rationale)}</p>
         </div>
       ))}
       {score.flags.length > 0 ? (
         <ul className="list-disc space-y-1 pl-5 text-sm text-amber-200">
           {score.flags.map((flag) => (
-            <li key={flag}>{flag}</li>
+            <li key={flag}>{translate(locale, flag)}</li>
           ))}
         </ul>
       ) : null}
@@ -144,10 +162,21 @@ export function FactorList({ score }: { score: ScoreBlock }) {
   );
 }
 
-export function StockLink({ symbol, name }: { symbol: string; name: string }) {
+export function StockLink({
+  symbol,
+  name,
+  nameEn,
+  locale,
+}: {
+  symbol: string;
+  name: string;
+  nameEn?: string;
+  locale: Locale;
+}) {
+  const label = locale === "en" ? nameEn || translate("en", name) : translate(locale, name);
   return (
     <Link href={`/stocks/${encodeURIComponent(symbol)}`} className="hover:underline">
-      {name}
+      {label}
       <span className="ml-2 font-mono text-xs text-muted-foreground">{symbol}</span>
     </Link>
   );

@@ -10,27 +10,29 @@ import {
   StockLink,
 } from "@/components/research";
 import { api } from "@/lib/api";
+import { getI18n } from "@/i18n/server";
 
 export default async function StocksPage() {
+  const { locale, t, tx } = await getI18n();
   const [meta, stocks] = await Promise.all([api.meta.get(), api.universe.list()]);
   return (
     <>
-      <h1 className="text-3xl font-semibold tracking-tight">个股</h1>
-      <Disclaimer text={meta.disclaimer} asOf={meta.as_of} live={meta.live} />
+      <h1 className="text-3xl font-semibold tracking-tight">{t("stocks.title")}</h1>
+      <Disclaimer locale={locale} text={meta.disclaimer} asOf={meta.as_of} live={meta.live} />
       <Card>
         <CardHeader>
-          <CardTitle>样本宇宙</CardTitle>
+          <CardTitle>{t("stocks.universe")}</CardTitle>
         </CardHeader>
         <CardContent>
           <Table>
             <TableHeader>
               <TableRow>
-                <TableHead>代码</TableHead>
-                <TableHead>名称</TableHead>
-                <TableHead>现价</TableHead>
-                <TableHead>涨跌</TableHead>
-                <TableHead>分数</TableHead>
-                <TableHead>互联互通</TableHead>
+                <TableHead>{t("table.symbol")}</TableHead>
+                <TableHead>{t("table.name")}</TableHead>
+                <TableHead>{t("table.price")}</TableHead>
+                <TableHead>{t("table.change")}</TableHead>
+                <TableHead>{t("table.score")}</TableHead>
+                <TableHead>{t("table.connect")}</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
@@ -39,26 +41,27 @@ export default async function StocksPage() {
                   <TableCell className="font-mono text-xs">{stock.symbol}</TableCell>
                   <TableCell>
                     <div className="flex flex-wrap items-center gap-1">
-                      <StockLink symbol={stock.symbol} name={stock.name} />
+                      <StockLink locale={locale} symbol={stock.symbol} name={stock.name} nameEn={stock.name_en} />
                       <MarketBadge market={stock.market} />
-                      <SourceBadge source={stock.quote.source} />
+                      <SourceBadge locale={locale} source={stock.quote.source} />
                     </div>
                   </TableCell>
                   <TableCell>
-                    <Money value={stock.price} currency={stock.currency} />
+                    <Money locale={locale} value={stock.price} currency={stock.currency} />
                   </TableCell>
                   <TableCell>
                     <ChangePct value={stock.change_pct} />
                   </TableCell>
                   <TableCell>
                     <ScorePills
+                      locale={locale}
                       composite={stock.composite}
                       quality={stock.quality.total}
                       valuation={stock.valuation.total}
                     />
                   </TableCell>
                   <TableCell className="max-w-sm text-xs text-muted-foreground whitespace-normal">
-                    {stock.connect.implication}
+                    {tx(stock.connect.implication)}
                   </TableCell>
                 </TableRow>
               ))}

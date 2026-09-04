@@ -10,8 +10,10 @@ import {
   StockLink,
 } from "@/components/research";
 import { api } from "@/lib/api";
+import { getI18n } from "@/i18n/server";
 
 export default async function HomePage() {
+  const { locale, t } = await getI18n();
   const [meta, stocks, industries, strategies] = await Promise.all([
     api.meta.get(),
     api.universe.list(),
@@ -23,53 +25,56 @@ export default async function HomePage() {
   return (
     <>
       <div>
-        <h1 className="text-3xl font-semibold tracking-tight">研究总览</h1>
-        <p className="mt-1 text-muted-foreground">同一套质量语言，不同的估值与交易语言。</p>
+        <h1 className="text-3xl font-semibold tracking-tight">{t("home.title")}</h1>
+        <p className="mt-1 text-muted-foreground">{t("home.subtitle")}</p>
       </div>
-      <Disclaimer text={meta.disclaimer} asOf={meta.as_of} live={meta.live} />
+      <Disclaimer locale={locale} text={meta.disclaimer} asOf={meta.as_of} live={meta.live} />
       <section className="grid gap-3 sm:grid-cols-4">
-        <Stat label="样本股票" value={String(stocks.length)} />
-        <Stat label="覆盖市场" value={[...markets].join(" / ")} />
-        <Stat label="行业切片" value={String(industries.length)} />
-        <Stat label="策略" value={String(strategies.length)} />
+        <Stat label={t("stat.stocks")} value={String(stocks.length)} />
+        <Stat label={t("stat.markets")} value={[...markets].join(" / ")} />
+        <Stat label={t("stat.industries")} value={String(industries.length)} />
+        <Stat label={t("stat.strategies")} value={String(strategies.length)} />
       </section>
       <Card>
         <CardHeader>
-          <CardTitle>个股综合</CardTitle>
+          <CardTitle>{t("home.composite")}</CardTitle>
         </CardHeader>
         <CardContent>
           <Table>
             <TableHeader>
               <TableRow>
-                <TableHead>名称</TableHead>
-                <TableHead>市场</TableHead>
-                <TableHead>现价</TableHead>
-                <TableHead>涨跌</TableHead>
-                <TableHead>分数</TableHead>
-                <TableHead>仓位上限</TableHead>
+                <TableHead>{t("table.name")}</TableHead>
+                <TableHead>{t("table.market")}</TableHead>
+                <TableHead>{t("table.price")}</TableHead>
+                <TableHead>{t("table.change")}</TableHead>
+                <TableHead>{t("table.score")}</TableHead>
+                <TableHead>{t("table.positionCap")}</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
               {stocks.map((stock) => (
                 <TableRow key={stock.symbol}>
                   <TableCell>
-                    <StockLink symbol={stock.symbol} name={stock.name} />
-                    <div className="text-xs text-muted-foreground">{stock.name_en}</div>
+                    <StockLink locale={locale} symbol={stock.symbol} name={stock.name} nameEn={stock.name_en} />
+                    <div className="text-xs text-muted-foreground">
+                      {locale === "en" ? stock.name : stock.name_en}
+                    </div>
                   </TableCell>
                   <TableCell>
                     <div className="flex flex-wrap gap-1">
                       <MarketBadge market={stock.market} />
-                      <SourceBadge source={stock.quote.source} />
+                      <SourceBadge locale={locale} source={stock.quote.source} />
                     </div>
                   </TableCell>
                   <TableCell>
-                    <Money value={stock.price} currency={stock.currency} />
+                    <Money locale={locale} value={stock.price} currency={stock.currency} />
                   </TableCell>
                   <TableCell>
                     <ChangePct value={stock.change_pct} />
                   </TableCell>
                   <TableCell>
                     <ScorePills
+                      locale={locale}
                       composite={stock.composite}
                       quality={stock.quality.total}
                       valuation={stock.valuation.total}

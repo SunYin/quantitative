@@ -1,6 +1,10 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { LocaleProvider } from "@/components/locale-provider";
 import { Shell } from "@/components/shell";
+import { htmlLang } from "@/i18n/config";
+import { t } from "@/i18n/messages";
+import { getLocale } from "@/i18n/server";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -16,19 +20,25 @@ const geistMono = Geist_Mono({
 export const dynamic = "force-dynamic";
 export const revalidate = 60;
 
-export const metadata: Metadata = {
-  title: "跨市场研究看板",
-  description: "A 股 / 港股 / 美股 / 港股通 研究记分卡。样本数据不构成投资建议。",
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const locale = await getLocale();
+  return {
+    title: t(locale, "meta.title"),
+    description: t(locale, "meta.description"),
+  };
+}
 
-export default function RootLayout({ children }: LayoutProps<"/">) {
+export default async function RootLayout({ children }: LayoutProps<"/">) {
+  const locale = await getLocale();
   return (
     <html
-      lang="zh-CN"
+      lang={htmlLang(locale)}
       className={`dark ${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full font-sans">
-        <Shell>{children}</Shell>
+        <LocaleProvider locale={locale}>
+          <Shell>{children}</Shell>
+        </LocaleProvider>
       </body>
     </html>
   );

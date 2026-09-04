@@ -6,6 +6,7 @@ from datetime import date
 from html import escape
 from pathlib import Path
 
+from quant.i18n import html_lang, translate
 from quant.industry import chain_layers, chain_memo, industry_memo, score_industry
 from quant.research import extract_claims, reading_checklist, score_research
 from quant.sample_data import REPORTS, chains, get_chain, get_industry, industries, industry_constituents, universe
@@ -80,7 +81,7 @@ def render_markdown(card: dict | None = None) -> str:
     lines += ["", "## 读研报清单", ""]
     lines.extend(f"- {item}" for item in card["checklist"])
     lines.append("")
-    return "\n".join(lines)
+    return translate("\n".join(lines))
 
 
 def render_html(card: dict | None = None) -> str:
@@ -121,8 +122,8 @@ def render_html(card: dict | None = None) -> str:
             f"<ul>{flags}</ul></article>"
         )
     checklist = "".join(f"<li>{escape(x)}</li>" for x in card["checklist"])
-    return f"""<!DOCTYPE html>
-<html lang="zh-CN">
+    html = f"""<!DOCTYPE html>
+<html lang="{html_lang()}">
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
@@ -177,6 +178,7 @@ def render_html(card: dict | None = None) -> str:
 </body>
 </html>
 """
+    return translate(html)
 
 
 def write_reports(output_dir: str | Path = "reports", *, disclaimer: str | None = None) -> dict[str, Path]:
@@ -249,7 +251,7 @@ def describe_stock(symbol: str) -> str:
         lines.append(f"- {factor.name} {factor.score:.1f}：{factor.rationale}")
     if stock.notes:
         lines += ["", f"> {stock.notes}"]
-    return "\n".join(lines) + "\n"
+    return translate("\n".join(lines) + "\n")
 
 
 def _field_zh(name: str) -> str:
@@ -281,7 +283,7 @@ def describe_industry(name: str) -> str:
                 )
             lines.append("")
         lines.append("样本与分层都不是投资建议。")
-        return "\n".join(lines) + "\n"
+        return translate("\n".join(lines) + "\n")
 
     item = get_industry(name)
     scored = score_industry(item)
@@ -300,7 +302,7 @@ def describe_industry(name: str) -> str:
     if scored.flags:
         lines += ["", "## 警示", ""]
         lines.extend(f"- {flag}" for flag in scored.flags)
-    return "\n".join(lines) + "\n"
+    return translate("\n".join(lines) + "\n")
 
 
 def describe_report(report_id: str) -> str:
@@ -322,7 +324,7 @@ def describe_report(report_id: str) -> str:
     if scored.flags:
         lines += ["", "## 红旗"]
         lines.extend(f"- {x}" for x in scored.flags)
-    return "\n".join(lines) + "\n"
+    return translate("\n".join(lines) + "\n")
 
 
 __all__ = [

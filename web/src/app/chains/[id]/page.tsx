@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Disclaimer, FactorList, ScorePills, StockLink } from "@/components/research";
 import { api } from "@/lib/api";
+import { getI18n } from "@/i18n/server";
 
 export default async function ChainDetailPage({
   params,
@@ -10,6 +11,7 @@ export default async function ChainDetailPage({
   params: Promise<{ id: string }>;
 }) {
   const { id } = await params;
+  const { locale, t, tx, name } = await getI18n();
   let chain;
   try {
     chain = await api.chain.get({ id });
@@ -23,16 +25,16 @@ export default async function ChainDetailPage({
     <>
       <p className="text-sm">
         <Link href="/industries" className="text-muted-foreground hover:underline">
-          ← 行业 / 产业链
+          {t("chain.back")}
         </Link>
       </p>
-      <h1 className="text-3xl font-semibold tracking-tight">{chain.name}</h1>
-      <p className="text-muted-foreground">{chain.name_en}</p>
-      <Disclaimer text={meta.disclaimer} asOf={meta.as_of} live={meta.live} />
-      <p>{chain.thesis}</p>
-      <p className="text-sm text-muted-foreground">{chain.notes}</p>
+      <h1 className="text-3xl font-semibold tracking-tight">{name(chain.name, chain.name_en)}</h1>
+      <p className="text-muted-foreground">{locale === "en" ? chain.name : chain.name_en}</p>
+      <Disclaimer locale={locale} text={meta.disclaimer} asOf={meta.as_of} live={meta.live} />
+      <p>{tx(chain.thesis)}</p>
+      <p className="text-sm text-muted-foreground">{tx(chain.notes)}</p>
       <p className="text-sm text-muted-foreground">
-        {chain.layers.map((layer) => `${layer.role_zh}·${layer.industry}`).join(" → ")}
+        {chain.layers.map((layer) => `${t(`role.${layer.role}`)}·${name(layer.industry, layer.industry_en)}`).join(" → ")}
       </p>
       <div className="space-y-4">
         {chain.layers.map((layer) => (
@@ -40,15 +42,15 @@ export default async function ChainDetailPage({
             <CardHeader>
               <CardTitle className="flex flex-wrap items-center justify-between gap-2">
                 <span>
-                  {layer.role_zh} ·{" "}
+                  {t(`role.${layer.role}`)} ·{" "}
                   <Link
                     href={`/industries/${encodeURIComponent(layer.industry)}`}
                     className="hover:underline"
                   >
-                    {layer.industry}
+                    {name(layer.industry, layer.industry_en)}
                   </Link>
                   {layer.bottleneck ? (
-                    <span className="ml-2 text-xs text-amber-300">瓶颈</span>
+                    <span className="ml-2 text-xs text-amber-300">{t("chain.bottleneck")}</span>
                   ) : null}
                 </span>
                 <span className="text-sm font-normal text-muted-foreground">
@@ -57,19 +59,20 @@ export default async function ChainDetailPage({
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-3">
-              <p className="text-sm">{layer.captures}</p>
+              <p className="text-sm">{tx(layer.captures)}</p>
               <div className="grid gap-3 md:grid-cols-2">
                 {layer.stocks.map((member) => {
                   const brief = stockMap[member.symbol];
                   return (
                     <div key={member.symbol} className="rounded-lg border border-border/80 p-3">
-                      <StockLink symbol={member.symbol} name={member.name} />
+                      <StockLink locale={locale} symbol={member.symbol} name={member.name} nameEn={member.name_en} />
                       <div className="text-xs text-muted-foreground">
-                        {member.name_en} · {member.market}
+                        {locale === "en" ? member.name : member.name_en} · {member.market}
                       </div>
                       {brief ? (
                         <div className="mt-2">
                           <ScorePills
+                            locale={locale}
                             composite={brief.composite}
                             quality={brief.quality.total}
                             valuation={brief.valuation.total}
@@ -80,7 +83,7 @@ export default async function ChainDetailPage({
                   );
                 })}
               </div>
-              <FactorList score={layer.score} />
+              <FactorList locale={locale} score={layer.score} />
             </CardContent>
           </Card>
         ))}

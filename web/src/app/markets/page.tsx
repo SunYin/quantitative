@@ -1,13 +1,15 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Disclaimer, MarketBadge } from "@/components/research";
 import { api } from "@/lib/api";
+import { getI18n } from "@/i18n/server";
 
 export default async function MarketsPage() {
+  const { locale, t, tx } = await getI18n();
   const [meta, markets] = await Promise.all([api.meta.get(), api.market.list()]);
   return (
     <>
-      <h1 className="text-3xl font-semibold tracking-tight">市场规则</h1>
-      <Disclaimer text={meta.disclaimer} asOf={meta.as_of} live={meta.live} />
+      <h1 className="text-3xl font-semibold tracking-tight">{t("markets.title")}</h1>
+      <Disclaimer locale={locale} text={meta.disclaimer} asOf={meta.as_of} live={meta.live} />
       <div className="grid gap-4 md:grid-cols-3">
         {markets.map((market) => (
           <Card key={market.market}>
@@ -18,33 +20,47 @@ export default async function MarketsPage() {
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-2 text-sm text-muted-foreground">
-              <p>结算：{market.settlement}</p>
-              <p>涨跌停：{market.price_limit}</p>
-              <p>空头：{market.shorting}</p>
-              <p>资金：{market.key_flows}</p>
-              <p>估值：{market.valuation_habit}</p>
-              <p>分类：{market.industry_taxonomy}</p>
-              <p>治理：{market.governance_focus.join("；")}</p>
+              <p>
+                {t("markets.settlement")}：{tx(market.settlement)}
+              </p>
+              <p>
+                {t("markets.limit")}：{tx(market.price_limit)}
+              </p>
+              <p>
+                {t("markets.shorting")}：{tx(market.shorting)}
+              </p>
+              <p>
+                {t("markets.flows")}：{tx(market.key_flows)}
+              </p>
+              <p>
+                {t("markets.valuation")}：{tx(market.valuation_habit)}
+              </p>
+              <p>
+                {t("markets.taxonomy")}：{tx(market.industry_taxonomy)}
+              </p>
+              <p>
+                {t("markets.governance")}：{market.governance_focus.map((item) => tx(item)).join("；")}
+              </p>
             </CardContent>
           </Card>
         ))}
       </div>
       <Card>
         <CardHeader>
-          <CardTitle>互联互通</CardTitle>
+          <CardTitle>{t("markets.connect")}</CardTitle>
         </CardHeader>
         <CardContent className="space-y-2 text-sm text-muted-foreground">
           <p>
-            <strong className="text-foreground">南向港股通</strong>：{meta.connect.southbound_name}。
-            {meta.connect.eligibility_southbound}
+            <strong className="text-foreground">{t("markets.south")}</strong>：{tx(meta.connect.southbound_name)}。
+            {tx(meta.connect.eligibility_southbound)}
           </p>
           <p>
-            <strong className="text-foreground">北向沪深股通</strong>：{meta.connect.northbound_name}。
-            {meta.connect.eligibility_northbound}
+            <strong className="text-foreground">{t("markets.north")}</strong>：{tx(meta.connect.northbound_name)}。
+            {tx(meta.connect.eligibility_northbound)}
           </p>
-          <p>{meta.connect.quota_note}</p>
-          <p>{meta.connect.practical_edge}</p>
-          <p>这是名单 + 额度 + 闭环换汇，不是全市场开放。</p>
+          <p>{tx(meta.connect.quota_note)}</p>
+          <p>{tx(meta.connect.practical_edge)}</p>
+          <p>{t("markets.connectClosed")}</p>
         </CardContent>
       </Card>
     </>

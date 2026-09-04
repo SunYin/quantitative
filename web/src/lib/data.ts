@@ -184,6 +184,13 @@ export type Snapshot = {
   markets: MarketProfile[];
   connect: Record<string, string>;
   checklist: string[];
+  i18n?: {
+    locales: string[];
+    default: string;
+    phrases: Record<string, string>;
+    fragments: { src: string; en: string }[];
+    s2hk: Record<string, string>;
+  };
 };
 
 export const snapshot = snapshotJson as Snapshot;

@@ -5,6 +5,7 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
+from quant.i18n import catalog_payload
 from quant.live import LiveMeta, LiveQuote, active_quotes, quote_block, sample_live_meta
 from quant.markets import CONNECT_RULES, PROFILES
 from quant.models import Market, ScoreBreakdown, Stock
@@ -29,6 +30,7 @@ def snapshot(card: dict | None = None, live: LiveMeta | None = None) -> dict:
         "markets": [_market(m) for m in Market],
         "connect": dict(CONNECT_RULES),
         "checklist": list(card["checklist"]),
+        "i18n": catalog_payload(),
     }
 
 

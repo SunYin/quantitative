@@ -41,7 +41,16 @@ npm install
 npm run dev
 ```
 
-打开 http://localhost:3000 ：总览、个股带实时报价（若 Yahoo 可用），行业、策略、研报、市场规则。页面会标明 Yahoo / 样本来源。
+打开 http://localhost:3000 ：总览、个股带实时报价（若 Yahoo 可用），行业、策略、研报、市场规则。页面会标明 Yahoo / 样本来源。顶栏可切 **简体 / 繁體 / EN**（写入 cookie；无选择时看浏览器语言）。
+
+CLI 同样支持 `--lang`：
+
+```bash
+python3 -m quant industry AI --lang en
+python3 -m quant analyze 00700.HK --lang zh-Hant
+```
+
+缺省仍是简体。三种语言都会声明：样本与实时数据不构成投资建议。
 
 ### 部署到 Railway
 
