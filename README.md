@@ -64,6 +64,36 @@ src/quant/          分析引擎与 CLI
 docs/               方法论文档
 tests/              单元测试（不依赖行情网络）
 reports/            demo 输出
+openspec/           规格与变更（当前行为 + 进行中的改动）
+.cursor/            Cursor 的 /opsx-* 命令与 skills
 ```
 
 把 `sample_data.py` 换成你的数据源后，打分函数可原样复用。
+
+## OpenSpec（先对齐再写代码）
+
+本仓库用 [OpenSpec](https://github.com/Fission-AI/OpenSpec) 做规格驱动开发。先写变更提案和可验证要求，再改代码。
+
+```bash
+npm install -g @fission-ai/openspec@latest   # Node 20.19+
+openspec list --specs
+openspec validate --all
+```
+
+在 Cursor 里：
+
+| 命令 | 作用 |
+| --- | --- |
+| `/opsx-explore` | 先读代码、收敛模糊想法（不写文件） |
+| `/opsx-propose <想法>` | 生成 proposal / specs / design / tasks |
+| `/opsx-apply` | 按 tasks 实现 |
+| `/opsx-archive` | 把 delta 合进 `openspec/specs/` 并归档 |
+
+当前主规格（已实现行为）：
+
+- `openspec/specs/scoring` — 质量 / 估值 / 行业打分
+- `openspec/specs/strategies` — 质量-价值、A/H、行业轮动、互联互通
+- `openspec/specs/research-reports` — 研报审阅与清单
+- `openspec/specs/cli-scorecard` — CLI 与 HTML 记分卡
+
+约定写在 `openspec/config.yaml`：制品用中文；标题和 SHALL/MUST 保持英文；样本价格不是实时行情，输出不是投资建议。

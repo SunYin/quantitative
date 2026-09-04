@@ -1,0 +1,53 @@
+# CLI Scorecard Specification
+
+## Purpose
+
+命令行入口把样本宇宙、个股、行业、研报和市场规则渲染成终端说明，以及自包含的 HTML / Markdown 记分卡。This capability is the operator interface for the sample research universe.
+
+## Requirements
+
+### Requirement: Demo scorecard export
+
+系统 SHALL 提供 `demo` 命令，在指定目录写出 `scorecard.html` 与 `scorecard.md`，并声明样本数据不是实时行情、不构成投资建议。
+
+#### Scenario: Write both artifacts
+
+- **WHEN** 用户执行 `python -m quant demo -o <dir>`
+- **THEN** `<dir>/scorecard.html` 与 `<dir>/scorecard.md` SHALL 存在
+- **AND** 两份输出 SHALL 包含茅台、腾讯、苹果、港股通与研报等关键信息
+- **AND** HTML SHALL 包含表格
+
+### Requirement: Single-name research card
+
+系统 SHALL 提供 `analyze <symbol>`，输出市场、综合分、质量/估值拆解、互联互通含义与研究仓位上限。
+
+#### Scenario: Analyze a southbound name
+
+- **WHEN** 用户分析 `00700.HK`
+- **THEN** 输出 SHALL 包含腾讯
+- **AND** SHALL 说明南向可买并提示跟踪港股通持股变化
+- **AND** SHALL 给出不高于 15% 的研究仓位上限
+
+### Requirement: Industry and report commands
+
+系统 SHALL 提供行业吸引力与研报审阅命令，以及市场规则对照。
+
+#### Scenario: Industry memo
+
+- **WHEN** 用户执行 `python -m quant industry 动力电池`
+- **THEN** 输出 SHALL 包含吸引力总分、周期位置与因子拆解
+
+#### Scenario: Research review
+
+- **WHEN** 用户审阅促销风格研报样本 `nvda-hype`
+- **THEN** 输出 SHALL 列出红旗
+
+### Requirement: Universe listing
+
+系统 SHALL 列出样本股票代码、市场与行业，并列出可用研报样本 id。
+
+#### Scenario: List universe
+
+- **WHEN** 用户执行 `python -m quant universe`
+- **THEN** 输出 SHALL 包含 A 股、港股与美股样本代码
+- **AND** SHALL 列出研报样本标识
