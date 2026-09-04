@@ -21,7 +21,14 @@ def test_unlisted_ipo_still_cannot_open_intraday():
 def test_candle_range_contract_without_network():
     web = Path(__file__).resolve().parents[1] / "web"
     proc = subprocess.run(
-        ["node", "--experimental-strip-types", "--test", "src/lib/candles.test.ts"],
+        [
+            "node",
+            "--experimental-strip-types",
+            "--test",
+            "src/lib/candles.test.ts",
+            "src/lib/rpc-url.test.ts",
+            "src/lib/chart-switch.test.ts",
+        ],
         cwd=web,
         capture_output=True,
         text=True,

@@ -20,3 +20,10 @@
 - **WHEN** 用户选择 1 月 / 3 月 / 6 月 / 1 年
 - **THEN** SHALL 仍展示日 K
 - **AND** Yahoo 日 K 失败时样本路径回退仍然允许
+
+#### Scenario: Switch range while a request is in flight
+
+- **WHEN** 用户在上一请求未完成时点击另一周期
+- **THEN** SHALL 以最后一次点击为准，并立即高亮该按钮
+- **AND** SHALL NOT 因进行中的请求而禁用全部周期按钮
+- **AND** 失败时 SHALL 显示错误文案并保留上一幅图，而不是无响应

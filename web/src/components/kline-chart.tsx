@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import type { ChartPayload, ChartRange, Candle } from "@/lib/candles";
 import { CHART_SPECS, isLiveRange, movingAverage } from "@/lib/candles";
+import { isLatestChartGeneration, startChartGeneration } from "@/lib/chart-switch";
 import { client } from "@/lib/orpc";
 import { ChangePct, SourceBadge } from "@/components/research";
 import { useI18n } from "@/components/locale-provider";
@@ -14,75 +15,90 @@ const HISTORY_RANGES: ChartRange[] = ["1m", "3m", "6m", "1y", "5y"];
 export function KlineChart({ initial }: { initial: ChartPayload }) {
   const { locale, t } = useI18n();
   const [payload, setPayload] = useState(initial);
+  const [selectedRange, setSelectedRange] = useState<ChartRange>(initial.range);
   const [hover, setHover] = useState<number | null>(null);
   const [pending, setPending] = useState(false);
-  const pendingRef = useRef(false);
+  const [error, setError] = useState<string | null>(null);
+  const genRef = useRef(0);
+  const payloadRef = useRef(payload);
+  payloadRef.current = payload;
 
   async function load(range: ChartRange, silent = false) {
-    if (pendingRef.current) return;
-    pendingRef.current = true;
-    if (!silent) setPending(true);
+    const gen = startChartGeneration(genRef.current, silent ? "poll" : "click");
+    genRef.current = silent ? genRef.current : gen;
+    if (!silent) {
+      setSelectedRange(range);
+      setPending(true);
+      setError(null);
+    }
     try {
-      const next = await client.stock.chart({ symbol: payload.symbol, range });
+      const next = await client.stock.chart({ symbol: payloadRef.current.symbol, range });
+      if (!isLatestChartGeneration(gen, genRef.current)) return;
       setPayload(next);
+      setSelectedRange(next.range);
+      setError(null);
       if (!silent) setHover(null);
+    } catch {
+      if (!isLatestChartGeneration(gen, genRef.current)) return;
+      if (!silent) {
+        setSelectedRange(payloadRef.current.range);
+        setError(t("chart.switchFailed"));
+      }
     } finally {
-      pendingRef.current = false;
-      setPending(false);
+      if (!silent && isLatestChartGeneration(gen, genRef.current)) setPending(false);
     }
   }
 
+  const loadRef = useRef(load);
+  loadRef.current = load;
+
   useEffect(() => {
-    if (!isLiveRange(payload.range)) return;
-    const symbol = payload.symbol;
-    const range = payload.range;
+    if (!isLiveRange(selectedRange)) return;
+    const range = selectedRange;
     const id = window.setInterval(() => {
-      if (document.visibilityState === "hidden" || pendingRef.current) return;
-      pendingRef.current = true;
-      void client.stock
-        .chart({ symbol, range })
-        .then((next) => setPayload(next))
-        .finally(() => {
-          pendingRef.current = false;
-        });
+      if (document.visibilityState === "hidden") return;
+      void loadRef.current(range, true);
     }, 20_000);
     return () => window.clearInterval(id);
-  }, [payload.range, payload.symbol]);
+  }, [selectedRange]);
 
   const asian = payload.market === "A" || payload.market === "HK";
   const upColor = asian ? "#f43f5e" : "#34d399";
   const downColor = asian ? "#34d399" : "#f43f5e";
   const spec = CHART_SPECS[payload.range];
   const hint =
-    payload.candles.length === 0
-      ? isLiveRange(payload.range)
-        ? t("chart.emptyLive")
-        : t("chart.empty")
-      : payload.source === "yahoo"
+    error ??
+    (pending && selectedRange !== payload.range
+      ? t("chart.switching")
+      : payload.candles.length === 0
         ? isLiveRange(payload.range)
-          ? t("chart.yahooLiveHint")
-          : t("chart.yahooHint")
-        : t("chart.sampleHint");
+          ? t("chart.emptyLive")
+          : t("chart.empty")
+        : payload.source === "yahoo"
+          ? isLiveRange(payload.range)
+            ? t("chart.yahooLiveHint")
+            : t("chart.yahooHint")
+          : t("chart.sampleHint"));
 
   return (
     <section className="space-y-3">
       <div className="flex flex-wrap items-center justify-between gap-2">
         <div className="flex flex-wrap items-center gap-2">
           <h2 className="text-lg font-semibold tracking-tight">
-            {payload.range === "intraday" ? t("chart.title.intraday") : t("chart.title")}
+            {selectedRange === "intraday" ? t("chart.title.intraday") : t("chart.title")}
           </h2>
           <SourceBadge locale={locale} source={payload.source} />
         </div>
         <div className="flex flex-col items-end gap-1">
           <RangeRow
             ranges={SESSION_RANGES}
-            current={payload.range}
+            current={selectedRange}
             pending={pending}
             onPick={(range) => void load(range)}
           />
           <RangeRow
             ranges={HISTORY_RANGES}
-            current={payload.range}
+            current={selectedRange}
             pending={pending}
             onPick={(range) => void load(range)}
           />
@@ -100,7 +116,7 @@ export function KlineChart({ initial }: { initial: ChartPayload }) {
               {t("chart.asOf")} {payload.asOf}
             </span>
           ) : null}
-          {isLiveRange(payload.range) ? (
+          {isLiveRange(selectedRange) ? (
             <span className="text-xs text-emerald-300/80">{t("chart.livePoll")}</span>
           ) : null}
         </p>
@@ -153,12 +169,13 @@ function RangeRow({
           key={range}
           type="button"
           onClick={() => onPick(range)}
-          disabled={pending}
+          aria-pressed={current === range}
           className={`rounded-md px-2.5 py-1 text-xs ${
             current === range ? "bg-muted text-foreground" : "text-muted-foreground hover:bg-muted/60"
           }`}
         >
           {t(`chart.range.${range}`)}
+          {pending && current === range ? "…" : ""}
         </button>
       ))}
     </div>
