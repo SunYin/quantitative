@@ -19,10 +19,10 @@ export function mermaidForChain(
   }
   const occupied = ROLE_ORDER.filter((role) => (grouped[role] ?? []).length > 0);
   const lines = ["flowchart LR"];
-  occupied.forEach((role, roleIndex) => {
+  occupied.forEach((role) => {
     lines.push(`  subgraph ${role}["${escapeLabel(roleLabel(role))}"]`);
-    grouped[role].forEach((layer, layerIndex) => {
-      const id = `n${roleIndex}_${layerIndex}`;
+    grouped[role].forEach((layer) => {
+      const id = `n${chain.layers.indexOf(layer)}`;
       const label = nameOf(layer.industry, layer.industry_en);
       const flag = layer.bottleneck ? (locale === "en" ? "<br/>bottleneck" : "<br/>瓶颈") : "";
       lines.push(`    ${id}["${escapeLabel(label)}${flag}"]`);
@@ -32,18 +32,16 @@ export function mermaidForChain(
   if (occupied.length === 1) {
     const items = grouped[occupied[0]];
     for (let i = 0; i < items.length - 1; i++) {
-      lines.push(`  n0_${i} -.-> n0_${i + 1}`);
+      lines.push(`  n${chain.layers.indexOf(items[i])} -.-> n${chain.layers.indexOf(items[i + 1])}`);
     }
   } else {
-    for (let i = 0; i < occupied.length - 1; i++) {
-      lines.push(`  ${occupied[i]} --> ${occupied[i + 1]}`);
+    for (let i = 0; i < chain.layers.length - 1; i++) {
+      lines.push(`  n${i} --> n${i + 1}`);
     }
   }
-  occupied.forEach((role, roleIndex) => {
-    grouped[role].forEach((layer, layerIndex) => {
-      const href = `/industries/${encodeURIComponent(layer.industry)}`;
-      lines.push(`  click n${roleIndex}_${layerIndex} "${href}" _self`);
-    });
+  chain.layers.forEach((layer, index) => {
+    const href = `/industries/${encodeURIComponent(layer.industry)}`;
+    lines.push(`  click n${index} "${href}" _self`);
   });
   return lines.join("\n");
 }

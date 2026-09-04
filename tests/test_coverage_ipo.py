@@ -33,9 +33,17 @@ def test_ipo_pipeline_is_sample_not_ticker():
     assert any(deal.status in {"hearing", "filed", "passed", "subscribed", "priced"} for deal in deals)
     stellar = get_ipo("星辰先进")
     assert stellar.market == Market.A_SHARE
+    cxmt = get_ipo("长芯存储")
+    assert cxmt.industry == "存储芯片"
+    assert get_ipo("长鑫存储").id == cxmt.id
     try:
         get_stock("星辰先进")
         raise AssertionError("unlisted IPO must not resolve as a stock")
+    except KeyError:
+        pass
+    try:
+        get_stock("长芯存储")
+        raise AssertionError("unlisted memory IPO must not resolve as a stock")
     except KeyError:
         pass
     try:

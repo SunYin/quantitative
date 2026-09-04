@@ -112,8 +112,8 @@ def chain_mermaid(chain: ValueChain, *, english: bool = False) -> str:
         for (left, _), (right, _) in zip(items, items[1:]):
             lines.append(f"  n{left} -.-> n{right}")
     else:
-        for left_role, right_role in zip(occupied, occupied[1:]):
-            lines.append(f"  {left_role} --> {right_role}")
+        for index in range(len(chain.nodes) - 1):
+            lines.append(f"  n{index} --> n{index + 1}")
     return "\n".join(lines)
 
 

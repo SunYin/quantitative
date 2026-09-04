@@ -3746,6 +3746,812 @@
           "roe": "sample"
         }
       }
+    },
+    {
+      "symbol": "AMD",
+      "name": "超微半导体",
+      "name_en": "AMD",
+      "market": "US",
+      "board": "NASDAQ",
+      "sector": "信息技术",
+      "industry": "全球半导体",
+      "currency": "USD",
+      "southbound_eligible": false,
+      "northbound_eligible": false,
+      "ah_pair_symbol": null,
+      "notes": "训练/推理第二供给；和英伟达同切片，份额叙事不能当利润。",
+      "price": 158.0,
+      "change_pct": null,
+      "pe_ttm": 42.0,
+      "pb": 4.8,
+      "fcf_yield": 0.012,
+      "dividend_yield": 0.0,
+      "roe": 0.09,
+      "composite": 45.1,
+      "quality": {
+        "total": 66.5,
+        "grade": "B",
+        "flags": [
+          "盈利能力 偏弱"
+        ],
+        "factors": [
+          {
+            "name": "盈利能力",
+            "score": 22.8,
+            "weight": 0.25,
+            "rationale": "ROE 9.0% / ROIC 7.0% / 净利率 9.0%"
+          },
+          {
+            "name": "现金流转化",
+            "score": 100.0,
+            "weight": 0.2,
+            "rationale": "OCF/NI 10.00，FCF/NI 6.25"
+          },
+          {
+            "name": "资产负债表",
+            "score": 76.3,
+            "weight": 0.2,
+            "rationale": "净负债/EBITDA 0.5x，流动比 1.71，利息覆盖 20.0x"
+          },
+          {
+            "name": "增长与稳定性",
+            "score": 69.2,
+            "weight": 0.2,
+            "rationale": "收入CAGR 22.0%，EPS CAGR 8.0%，盈利波动 0.28"
+          },
+          {
+            "name": "治理与财务质量",
+            "score": 78.0,
+            "weight": 0.15,
+            "rationale": "治理未见明显红旗"
+          }
+        ]
+      },
+      "valuation": {
+        "total": 21.1,
+        "grade": "F",
+        "flags": [
+          "相对估值 偏弱",
+          "现金流估值 偏弱"
+        ],
+        "factors": [
+          {
+            "name": "相对估值",
+            "score": 0.0,
+            "weight": 0.35,
+            "rationale": "PE 42.0x vs 行业中位 18.0x"
+          },
+          {
+            "name": "现金流估值",
+            "score": 2.5,
+            "weight": 0.25,
+            "rationale": "FCF yield 1.2%"
+          },
+          {
+            "name": "增长调整估值",
+            "score": 40.5,
+            "weight": 0.2,
+            "rationale": "PEG 1.91（PE / 22.0% 增长）"
+          },
+          {
+            "name": "市场折溢价",
+            "score": 62.0,
+            "weight": 0.2,
+            "rationale": "美股信息披露完整，折现率随美债波动"
+          }
+        ]
+      },
+      "position_cap": 0.03,
+      "connect": {
+        "symbol": "AMD",
+        "southbound_eligible": false,
+        "northbound_eligible": false,
+        "has_ah_pair": false,
+        "ah_pair": "",
+        "implication": "美股：通过 ADR/普通股交易，与 A/H 价差无直接套利通道。"
+      },
+      "quote": {
+        "source": "sample",
+        "as_of": null,
+        "fields": {
+          "price": "sample",
+          "change_pct": "sample",
+          "pe_ttm": "sample",
+          "pb": "sample",
+          "dividend_yield": "sample",
+          "roe": "sample"
+        }
+      }
+    },
+    {
+      "symbol": "MU",
+      "name": "美光",
+      "name_en": "Micron",
+      "market": "US",
+      "board": "NASDAQ",
+      "sector": "信息技术",
+      "industry": "存储芯片",
+      "currency": "USD",
+      "southbound_eligible": false,
+      "northbound_eligible": false,
+      "ah_pair_symbol": null,
+      "notes": "HBM/DRAM 周期股；和未上市长芯存储同层，不是同一治理与产能故事。",
+      "price": 108.0,
+      "change_pct": null,
+      "pe_ttm": 18.0,
+      "pb": 2.4,
+      "fcf_yield": 0.02,
+      "dividend_yield": 0.005,
+      "roe": 0.08,
+      "composite": 51.5,
+      "quality": {
+        "total": 60.4,
+        "grade": "C+",
+        "flags": [
+          "盈利能力 偏弱"
+        ],
+        "factors": [
+          {
+            "name": "盈利能力",
+            "score": 17.3,
+            "weight": 0.25,
+            "rationale": "ROE 8.0% / ROIC 6.0% / 净利率 7.0%"
+          },
+          {
+            "name": "现金流转化",
+            "score": 100.0,
+            "weight": 0.2,
+            "rationale": "OCF/NI 13.33，FCF/NI 8.33"
+          },
+          {
+            "name": "资产负债表",
+            "score": 76.3,
+            "weight": 0.2,
+            "rationale": "净负债/EBITDA 0.5x，流动比 1.71，利息覆盖 20.0x"
+          },
+          {
+            "name": "增长与稳定性",
+            "score": 45.2,
+            "weight": 0.2,
+            "rationale": "收入CAGR 6.0%，EPS CAGR 8.0%，盈利波动 0.45"
+          },
+          {
+            "name": "治理与财务质量",
+            "score": 78.0,
+            "weight": 0.15,
+            "rationale": "治理未见明显红旗"
+          }
+        ]
+      },
+      "valuation": {
+        "total": 43.9,
+        "grade": "D",
+        "flags": [
+          "现金流估值 偏弱",
+          "增长调整估值 偏弱"
+        ],
+        "factors": [
+          {
+            "name": "相对估值",
+            "score": 66.7,
+            "weight": 0.35,
+            "rationale": "PE 18.0x vs 行业中位 18.0x"
+          },
+          {
+            "name": "现金流估值",
+            "score": 12.5,
+            "weight": 0.25,
+            "rationale": "FCF yield 2.0%"
+          },
+          {
+            "name": "增长调整估值",
+            "score": 25.0,
+            "weight": 0.2,
+            "rationale": "PEG 2.25（PE / 8.0% 增长）"
+          },
+          {
+            "name": "市场折溢价",
+            "score": 62.0,
+            "weight": 0.2,
+            "rationale": "美股信息披露完整，折现率随美债波动"
+          }
+        ]
+      },
+      "position_cap": 0.06,
+      "connect": {
+        "symbol": "MU",
+        "southbound_eligible": false,
+        "northbound_eligible": false,
+        "has_ah_pair": false,
+        "ah_pair": "",
+        "implication": "美股：通过 ADR/普通股交易，与 A/H 价差无直接套利通道。"
+      },
+      "quote": {
+        "source": "sample",
+        "as_of": null,
+        "fields": {
+          "price": "sample",
+          "change_pct": "sample",
+          "pe_ttm": "sample",
+          "pb": "sample",
+          "dividend_yield": "sample",
+          "roe": "sample"
+        }
+      }
+    },
+    {
+      "symbol": "603986.SS",
+      "name": "兆易创新",
+      "name_en": "GigaDevice",
+      "market": "A",
+      "board": "SSE",
+      "sector": "信息技术",
+      "industry": "存储芯片",
+      "currency": "CNY",
+      "southbound_eligible": false,
+      "northbound_eligible": true,
+      "ah_pair_symbol": null,
+      "notes": "NOR/MCU 为主，不是 HBM。和长芯存储同「存储」切片但不能当 DRAM 代餐。",
+      "price": 92.0,
+      "change_pct": null,
+      "pe_ttm": 38.0,
+      "pb": 4.2,
+      "fcf_yield": 0.015,
+      "dividend_yield": 0.008,
+      "roe": 0.11,
+      "composite": 43.8,
+      "quality": {
+        "total": 69.3,
+        "grade": "B",
+        "flags": [],
+        "factors": [
+          {
+            "name": "盈利能力",
+            "score": 35.6,
+            "weight": 0.25,
+            "rationale": "ROE 11.0% / ROIC 9.0% / 净利率 15.0%"
+          },
+          {
+            "name": "现金流转化",
+            "score": 100.0,
+            "weight": 0.2,
+            "rationale": "OCF/NI 21.82，FCF/NI 13.64"
+          },
+          {
+            "name": "资产负债表",
+            "score": 76.3,
+            "weight": 0.2,
+            "rationale": "净负债/EBITDA 0.5x，流动比 1.71，利息覆盖 20.0x"
+          },
+          {
+            "name": "增长与稳定性",
+            "score": 67.0,
+            "weight": 0.2,
+            "rationale": "收入CAGR 8.0%，EPS CAGR 8.0%，盈利波动 0.16"
+          },
+          {
+            "name": "治理与财务质量",
+            "score": 78.0,
+            "weight": 0.15,
+            "rationale": "治理未见明显红旗"
+          }
+        ]
+      },
+      "valuation": {
+        "total": 12.4,
+        "grade": "F",
+        "flags": [
+          "相对估值 偏弱",
+          "现金流估值 偏弱",
+          "增长调整估值 偏弱"
+        ],
+        "factors": [
+          {
+            "name": "相对估值",
+            "score": 0.0,
+            "weight": 0.35,
+            "rationale": "PE 38.0x vs 行业中位 18.0x"
+          },
+          {
+            "name": "现金流估值",
+            "score": 6.2,
+            "weight": 0.25,
+            "rationale": "FCF yield 1.5%"
+          },
+          {
+            "name": "增长调整估值",
+            "score": 0.0,
+            "weight": 0.2,
+            "rationale": "PEG 4.75（PE / 8.0% 增长）"
+          },
+          {
+            "name": "市场折溢价",
+            "score": 54.0,
+            "weight": 0.2,
+            "rationale": "A 股流动性溢价，同样基本面通常更贵"
+          }
+        ]
+      },
+      "position_cap": 0.04,
+      "connect": {
+        "symbol": "603986.SS",
+        "southbound_eligible": false,
+        "northbound_eligible": true,
+        "has_ah_pair": false,
+        "ah_pair": "",
+        "implication": "北向可买：海外主动/被动资金会放大风格切换，北向持股是情绪而非基本面本身。"
+      },
+      "quote": {
+        "source": "sample",
+        "as_of": null,
+        "fields": {
+          "price": "sample",
+          "change_pct": "sample",
+          "pe_ttm": "sample",
+          "pb": "sample",
+          "dividend_yield": "sample",
+          "roe": "sample"
+        }
+      }
+    },
+    {
+      "symbol": "688008.SS",
+      "name": "澜起科技",
+      "name_en": "Montage Technology",
+      "market": "A",
+      "board": "SSE STAR",
+      "sector": "信息技术",
+      "industry": "存储芯片",
+      "currency": "CNY",
+      "southbound_eligible": false,
+      "northbound_eligible": true,
+      "ah_pair_symbol": null,
+      "notes": "内存接口芯片吃服务器/AI 服务器量；不是晶圆厂，也不是长芯存储。",
+      "price": 78.0,
+      "change_pct": null,
+      "pe_ttm": 48.0,
+      "pb": 7.5,
+      "fcf_yield": 0.012,
+      "dividend_yield": 0.01,
+      "roe": 0.16,
+      "composite": 47.0,
+      "quality": {
+        "total": 77.1,
+        "grade": "B+",
+        "flags": [],
+        "factors": [
+          {
+            "name": "盈利能力",
+            "score": 63.2,
+            "weight": 0.25,
+            "rationale": "ROE 16.0% / ROIC 14.0% / 净利率 36.0%"
+          },
+          {
+            "name": "现金流转化",
+            "score": 100.0,
+            "weight": 0.2,
+            "rationale": "OCF/NI 18.46，FCF/NI 11.54"
+          },
+          {
+            "name": "资产负债表",
+            "score": 76.3,
+            "weight": 0.2,
+            "rationale": "净负债/EBITDA 0.5x，流动比 1.71，利息覆盖 20.0x"
+          },
+          {
+            "name": "增长与稳定性",
+            "score": 71.5,
+            "weight": 0.2,
+            "rationale": "收入CAGR 14.0%，EPS CAGR 8.0%，盈利波动 0.16"
+          },
+          {
+            "name": "治理与财务质量",
+            "score": 78.0,
+            "weight": 0.15,
+            "rationale": "治理未见明显红旗"
+          }
+        ]
+      },
+      "valuation": {
+        "total": 11.4,
+        "grade": "F",
+        "flags": [
+          "相对估值 偏弱",
+          "现金流估值 偏弱",
+          "增长调整估值 偏弱"
+        ],
+        "factors": [
+          {
+            "name": "相对估值",
+            "score": 0.0,
+            "weight": 0.35,
+            "rationale": "PE 48.0x vs 行业中位 18.0x"
+          },
+          {
+            "name": "现金流估值",
+            "score": 2.5,
+            "weight": 0.25,
+            "rationale": "FCF yield 1.2%"
+          },
+          {
+            "name": "增长调整估值",
+            "score": 0.0,
+            "weight": 0.2,
+            "rationale": "PEG 3.43（PE / 14.0% 增长）"
+          },
+          {
+            "name": "市场折溢价",
+            "score": 54.0,
+            "weight": 0.2,
+            "rationale": "A 股流动性溢价，同样基本面通常更贵"
+          }
+        ]
+      },
+      "position_cap": 0.04,
+      "connect": {
+        "symbol": "688008.SS",
+        "southbound_eligible": false,
+        "northbound_eligible": true,
+        "has_ah_pair": false,
+        "ah_pair": "",
+        "implication": "北向可买：海外主动/被动资金会放大风格切换，北向持股是情绪而非基本面本身。"
+      },
+      "quote": {
+        "source": "sample",
+        "as_of": null,
+        "fields": {
+          "price": "sample",
+          "change_pct": "sample",
+          "pe_ttm": "sample",
+          "pb": "sample",
+          "dividend_yield": "sample",
+          "roe": "sample"
+        }
+      }
+    },
+    {
+      "symbol": "300308.SZ",
+      "name": "中际旭创",
+      "name_en": "Zhongji Innolight",
+      "market": "A",
+      "board": "SZSE ChiNext",
+      "sector": "信息技术",
+      "industry": "光模块",
+      "currency": "CNY",
+      "southbound_eligible": false,
+      "northbound_eligible": true,
+      "ah_pair_symbol": null,
+      "notes": "800G 光模块是 AI 集群互联，不是激光加工「光电」故事。",
+      "price": 148.0,
+      "change_pct": null,
+      "pe_ttm": 32.0,
+      "pb": 8.8,
+      "fcf_yield": 0.018,
+      "dividend_yield": 0.004,
+      "roe": 0.22,
+      "composite": 56.8,
+      "quality": {
+        "total": 80.7,
+        "grade": "B+",
+        "flags": [],
+        "factors": [
+          {
+            "name": "盈利能力",
+            "score": 79.0,
+            "weight": 0.25,
+            "rationale": "ROE 22.0% / ROIC 18.0% / 净利率 22.0%"
+          },
+          {
+            "name": "现金流转化",
+            "score": 100.0,
+            "weight": 0.2,
+            "rationale": "OCF/NI 4.62，FCF/NI 2.88"
+          },
+          {
+            "name": "资产负债表",
+            "score": 76.3,
+            "weight": 0.2,
+            "rationale": "净负债/EBITDA 0.5x，流动比 1.71，利息覆盖 20.0x"
+          },
+          {
+            "name": "增长与稳定性",
+            "score": 70.0,
+            "weight": 0.2,
+            "rationale": "收入CAGR 38.0%，EPS CAGR 8.0%，盈利波动 0.30"
+          },
+          {
+            "name": "治理与财务质量",
+            "score": 78.0,
+            "weight": 0.15,
+            "rationale": "治理未见明显红旗"
+          }
+        ]
+      },
+      "valuation": {
+        "total": 34.3,
+        "grade": "F",
+        "flags": [
+          "相对估值 偏弱",
+          "现金流估值 偏弱"
+        ],
+        "factors": [
+          {
+            "name": "相对估值",
+            "score": 9.1,
+            "weight": 0.35,
+            "rationale": "PE 32.0x vs 行业中位 18.0x"
+          },
+          {
+            "name": "现金流估值",
+            "score": 10.0,
+            "weight": 0.25,
+            "rationale": "FCF yield 1.8%"
+          },
+          {
+            "name": "增长调整估值",
+            "score": 89.0,
+            "weight": 0.2,
+            "rationale": "PEG 0.84（PE / 38.0% 增长）"
+          },
+          {
+            "name": "市场折溢价",
+            "score": 54.0,
+            "weight": 0.2,
+            "rationale": "A 股流动性溢价，同样基本面通常更贵"
+          }
+        ]
+      },
+      "position_cap": 0.03,
+      "connect": {
+        "symbol": "300308.SZ",
+        "southbound_eligible": false,
+        "northbound_eligible": true,
+        "has_ah_pair": false,
+        "ah_pair": "",
+        "implication": "北向可买：海外主动/被动资金会放大风格切换，北向持股是情绪而非基本面本身。"
+      },
+      "quote": {
+        "source": "sample",
+        "as_of": null,
+        "fields": {
+          "price": "sample",
+          "change_pct": "sample",
+          "pe_ttm": "sample",
+          "pb": "sample",
+          "dividend_yield": "sample",
+          "roe": "sample"
+        }
+      }
+    },
+    {
+      "symbol": "300502.SZ",
+      "name": "新易盛",
+      "name_en": "Eoptolink",
+      "market": "A",
+      "board": "SZSE ChiNext",
+      "sector": "信息技术",
+      "industry": "光模块",
+      "currency": "CNY",
+      "southbound_eligible": false,
+      "northbound_eligible": true,
+      "ah_pair_symbol": null,
+      "notes": "和旭创同层：量看北美云资本开支，价看 800G 渗透。",
+      "price": 118.0,
+      "change_pct": null,
+      "pe_ttm": 28.0,
+      "pb": 7.2,
+      "fcf_yield": 0.016,
+      "dividend_yield": 0.003,
+      "roe": 0.2,
+      "composite": 58.3,
+      "quality": {
+        "total": 78.3,
+        "grade": "B+",
+        "flags": [],
+        "factors": [
+          {
+            "name": "盈利能力",
+            "score": 71.4,
+            "weight": 0.25,
+            "rationale": "ROE 20.0% / ROIC 16.0% / 净利率 22.0%"
+          },
+          {
+            "name": "现金流转化",
+            "score": 100.0,
+            "weight": 0.2,
+            "rationale": "OCF/NI 10.00，FCF/NI 6.25"
+          },
+          {
+            "name": "资产负债表",
+            "score": 76.3,
+            "weight": 0.2,
+            "rationale": "净负债/EBITDA 0.5x，流动比 1.71，利息覆盖 20.0x"
+          },
+          {
+            "name": "增长与稳定性",
+            "score": 67.2,
+            "weight": 0.2,
+            "rationale": "收入CAGR 42.0%，EPS CAGR 8.0%，盈利波动 0.34"
+          },
+          {
+            "name": "治理与财务质量",
+            "score": 78.0,
+            "weight": 0.15,
+            "rationale": "治理未见明显红旗"
+          }
+        ]
+      },
+      "valuation": {
+        "total": 41.0,
+        "grade": "D",
+        "flags": [
+          "相对估值 偏弱",
+          "现金流估值 偏弱"
+        ],
+        "factors": [
+          {
+            "name": "相对估值",
+            "score": 25.5,
+            "weight": 0.35,
+            "rationale": "PE 28.0x vs 行业中位 18.0x"
+          },
+          {
+            "name": "现金流估值",
+            "score": 7.5,
+            "weight": 0.25,
+            "rationale": "FCF yield 1.6%"
+          },
+          {
+            "name": "增长调整估值",
+            "score": 97.0,
+            "weight": 0.2,
+            "rationale": "PEG 0.67（PE / 42.0% 增长）"
+          },
+          {
+            "name": "市场折溢价",
+            "score": 54.0,
+            "weight": 0.2,
+            "rationale": "A 股流动性溢价，同样基本面通常更贵"
+          }
+        ]
+      },
+      "position_cap": 0.06,
+      "connect": {
+        "symbol": "300502.SZ",
+        "southbound_eligible": false,
+        "northbound_eligible": true,
+        "has_ah_pair": false,
+        "ah_pair": "",
+        "implication": "北向可买：海外主动/被动资金会放大风格切换，北向持股是情绪而非基本面本身。"
+      },
+      "quote": {
+        "source": "sample",
+        "as_of": null,
+        "fields": {
+          "price": "sample",
+          "change_pct": "sample",
+          "pe_ttm": "sample",
+          "pb": "sample",
+          "dividend_yield": "sample",
+          "roe": "sample"
+        }
+      }
+    },
+    {
+      "symbol": "00981.HK",
+      "name": "中芯国际",
+      "name_en": "SMIC",
+      "market": "HK",
+      "board": "HKEX",
+      "sector": "信息技术",
+      "industry": "晶圆代工",
+      "currency": "HKD",
+      "southbound_eligible": true,
+      "northbound_eligible": false,
+      "ah_pair_symbol": null,
+      "notes": "成熟制程代工对照；不是台积电先进制程，出口管制会改产能用途。",
+      "price": 42.0,
+      "change_pct": null,
+      "pe_ttm": 48.0,
+      "pb": 2.1,
+      "fcf_yield": -0.02,
+      "dividend_yield": 0.0,
+      "roe": 0.04,
+      "composite": 44.5,
+      "quality": {
+        "total": 61.4,
+        "grade": "C+",
+        "flags": [
+          "盈利能力 偏弱"
+        ],
+        "factors": [
+          {
+            "name": "盈利能力",
+            "score": 5.2,
+            "weight": 0.25,
+            "rationale": "ROE 4.0% / ROIC 3.0% / 净利率 8.0%"
+          },
+          {
+            "name": "现金流转化",
+            "score": 100.0,
+            "weight": 0.2,
+            "rationale": "OCF/NI 40.00，FCF/NI 25.00"
+          },
+          {
+            "name": "资产负债表",
+            "score": 76.3,
+            "weight": 0.2,
+            "rationale": "净负债/EBITDA 0.5x，流动比 1.71，利息覆盖 20.0x"
+          },
+          {
+            "name": "增长与稳定性",
+            "score": 65.8,
+            "weight": 0.2,
+            "rationale": "收入CAGR 12.0%，EPS CAGR 8.0%，盈利波动 0.22"
+          },
+          {
+            "name": "治理与财务质量",
+            "score": 78.0,
+            "weight": 0.15,
+            "rationale": "治理未见明显红旗"
+          }
+        ]
+      },
+      "valuation": {
+        "total": 22.6,
+        "grade": "F",
+        "flags": [
+          "相对估值 偏弱",
+          "增长调整估值 偏弱"
+        ],
+        "factors": [
+          {
+            "name": "相对估值",
+            "score": 0.0,
+            "weight": 0.35,
+            "rationale": "PE 48.0x vs 行业中位 22.0x"
+          },
+          {
+            "name": "现金流估值",
+            "score": 35.0,
+            "weight": 0.25,
+            "rationale": "FCF yield -2.0%；EV/EBITDA 12.0x vs 16.0x"
+          },
+          {
+            "name": "增长调整估值",
+            "score": 0.0,
+            "weight": 0.2,
+            "rationale": "PEG 4.00（PE / 12.0% 增长）"
+          },
+          {
+            "name": "市场折溢价",
+            "score": 69.0,
+            "weight": 0.2,
+            "rationale": "港股机构折价常见，安全边际相对更好；港股通标的有内地增量资金"
+          }
+        ]
+      },
+      "position_cap": 0.04,
+      "connect": {
+        "symbol": "00981.HK",
+        "southbound_eligible": true,
+        "northbound_eligible": false,
+        "has_ah_pair": false,
+        "ah_pair": "",
+        "implication": "南向可买：定价同时受海外资金与内地增量资金影响，需跟踪港股通持股变化。"
+      },
+      "quote": {
+        "source": "sample",
+        "as_of": null,
+        "fields": {
+          "price": "sample",
+          "change_pct": "sample",
+          "pe_ttm": "sample",
+          "pb": "sample",
+          "dividend_yield": "sample",
+          "roe": "sample"
+        }
+      }
     }
   ],
   "strategies": [
@@ -4081,6 +4887,20 @@
           }
         },
         {
+          "symbol": "300502.SZ",
+          "name": "新易盛",
+          "market": "A",
+          "score": 58.3,
+          "action": "估值偏贵或中性",
+          "reason": "质量 78 / 估值 41 / 技术 45",
+          "extras": {
+            "quality": 78.26,
+            "valuation": 41.0,
+            "position_cap": 0.06,
+            "implied_upside": ""
+          }
+        },
+        {
           "symbol": "LLY",
           "name": "礼来",
           "market": "US",
@@ -4092,6 +4912,20 @@
             "valuation": 18.04,
             "position_cap": 0.04,
             "implied_upside": -0.516
+          }
+        },
+        {
+          "symbol": "300308.SZ",
+          "name": "中际旭创",
+          "market": "A",
+          "score": 56.8,
+          "action": "估值偏贵或中性",
+          "reason": "质量 81 / 估值 34 / 技术 45",
+          "extras": {
+            "quality": 80.71,
+            "valuation": 34.27,
+            "position_cap": 0.03,
+            "implied_upside": ""
           }
         },
         {
@@ -4151,6 +4985,20 @@
           }
         },
         {
+          "symbol": "MU",
+          "name": "美光",
+          "market": "US",
+          "score": 51.5,
+          "action": "估值偏贵或中性",
+          "reason": "质量 60 / 估值 44 / 技术 46",
+          "extras": {
+            "quality": 60.35,
+            "valuation": 43.86,
+            "position_cap": 0.06,
+            "implied_upside": ""
+          }
+        },
+        {
           "symbol": "AMZN",
           "name": "亚马逊",
           "market": "US",
@@ -4204,6 +5052,62 @@
             "valuation": 26.3,
             "position_cap": 0.04,
             "implied_upside": -0.438
+          }
+        },
+        {
+          "symbol": "688008.SS",
+          "name": "澜起科技",
+          "market": "A",
+          "score": 47.0,
+          "action": "估值偏贵或中性",
+          "reason": "质量 77 / 估值 11 / 技术 52",
+          "extras": {
+            "quality": 77.06,
+            "valuation": 11.43,
+            "position_cap": 0.04,
+            "implied_upside": ""
+          }
+        },
+        {
+          "symbol": "AMD",
+          "name": "超微半导体",
+          "market": "US",
+          "score": 45.1,
+          "action": "估值偏贵或中性",
+          "reason": "质量 67 / 估值 21 / 技术 45",
+          "extras": {
+            "quality": 66.51,
+            "valuation": 21.12,
+            "position_cap": 0.03,
+            "implied_upside": ""
+          }
+        },
+        {
+          "symbol": "00981.HK",
+          "name": "中芯国际",
+          "market": "HK",
+          "score": 44.5,
+          "action": "估值偏贵或中性",
+          "reason": "质量 61 / 估值 23 / 技术 52",
+          "extras": {
+            "quality": 61.44,
+            "valuation": 22.55,
+            "position_cap": 0.04,
+            "implied_upside": -0.542
+          }
+        },
+        {
+          "symbol": "603986.SS",
+          "name": "兆易创新",
+          "market": "A",
+          "score": 43.8,
+          "action": "估值偏贵或中性",
+          "reason": "质量 69 / 估值 12 / 技术 51",
+          "extras": {
+            "quality": 69.28,
+            "valuation": 12.36,
+            "position_cap": 0.04,
+            "implied_upside": ""
           }
         },
         {
@@ -4320,7 +5224,7 @@
         {
           "symbol": "晶圆代工",
           "name": "Foundry",
-          "market": "US",
+          "market": "US/HK",
           "score": 62.65,
           "action": "标配",
           "reason": "C+；周期 mid；估值分位 72",
@@ -4354,6 +5258,18 @@
           }
         },
         {
+          "symbol": "光模块",
+          "name": "Optical modules",
+          "market": "A",
+          "score": 56.86,
+          "action": "标配",
+          "reason": "C+；周期 early；估值分位 72",
+          "extras": {
+            "grade": "C+",
+            "policy": 58
+          }
+        },
+        {
           "symbol": "互联网平台",
           "name": "China Internet",
           "market": "HK/US",
@@ -4375,6 +5291,18 @@
           "extras": {
             "grade": "C",
             "policy": 70
+          }
+        },
+        {
+          "symbol": "存储芯片",
+          "name": "Memory chips",
+          "market": "US/A",
+          "score": 50.75,
+          "action": "低配/等待更好价格",
+          "reason": "C；周期 early；估值分位 54",
+          "extras": {
+            "grade": "C",
+            "policy": 50
           }
         },
         {
@@ -5340,6 +6268,12 @@
           "name": "博通",
           "name_en": "Broadcom",
           "market": "US"
+        },
+        {
+          "symbol": "AMD",
+          "name": "超微半导体",
+          "name_en": "AMD",
+          "market": "US"
         }
       ],
       "score": {
@@ -5394,10 +6328,11 @@
       "name": "晶圆代工",
       "name_en": "Foundry",
       "markets": [
-        "US"
+        "US",
+        "HK"
       ],
       "cycle_position": "mid",
-      "notes": "先进制程产能是物理瓶颈；设计公司再强也要排队。",
+      "notes": "先进制程产能是物理瓶颈；中芯国际是成熟制程对照，不是台积电替代品。",
       "leaders": [
         "TSM"
       ],
@@ -5412,6 +6347,12 @@
           "name": "台积电",
           "name_en": "TSMC",
           "market": "US"
+        },
+        {
+          "symbol": "00981.HK",
+          "name": "中芯国际",
+          "name_en": "SMIC",
+          "market": "HK"
         }
       ],
       "score": {
@@ -5625,6 +6566,172 @@
             "score": 48.0,
             "weight": 0.14,
             "rationale": "颠覆风险 48，周期 late"
+          }
+        ]
+      }
+    },
+    {
+      "name": "存储芯片",
+      "name_en": "Memory chips",
+      "markets": [
+        "US",
+        "A"
+      ],
+      "cycle_position": "early",
+      "notes": "HBM/DRAM 是算力配套。长芯/长鑫存储未上市，见 IPO 管道，不能当已有代码打分。兆易是 NOR/MCU，澜起是接口，不是同一利润池。",
+      "leaders": [
+        "MU",
+        "688008.SS"
+      ],
+      "aliases": [
+        "存储",
+        "DRAM",
+        "HBM",
+        "内存",
+        "长芯存储",
+        "长鑫存储",
+        "Memory"
+      ],
+      "constituents": [
+        {
+          "symbol": "MU",
+          "name": "美光",
+          "name_en": "Micron",
+          "market": "US"
+        },
+        {
+          "symbol": "603986.SS",
+          "name": "兆易创新",
+          "name_en": "GigaDevice",
+          "market": "A"
+        },
+        {
+          "symbol": "688008.SS",
+          "name": "澜起科技",
+          "name_en": "Montage Technology",
+          "market": "A"
+        }
+      ],
+      "score": {
+        "total": 50.8,
+        "grade": "C",
+        "flags": [],
+        "factors": [
+          {
+            "name": "需求增长",
+            "score": 57.2,
+            "weight": 0.2,
+            "rationale": "过去3年 12.0%，未来2年预期 11.0%"
+          },
+          {
+            "name": "竞争结构",
+            "score": 63.7,
+            "weight": 0.18,
+            "rationale": "CR5 62%，HHI 1550（越高越集中）"
+          },
+          {
+            "name": "利润池",
+            "score": 36.9,
+            "weight": 0.18,
+            "rationale": "行业ROE中位 10.0%，ROIC 8.0%，利润池趋势 +5.0%"
+          },
+          {
+            "name": "政策与监管",
+            "score": 42.9,
+            "weight": 0.16,
+            "rationale": "政策友好度 50/100（A/港股对政策更敏感）"
+          },
+          {
+            "name": "估值周期",
+            "score": 44.3,
+            "weight": 0.14,
+            "rationale": "估值分位 54（越高越贵）"
+          },
+          {
+            "name": "颠覆与周期位置",
+            "score": 58.1,
+            "weight": 0.14,
+            "rationale": "颠覆风险 58，周期 early"
+          }
+        ]
+      }
+    },
+    {
+      "name": "光模块",
+      "name_en": "Optical modules",
+      "markets": [
+        "A"
+      ],
+      "cycle_position": "early",
+      "notes": "AI 集群里的光电主要是交换机到服务器的光模块，不是所有激光器或光伏逆变器。",
+      "leaders": [
+        "300308.SZ",
+        "300502.SZ"
+      ],
+      "aliases": [
+        "光电",
+        "光通信",
+        "光模块",
+        "Photonics",
+        "Optics",
+        "CPO"
+      ],
+      "constituents": [
+        {
+          "symbol": "300308.SZ",
+          "name": "中际旭创",
+          "name_en": "Zhongji Innolight",
+          "market": "A"
+        },
+        {
+          "symbol": "300502.SZ",
+          "name": "新易盛",
+          "name_en": "Eoptolink",
+          "market": "A"
+        }
+      ],
+      "score": {
+        "total": 56.9,
+        "grade": "C+",
+        "flags": [
+          "估值周期 偏弱"
+        ],
+        "factors": [
+          {
+            "name": "需求增长",
+            "score": 87.3,
+            "weight": 0.2,
+            "rationale": "过去3年 28.0%，未来2年预期 16.0%"
+          },
+          {
+            "name": "竞争结构",
+            "score": 37.1,
+            "weight": 0.18,
+            "rationale": "CR5 48%，HHI 1100（越高越集中）"
+          },
+          {
+            "name": "利润池",
+            "score": 76.4,
+            "weight": 0.18,
+            "rationale": "行业ROE中位 18.0%，ROIC 15.0%，利润池趋势 +6.0%"
+          },
+          {
+            "name": "政策与监管",
+            "score": 54.3,
+            "weight": 0.16,
+            "rationale": "政策友好度 58/100（A/港股对政策更敏感）"
+          },
+          {
+            "name": "估值周期",
+            "score": 18.6,
+            "weight": 0.14,
+            "rationale": "估值分位 72（越高越贵）"
+          },
+          {
+            "name": "颠覆与周期位置",
+            "score": 55.0,
+            "weight": 0.14,
+            "rationale": "颠覆风险 62，周期 early"
           }
         ]
       }
@@ -6110,11 +7217,17 @@
         "算力",
         "大模型",
         "算力产业链",
-        "AI上下游"
+        "AI上下游",
+        "光电",
+        "光模块",
+        "存储",
+        "长芯存储",
+        "长鑫存储",
+        "HBM"
       ],
-      "thesis": "利润最先停在不可替代的算力和先进制程；云分成租用；应用层多数是费用项。",
-      "notes": "样本地图，不是完整产业普查。出口管制、客户自制和资本开支回落会改瓶颈位置。",
-      "mermaid": "flowchart LR\n  subgraph upstream[\"上游\"]\n    n0[\"全球半导体<br/>瓶颈\"]\n    n1[\"晶圆代工<br/>瓶颈\"]\n  end\n  subgraph midstream[\"中游\"]\n    n2[\"云计算\"]\n    n3[\"互联网平台\"]\n  end\n  subgraph downstream[\"下游\"]\n    n4[\"消费电子\"]\n    n5[\"本地生活\"]\n  end\n  upstream --> midstream\n  midstream --> downstream",
+      "thesis": "利润最先停在不可替代的算力和先进制程；存储和光电是配套；云分成租用；应用层多数是费用项。",
+      "notes": "样本地图，不是完整产业普查。长芯/长鑫存储未上市。出口管制、客户自制和资本开支回落会改瓶颈位置。",
+      "mermaid": "flowchart LR\n  subgraph upstream[\"上游\"]\n    n0[\"全球半导体<br/>瓶颈\"]\n    n1[\"存储芯片<br/>瓶颈\"]\n    n2[\"晶圆代工<br/>瓶颈\"]\n  end\n  subgraph midstream[\"中游\"]\n    n3[\"光模块\"]\n    n4[\"云计算\"]\n    n5[\"互联网平台\"]\n  end\n  subgraph downstream[\"下游\"]\n    n6[\"消费电子\"]\n    n7[\"本地生活\"]\n  end\n  n0 --> n1\n  n1 --> n2\n  n2 --> n3\n  n3 --> n4\n  n4 --> n5\n  n5 --> n6\n  n6 --> n7",
       "layers": [
         {
           "role": "upstream",
@@ -6182,6 +7295,83 @@
               "name": "博通",
               "name_en": "Broadcom",
               "market": "US"
+            },
+            {
+              "symbol": "AMD",
+              "name": "超微半导体",
+              "name_en": "AMD",
+              "market": "US"
+            }
+          ]
+        },
+        {
+          "role": "upstream",
+          "role_zh": "上游",
+          "industry": "存储芯片",
+          "industry_en": "Memory chips",
+          "captures": "HBM/DRAM 和接口：没有带宽，GPU 只是发热器。长芯存储未上市，对照看美光与澜起。",
+          "bottleneck": true,
+          "score": {
+            "total": 50.8,
+            "grade": "C",
+            "flags": [],
+            "factors": [
+              {
+                "name": "需求增长",
+                "score": 57.2,
+                "weight": 0.2,
+                "rationale": "过去3年 12.0%，未来2年预期 11.0%"
+              },
+              {
+                "name": "竞争结构",
+                "score": 63.7,
+                "weight": 0.18,
+                "rationale": "CR5 62%，HHI 1550（越高越集中）"
+              },
+              {
+                "name": "利润池",
+                "score": 36.9,
+                "weight": 0.18,
+                "rationale": "行业ROE中位 10.0%，ROIC 8.0%，利润池趋势 +5.0%"
+              },
+              {
+                "name": "政策与监管",
+                "score": 42.9,
+                "weight": 0.16,
+                "rationale": "政策友好度 50/100（A/港股对政策更敏感）"
+              },
+              {
+                "name": "估值周期",
+                "score": 44.3,
+                "weight": 0.14,
+                "rationale": "估值分位 54（越高越贵）"
+              },
+              {
+                "name": "颠覆与周期位置",
+                "score": 58.1,
+                "weight": 0.14,
+                "rationale": "颠覆风险 58，周期 early"
+              }
+            ]
+          },
+          "stocks": [
+            {
+              "symbol": "MU",
+              "name": "美光",
+              "name_en": "Micron",
+              "market": "US"
+            },
+            {
+              "symbol": "603986.SS",
+              "name": "兆易创新",
+              "name_en": "GigaDevice",
+              "market": "A"
+            },
+            {
+              "symbol": "688008.SS",
+              "name": "澜起科技",
+              "name_en": "Montage Technology",
+              "market": "A"
             }
           ]
         },
@@ -6243,6 +7433,79 @@
               "name": "台积电",
               "name_en": "TSMC",
               "market": "US"
+            },
+            {
+              "symbol": "00981.HK",
+              "name": "中芯国际",
+              "name_en": "SMIC",
+              "market": "HK"
+            }
+          ]
+        },
+        {
+          "role": "midstream",
+          "role_zh": "中游",
+          "industry": "光模块",
+          "industry_en": "Optical modules",
+          "captures": "光电互联：机柜之间的 800G 模块，不是光伏或激光加工。",
+          "bottleneck": false,
+          "score": {
+            "total": 56.9,
+            "grade": "C+",
+            "flags": [
+              "估值周期 偏弱"
+            ],
+            "factors": [
+              {
+                "name": "需求增长",
+                "score": 87.3,
+                "weight": 0.2,
+                "rationale": "过去3年 28.0%，未来2年预期 16.0%"
+              },
+              {
+                "name": "竞争结构",
+                "score": 37.1,
+                "weight": 0.18,
+                "rationale": "CR5 48%，HHI 1100（越高越集中）"
+              },
+              {
+                "name": "利润池",
+                "score": 76.4,
+                "weight": 0.18,
+                "rationale": "行业ROE中位 18.0%，ROIC 15.0%，利润池趋势 +6.0%"
+              },
+              {
+                "name": "政策与监管",
+                "score": 54.3,
+                "weight": 0.16,
+                "rationale": "政策友好度 58/100（A/港股对政策更敏感）"
+              },
+              {
+                "name": "估值周期",
+                "score": 18.6,
+                "weight": 0.14,
+                "rationale": "估值分位 72（越高越贵）"
+              },
+              {
+                "name": "颠覆与周期位置",
+                "score": 55.0,
+                "weight": 0.14,
+                "rationale": "颠覆风险 62，周期 early"
+              }
+            ]
+          },
+          "stocks": [
+            {
+              "symbol": "300308.SZ",
+              "name": "中际旭创",
+              "name_en": "Zhongji Innolight",
+              "market": "A"
+            },
+            {
+              "symbol": "300502.SZ",
+              "name": "新易盛",
+              "name_en": "Eoptolink",
+              "market": "A"
             }
           ]
         },
@@ -6534,7 +7797,7 @@
       ],
       "thesis": "装车量可以很好看，利润却经常停在电池龙头而不是所有整车厂。",
       "notes": "价格战会把利润从下游整车挤回有成本曲线的电池层，也可能两头一起打薄。",
-      "mermaid": "flowchart LR\n  subgraph upstream[\"上游\"]\n    n0[\"动力电池<br/>瓶颈\"]\n  end\n  subgraph downstream[\"下游\"]\n    n1[\"新能源车\"]\n  end\n  upstream --> downstream",
+      "mermaid": "flowchart LR\n  subgraph upstream[\"上游\"]\n    n0[\"动力电池<br/>瓶颈\"]\n  end\n  subgraph downstream[\"下游\"]\n    n1[\"新能源车\"]\n  end\n  n0 --> n1",
       "layers": [
         {
           "role": "upstream",
@@ -6832,7 +8095,7 @@
       ],
       "thesis": "化石能源分红和绿电装机不是同一利润池；公用事业吃的是电价合同。",
       "notes": "对照切片，不是严格上下游。油价、组件价格和来水会改谁留下利润。",
-      "mermaid": "flowchart LR\n  subgraph upstream[\"上游\"]\n    n0[\"石油\"]\n  end\n  subgraph midstream[\"中游\"]\n    n1[\"光伏<br/>瓶颈\"]\n  end\n  subgraph downstream[\"下游\"]\n    n2[\"公用事业\"]\n  end\n  upstream --> midstream\n  midstream --> downstream",
+      "mermaid": "flowchart LR\n  subgraph upstream[\"上游\"]\n    n0[\"石油\"]\n  end\n  subgraph midstream[\"中游\"]\n    n1[\"光伏<br/>瓶颈\"]\n  end\n  subgraph downstream[\"下游\"]\n    n2[\"公用事业\"]\n  end\n  n0 --> n1\n  n1 --> n2",
       "layers": [
         {
           "role": "upstream",
@@ -7433,24 +8696,24 @@
     "markets": [
       {
         "market": "A",
-        "sample": 10,
+        "sample": 14,
         "listed_approx": 5400
       },
       {
         "market": "HK",
-        "sample": 12,
+        "sample": 13,
         "listed_approx": 2600
       },
       {
         "market": "US",
-        "sample": 11,
+        "sample": 13,
         "listed_approx": 4800
       }
     ],
-    "sample_total": 33,
+    "sample_total": 40,
     "listed_approx_total": 12800,
-    "industry_count": 17,
-    "ipo_count": 7
+    "industry_count": 19,
+    "ipo_count": 8
   },
   "ipos": [
     {
@@ -7470,6 +8733,27 @@
         "NVDA",
         "AVGO",
         "TSM"
+      ],
+      "chain_id": "ai",
+      "listed_symbol": null
+    },
+    {
+      "id": "cxmt-memory",
+      "name": "长芯存储",
+      "name_en": "CXMT / Changxin Memory (sample)",
+      "market": "A",
+      "board": "SSE STAR",
+      "industry": "存储芯片",
+      "status": "filed",
+      "expected_date": "2026-12-20",
+      "currency": "CNY",
+      "proceeds": 8000000000.0,
+      "sponsor": "中金公司（样本）",
+      "notes": "未上市 DRAM 样本，亦称长鑫存储。国产存储叙事不等于利润，不能当已有代码去 Yahoo 打分。",
+      "comparables": [
+        "MU",
+        "603986.SS",
+        "688008.SS"
       ],
       "chain_id": "ai",
       "listed_symbol": null
@@ -7841,8 +9125,21 @@
       "油价周期 + 分红/回购纪律；三地税费和储量口径不同。": "Oil cycle plus dividend/buyback discipline; tax and reserve accounting differ across the three markets.",
       "类债券权益；电价与来水，不是科技成长。": "Bond-like equity; tariffs and hydrology, not tech growth.",
       "垄断收费站：成交、上市、互联互通；IPO 冷暖会改利润弹性。": "A monopoly toll: turnover, listings, Connect; IPO weather changes earnings torque.",
-      "利润最先停在不可替代的算力和先进制程；云分成租用；应用层多数是费用项。": "Profit stops first in scarce compute and leading nodes; cloud takes a rental spread; most apps are a cost line.",
-      "样本地图，不是完整产业普查。出口管制、客户自制和资本开支回落会改瓶颈位置。": "A sample map, not a census. Export controls, in-house silicon and capex fade can move the bottleneck.",
+      "利润最先停在不可替代的算力和先进制程；存储和光电是配套；云分成租用；应用层多数是费用项。": "Profit stops first in scarce compute and leading nodes; memory and optics are complements; cloud takes a rental spread; most apps are a cost line.",
+      "样本地图，不是完整产业普查。长芯/长鑫存储未上市。出口管制、客户自制和资本开支回落会改瓶颈位置。": "A sample map, not a census. CXMT is unlisted. Export controls, in-house silicon and capex fade can move the bottleneck.",
+      "HBM/DRAM 和接口：没有带宽，GPU 只是发热器。长芯存储未上市，对照看美光与澜起。": "HBM/DRAM and interfaces: without bandwidth a GPU is a heater. CXMT is unlisted; listed foils are Micron and Montage.",
+      "光电互联：机柜之间的 800G 模块，不是光伏或激光加工。": "Optical interconnect: 800G modules between racks, not solar or laser cutting.",
+      "HBM/DRAM 是算力配套。长芯/长鑫存储未上市，见 IPO 管道，不能当已有代码打分。兆易是 NOR/MCU，澜起是接口，不是同一利润池。": "HBM/DRAM complements compute. CXMT is unlisted (see IPO pipeline) and is not a ticker. GigaDevice is NOR/MCU and Montage is an interface chip — not one profit pool.",
+      "AI 集群里的光电主要是交换机到服务器的光模块，不是所有激光器或光伏逆变器。": "Optics in AI clusters are mostly switch-to-server modules, not every laser or PV inverter.",
+      "先进制程产能是物理瓶颈；中芯国际是成熟制程对照，不是台积电替代品。": "Leading-node capacity is a physical bottleneck; SMIC is a mature-node foil, not a TSMC substitute.",
+      "训练/推理第二供给；和英伟达同切片，份额叙事不能当利润。": "Second-source training/inference; same slice as NVIDIA, share stories are not profit.",
+      "HBM/DRAM 周期股；和未上市长芯存储同层，不是同一治理与产能故事。": "HBM/DRAM cycle name; same layer as unlisted CXMT, not the same governance or capacity story.",
+      "NOR/MCU 为主，不是 HBM。和长芯存储同「存储」切片但不能当 DRAM 代餐。": "Mostly NOR/MCU, not HBM. Same 'memory' slice as CXMT, not a DRAM substitute.",
+      "内存接口芯片吃服务器/AI 服务器量；不是晶圆厂，也不是长芯存储。": "Memory-interface chips ride server/AI-server units; not a fab, not CXMT.",
+      "800G 光模块是 AI 集群互联，不是激光加工「光电」故事。": "800G modules are cluster interconnect, not a laser-processing 'photonics' story.",
+      "和旭创同层：量看北美云资本开支，价看 800G 渗透。": "Same layer as Innolight: volume tracks North American cloud capex, price tracks 800G mix.",
+      "成熟制程代工对照；不是台积电先进制程，出口管制会改产能用途。": "Mature-node foundry foil; not TSMC leading nodes. Export controls change what the capacity is for.",
+      "未上市 DRAM 样本，亦称长鑫存储。国产存储叙事不等于利润，不能当已有代码去 Yahoo 打分。": "Unlisted DRAM sample, also called Changxin Memory. A localization story is not profit; do not Yahoo-score it as a ticker.",
       "装车量可以很好看，利润却经常停在电池龙头而不是所有整车厂。": "Installs can look great while profit stays with battery leaders, not every OEM.",
       "价格战会把利润从下游整车挤回有成本曲线的电池层，也可能两头一起打薄。": "Price wars can push profit back to cells with a cost curve — or thin both ends.",
       "这不是上下游，是同一商业模式在两套利率、监管和估值尺子下的对照。": "Not a vertical chain: the same model under two rate, regulatory and valuation rulers.",

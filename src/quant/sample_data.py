@@ -1026,9 +1026,9 @@ CHAINS: dict[str, ValueChain] = {
         id="ai",
         name="人工智能产业链",
         name_en="AI value chain",
-        aliases=("AI", "ai", "人工智能", "算力", "大模型", "算力产业链", "AI上下游"),
-        thesis="利润最先停在不可替代的算力和先进制程；云分成租用；应用层多数是费用项。",
-        notes="样本地图，不是完整产业普查。出口管制、客户自制和资本开支回落会改瓶颈位置。",
+        aliases=("AI", "ai", "人工智能", "算力", "大模型", "算力产业链", "AI上下游", "光电", "光模块", "存储", "长芯存储", "长鑫存储", "HBM"),
+        thesis="利润最先停在不可替代的算力和先进制程；存储和光电是配套；云分成租用；应用层多数是费用项。",
+        notes="样本地图，不是完整产业普查。长芯/长鑫存储未上市。出口管制、客户自制和资本开支回落会改瓶颈位置。",
         nodes=(
             ChainNode(
                 role="upstream",
@@ -1038,9 +1038,20 @@ CHAINS: dict[str, ValueChain] = {
             ),
             ChainNode(
                 role="upstream",
+                industry="存储芯片",
+                captures="HBM/DRAM 和接口：没有带宽，GPU 只是发热器。长芯存储未上市，对照看美光与澜起。",
+                bottleneck=True,
+            ),
+            ChainNode(
+                role="upstream",
                 industry="晶圆代工",
                 captures="先进制程产能：没有它，上游设计订单无法变成货。",
                 bottleneck=True,
+            ),
+            ChainNode(
+                role="midstream",
+                industry="光模块",
+                captures="光电互联：机柜之间的 800G 模块，不是光伏或激光加工。",
             ),
             ChainNode(
                 role="midstream",

@@ -7,6 +7,8 @@ def test_ai_mermaid_has_up_and_downstream():
     assert "flowchart LR" in text
     assert "upstream" in text and "downstream" in text
     assert "全球半导体" in text
+    assert "存储芯片" in text
+    assert "光模块" in text
     assert "消费电子" in text or "本地生活" in text
 
 

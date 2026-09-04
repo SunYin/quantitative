@@ -1,6 +1,6 @@
 from quant.cli import main
 from quant.industry import chain_layers, score_industry
-from quant.sample_data import chains, get_chain, get_industry, industries, industry_constituents
+from quant.sample_data import chains, get_chain, get_industry, get_ipo, get_stock, industries, industry_constituents
 from quant.research import extract_claims, reading_checklist, score_research
 from quant.sample_data import REPORTS
 
@@ -92,6 +92,36 @@ def test_checklist_covers_markets():
     assert "A/H" in text
 
 
-def test_sample_has_ai_chain():
-    ids = {chain.id for chain in chains()}
-    assert "ai" in ids
+def test_ai_chain_includes_memory_and_optics():
+    chain = get_chain("AI")
+    layers = chain_layers(chain)
+    names = {layer["industry"].name for layer in layers}
+    assert "存储芯片" in names
+    assert "光模块" in names
+    assert len(layers) >= 7
+    for layer in layers:
+        if layer["industry"].name == "本地生活":
+            continue
+        assert len(layer["stocks"]) >= 2, layer["industry"].name
+    memory = {s.symbol for s in industry_constituents(get_industry("长芯存储"))}
+    assert "MU" in memory and "688008.SS" in memory
+    optics = {s.symbol for s in industry_constituents(get_industry("光电"))}
+    assert "300308.SZ" in optics
+    assert get_chain("光电").id == "ai"
+    try:
+        get_stock("长芯存储")
+        raise AssertionError("unlisted memory IPO must not score")
+    except KeyError:
+        pass
+    try:
+        get_stock("长鑫存储")
+        raise AssertionError("alias must not score")
+    except KeyError:
+        pass
+
+
+def test_cli_industry_optics(capsys):
+    assert main(["industry", "光电"]) == 0
+    out = capsys.readouterr().out
+    assert "中际旭创" in out or "光模块" in out
+    assert "不构成投资建议" in out or "不是投资建议" in out
