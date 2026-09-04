@@ -30,7 +30,7 @@ export default async function HomePage() {
       <section className="grid gap-3 sm:grid-cols-4">
         <Stat label="样本股票" value={String(stocks.length)} />
         <Stat label="覆盖市场" value={[...markets].join(" / ")} />
-        <Stat label="行业" value={String(industries.length)} />
+        <Stat label="行业切片" value={String(industries.length)} />
         <Stat label="策略" value={String(strategies.length)} />
       </section>
       <Card>

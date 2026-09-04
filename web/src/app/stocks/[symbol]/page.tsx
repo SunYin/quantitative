@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
@@ -25,8 +26,12 @@ export default async function StockDetailPage({
   } catch {
     notFound();
   }
-  const meta = await api.meta.get();
+  const [meta, industries] = await Promise.all([api.meta.get(), api.industry.list()]);
   const fields = stock.quote.fields;
+  const home =
+    industries.find((item) => item.name === stock.industry) ??
+    industries.find((item) => item.constituents.some((row) => row.symbol === stock.symbol));
+  const industryName = home?.name ?? stock.industry;
 
   return (
     <>
@@ -61,7 +66,13 @@ export default async function StockDetailPage({
             </p>
             <p className="text-2xl font-semibold tabular-nums">{stock.composite.toFixed(1)} 综合</p>
             <p>研究仓位上限 {(stock.position_cap * 100).toFixed(1)}%</p>
-            <p>行业 {stock.industry} · {stock.board}</p>
+            <p>
+              行业{" "}
+              <Link href={`/industries/${encodeURIComponent(industryName)}`} className="hover:underline">
+                {industryName}
+              </Link>{" "}
+              · {stock.board}
+            </p>
             <p>
               PE {multiple(stock.pe_ttm)}
               <FieldSource source={fields.pe_ttm} />

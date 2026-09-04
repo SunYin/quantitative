@@ -7,7 +7,7 @@
 ## 你能用它做什么
 
 - 给茅台、招行 A/H、腾讯、美团、苹果、英伟达等样本打**质量 / 估值 / 综合分**
-- 做**行业吸引力**（增长、集中度、利润池、政策、估值分位、颠覆）
+- 做**行业吸引力**与**产业链**（例如 `quant industry AI` 看算力上下游和成分股）
 - 计算 **A/H 溢价** 与南向/北向资金拥挤度
 - 用清单和启发式给**研报**打分，抓逻辑句、数字和红旗
 - 导出 HTML / Markdown 研究记分卡
@@ -21,6 +21,7 @@ python3 -m quant markets
 python3 -m quant analyze 00700.HK
 python3 -m quant analyze 00700.HK --live
 python3 -m quant industry 动力电池
+python3 -m quant industry AI
 python3 -m quant research cmb-ah
 python3 -m quant demo
 ```
@@ -127,5 +128,6 @@ openspec validate --all
 - `openspec/specs/cli-scorecard` — CLI、HTML 记分卡与 JSON 快照
 - `openspec/specs/research-dashboard` — Next.js 研究看板
 - `openspec/specs/live-market-data` — Yahoo 现价/部分基本面覆盖与回退
+- `openspec/specs/industry-chains` — 行业成分股与 AI 等产业链上下游
 
 约定写在 `openspec/config.yaml`：制品用中文；标题和 SHALL/MUST 保持英文；实时字段与样本研究分要分开标明，输出不是投资建议。

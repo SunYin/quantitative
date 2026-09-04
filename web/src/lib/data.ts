@@ -90,6 +90,13 @@ export type Strategy = {
   rows: StrategyRow[];
 };
 
+export type Constituent = {
+  symbol: string;
+  name: string;
+  name_en: string;
+  market: string;
+};
+
 export type Industry = {
   name: string;
   name_en: string;
@@ -97,7 +104,30 @@ export type Industry = {
   cycle_position: string;
   notes: string;
   leaders: string[];
+  aliases?: string[];
+  constituents: Constituent[];
   score: ScoreBlock;
+};
+
+export type ChainLayer = {
+  role: string;
+  role_zh: string;
+  industry: string;
+  industry_en: string;
+  captures: string;
+  bottleneck: boolean;
+  score: ScoreBlock;
+  stocks: Constituent[];
+};
+
+export type ValueChain = {
+  id: string;
+  name: string;
+  name_en: string;
+  aliases: string[];
+  thesis: string;
+  notes: string;
+  layers: ChainLayer[];
 };
 
 export type Report = {
@@ -149,6 +179,7 @@ export type Snapshot = {
   briefs: StockBrief[];
   strategies: Strategy[];
   industries: Industry[];
+  chains?: ValueChain[];
   reports: Report[];
   markets: MarketProfile[];
   connect: Record<string, string>;
@@ -191,14 +222,37 @@ export function getStock(symbol: string): StockBrief | undefined {
 }
 
 export function listIndustries(): Industry[] {
-  return [...snapshot.industries].sort((a, b) => b.score.total - a.score.total);
+  return [...snapshot.industries].map(normalizeIndustry).sort((a, b) => b.score.total - a.score.total);
 }
 
 export function getIndustry(name: string): Industry | undefined {
-  const key = decodeURIComponent(name);
-  return snapshot.industries.find(
-    (item) => item.name === key || item.name_en.toLowerCase() === key.toLowerCase(),
-  );
+  const key = decodeURIComponent(name).trim();
+  const needle = key.toLowerCase().replace(/[\s_-]/g, "");
+  return snapshot.industries.map(normalizeIndustry).find((item) => {
+    const labels = [item.name, item.name_en, ...(item.aliases ?? [])];
+    return labels.some((label) => label.toLowerCase().replace(/[\s_-]/g, "") === needle);
+  });
+}
+
+export function listChains(): ValueChain[] {
+  return [...(snapshot.chains ?? [])];
+}
+
+export function getChain(id: string): ValueChain | undefined {
+  const key = decodeURIComponent(id).trim();
+  const needle = key.toLowerCase().replace(/[\s_-]/g, "");
+  return listChains().find((chain) => {
+    const labels = [chain.id, chain.name, chain.name_en, ...chain.aliases];
+    return labels.some((label) => label.toLowerCase().replace(/[\s_-]/g, "") === needle);
+  });
+}
+
+function normalizeIndustry(item: Industry): Industry {
+  return {
+    ...item,
+    aliases: item.aliases ?? [],
+    constituents: item.constituents ?? [],
+  };
 }
 
 export function listStrategies(): Strategy[] {

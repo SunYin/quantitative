@@ -30,7 +30,7 @@ def main(argv: list[str] | None = None) -> int:
     analyze.add_argument("--live", action="store_true", help="用 Yahoo 覆盖现价和部分基本面后展示")
 
     industry = sub.add_parser("industry", help="行业吸引力")
-    industry.add_argument("name", help="例如 白酒 / 互联网平台 / 动力电池")
+    industry.add_argument("name", help="例如 白酒 / 动力电池 / AI / 人工智能")
 
     research = sub.add_parser("research", help="研报审阅")
     research.add_argument("report_id", nargs="?", default="cmb-ah", help="tencent-init | cmb-ah | nvda-hype")

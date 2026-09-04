@@ -1132,6 +1132,686 @@
           "roe": "sample"
         }
       }
+    },
+    {
+      "symbol": "TSM",
+      "name": "台积电",
+      "name_en": "TSMC",
+      "market": "US",
+      "board": "NYSE",
+      "sector": "信息技术",
+      "industry": "晶圆代工",
+      "currency": "USD",
+      "southbound_eligible": false,
+      "northbound_eligible": false,
+      "ah_pair_symbol": null,
+      "notes": "先进制程瓶颈；AI 芯片最终都要经过代工产能。",
+      "price": 175.0,
+      "change_pct": null,
+      "pe_ttm": 28.0,
+      "pb": 7.8,
+      "fcf_yield": 0.022,
+      "dividend_yield": 0.014,
+      "roe": 0.28,
+      "composite": 66.4,
+      "quality": {
+        "total": 86.9,
+        "grade": "A",
+        "flags": [],
+        "factors": [
+          {
+            "name": "盈利能力",
+            "score": 100.0,
+            "weight": 0.25,
+            "rationale": "ROE 28.0% / ROIC 22.0% / 净利率 39.0%"
+          },
+          {
+            "name": "现金流转化",
+            "score": 77.5,
+            "weight": 0.2,
+            "rationale": "OCF/NI 1.49，FCF/NI 0.60"
+          },
+          {
+            "name": "资产负债表",
+            "score": 95.5,
+            "weight": 0.2,
+            "rationale": "净负债/EBITDA -0.5x，流动比 2.50，利息覆盖 38.2x"
+          },
+          {
+            "name": "增长与稳定性",
+            "score": 78.2,
+            "weight": 0.2,
+            "rationale": "收入CAGR 18.0%，EPS CAGR 16.0%，盈利波动 0.18"
+          },
+          {
+            "name": "治理与财务质量",
+            "score": 78.0,
+            "weight": 0.15,
+            "rationale": "治理未见明显红旗"
+          }
+        ]
+      },
+      "valuation": {
+        "total": 48.6,
+        "grade": "C",
+        "flags": [
+          "现金流估值 偏弱"
+        ],
+        "factors": [
+          {
+            "name": "相对估值",
+            "score": 46.5,
+            "weight": 0.35,
+            "rationale": "PE 28.0x vs 行业中位 22.0x"
+          },
+          {
+            "name": "现金流估值",
+            "score": 34.6,
+            "weight": 0.25,
+            "rationale": "FCF yield 2.2%；EV/EBITDA 16.5x vs 16.0x"
+          },
+          {
+            "name": "增长调整估值",
+            "score": 56.6,
+            "weight": 0.2,
+            "rationale": "PEG 1.56（PE / 18.0% 增长）"
+          },
+          {
+            "name": "市场折溢价",
+            "score": 62.0,
+            "weight": 0.2,
+            "rationale": "美股信息披露完整，折现率随美债波动"
+          }
+        ]
+      },
+      "position_cap": 0.08,
+      "connect": {
+        "symbol": "TSM",
+        "southbound_eligible": false,
+        "northbound_eligible": false,
+        "has_ah_pair": false,
+        "ah_pair": "",
+        "implication": "美股：通过 ADR/普通股交易，与 A/H 价差无直接套利通道。"
+      },
+      "quote": {
+        "source": "sample",
+        "as_of": null,
+        "fields": {
+          "price": "sample",
+          "change_pct": "sample",
+          "pe_ttm": "sample",
+          "pb": "sample",
+          "dividend_yield": "sample",
+          "roe": "sample"
+        }
+      }
+    },
+    {
+      "symbol": "AVGO",
+      "name": "博通",
+      "name_en": "Broadcom",
+      "market": "US",
+      "board": "NASDAQ",
+      "sector": "信息技术",
+      "industry": "半导体",
+      "currency": "USD",
+      "southbound_eligible": false,
+      "northbound_eligible": false,
+      "ah_pair_symbol": null,
+      "notes": "网络与定制 ASIC 吃到 AI 集群扩建；客户集中度高。",
+      "price": 185.0,
+      "change_pct": null,
+      "pe_ttm": 36.0,
+      "pb": 18.0,
+      "fcf_yield": 0.027,
+      "dividend_yield": 0.012,
+      "roe": 0.24,
+      "composite": 63.3,
+      "quality": {
+        "total": 76.8,
+        "grade": "B+",
+        "flags": [],
+        "factors": [
+          {
+            "name": "盈利能力",
+            "score": 80.7,
+            "weight": 0.25,
+            "rationale": "ROE 24.0% / ROIC 16.0% / 净利率 27.0%"
+          },
+          {
+            "name": "现金流转化",
+            "score": 100.0,
+            "weight": 0.2,
+            "rationale": "OCF/NI 1.43，FCF/NI 1.29"
+          },
+          {
+            "name": "资产负债表",
+            "score": 41.0,
+            "weight": 0.2,
+            "rationale": "净负债/EBITDA 2.2x，流动比 1.40，利息覆盖 9.5x"
+          },
+          {
+            "name": "增长与稳定性",
+            "score": 83.7,
+            "weight": 0.2,
+            "rationale": "收入CAGR 21.0%，EPS CAGR 19.0%，盈利波动 0.16"
+          },
+          {
+            "name": "治理与财务质量",
+            "score": 78.0,
+            "weight": 0.15,
+            "rationale": "治理未见明显红旗"
+          }
+        ]
+      },
+      "valuation": {
+        "total": 52.4,
+        "grade": "C",
+        "flags": [
+          "现金流估值 偏弱"
+        ],
+        "factors": [
+          {
+            "name": "相对估值",
+            "score": 64.6,
+            "weight": 0.35,
+            "rationale": "PE 36.0x vs 行业中位 35.0x"
+          },
+          {
+            "name": "现金流估值",
+            "score": 30.3,
+            "weight": 0.25,
+            "rationale": "FCF yield 2.7%；EV/EBITDA 28.0x vs 22.0x"
+          },
+          {
+            "name": "增长调整估值",
+            "score": 49.4,
+            "weight": 0.2,
+            "rationale": "PEG 1.71（PE / 21.0% 增长）"
+          },
+          {
+            "name": "市场折溢价",
+            "score": 62.0,
+            "weight": 0.2,
+            "rationale": "美股信息披露完整，折现率随美债波动"
+          }
+        ]
+      },
+      "position_cap": 0.08,
+      "connect": {
+        "symbol": "AVGO",
+        "southbound_eligible": false,
+        "northbound_eligible": false,
+        "has_ah_pair": false,
+        "ah_pair": "",
+        "implication": "美股：通过 ADR/普通股交易，与 A/H 价差无直接套利通道。"
+      },
+      "quote": {
+        "source": "sample",
+        "as_of": null,
+        "fields": {
+          "price": "sample",
+          "change_pct": "sample",
+          "pe_ttm": "sample",
+          "pb": "sample",
+          "dividend_yield": "sample",
+          "roe": "sample"
+        }
+      }
+    },
+    {
+      "symbol": "MSFT",
+      "name": "微软",
+      "name_en": "Microsoft",
+      "market": "US",
+      "board": "NASDAQ",
+      "sector": "信息技术",
+      "industry": "云计算",
+      "currency": "USD",
+      "southbound_eligible": false,
+      "northbound_eligible": false,
+      "ah_pair_symbol": null,
+      "notes": "云把 GPU 租给应用层；资本开支上升会压近两年 FCF。",
+      "price": 420.0,
+      "change_pct": null,
+      "pe_ttm": 34.0,
+      "pb": 11.5,
+      "fcf_yield": 0.024,
+      "dividend_yield": 0.007,
+      "roe": 0.35,
+      "composite": 64.5,
+      "quality": {
+        "total": 84.4,
+        "grade": "B+",
+        "flags": [],
+        "factors": [
+          {
+            "name": "盈利能力",
+            "score": 100.0,
+            "weight": 0.25,
+            "rationale": "ROE 35.0% / ROIC 22.0% / 净利率 36.0%"
+          },
+          {
+            "name": "现金流转化",
+            "score": 83.3,
+            "weight": 0.2,
+            "rationale": "OCF/NI 1.34，FCF/NI 0.84"
+          },
+          {
+            "name": "资产负债表",
+            "score": 75.7,
+            "weight": 0.2,
+            "rationale": "净负债/EBITDA -0.1x，流动比 1.33，利息覆盖 40.7x"
+          },
+          {
+            "name": "增长与稳定性",
+            "score": 79.4,
+            "weight": 0.2,
+            "rationale": "收入CAGR 13.0%，EPS CAGR 14.0%，盈利波动 0.09"
+          },
+          {
+            "name": "治理与财务质量",
+            "score": 78.0,
+            "weight": 0.15,
+            "rationale": "治理未见明显红旗"
+          }
+        ]
+      },
+      "valuation": {
+        "total": 46.0,
+        "grade": "C",
+        "flags": [
+          "现金流估值 偏弱",
+          "增长调整估值 偏弱"
+        ],
+        "factors": [
+          {
+            "name": "相对估值",
+            "score": 62.0,
+            "weight": 0.35,
+            "rationale": "PE 34.0x vs 行业中位 32.0x"
+          },
+          {
+            "name": "现金流估值",
+            "score": 33.8,
+            "weight": 0.25,
+            "rationale": "FCF yield 2.4%；EV/EBITDA 22.0x vs 20.0x"
+          },
+          {
+            "name": "增长调整估值",
+            "score": 16.9,
+            "weight": 0.2,
+            "rationale": "PEG 2.43（PE / 14.0% 增长）"
+          },
+          {
+            "name": "市场折溢价",
+            "score": 62.0,
+            "weight": 0.2,
+            "rationale": "美股信息披露完整，折现率随美债波动"
+          }
+        ]
+      },
+      "position_cap": 0.08,
+      "connect": {
+        "symbol": "MSFT",
+        "southbound_eligible": false,
+        "northbound_eligible": false,
+        "has_ah_pair": false,
+        "ah_pair": "",
+        "implication": "美股：通过 ADR/普通股交易，与 A/H 价差无直接套利通道。"
+      },
+      "quote": {
+        "source": "sample",
+        "as_of": null,
+        "fields": {
+          "price": "sample",
+          "change_pct": "sample",
+          "pe_ttm": "sample",
+          "pb": "sample",
+          "dividend_yield": "sample",
+          "roe": "sample"
+        }
+      }
+    },
+    {
+      "symbol": "09988.HK",
+      "name": "阿里巴巴",
+      "name_en": "Alibaba",
+      "market": "HK",
+      "board": "HKEX",
+      "sector": "可选消费/科技",
+      "industry": "互联网平台",
+      "currency": "HKD",
+      "southbound_eligible": true,
+      "northbound_eligible": false,
+      "ah_pair_symbol": null,
+      "notes": "云与电商平台同时出现在 AI 中游；利润仍看国内消费与云份额。",
+      "price": 92.0,
+      "change_pct": null,
+      "pe_ttm": 14.5,
+      "pb": 1.6,
+      "fcf_yield": 0.055,
+      "dividend_yield": 0.012,
+      "roe": 0.08,
+      "composite": 61.0,
+      "quality": {
+        "total": 65.1,
+        "grade": "B",
+        "flags": [
+          "盈利能力 偏弱",
+          "不同投票权：控制权与经济权分离"
+        ],
+        "factors": [
+          {
+            "name": "盈利能力",
+            "score": 21.2,
+            "weight": 0.25,
+            "rationale": "ROE 8.0% / ROIC 7.0% / 净利率 9.0%"
+          },
+          {
+            "name": "现金流转化",
+            "score": 100.0,
+            "weight": 0.2,
+            "rationale": "OCF/NI 1.88，FCF/NI 1.38"
+          },
+          {
+            "name": "资产负债表",
+            "score": 90.5,
+            "weight": 0.2,
+            "rationale": "净负债/EBITDA -1.9x，流动比 1.67，利息覆盖 15.0x"
+          },
+          {
+            "name": "增长与稳定性",
+            "score": 56.1,
+            "weight": 0.2,
+            "rationale": "收入CAGR 4.0%，EPS CAGR 2.0%，盈利波动 0.22"
+          },
+          {
+            "name": "治理与财务质量",
+            "score": 70.0,
+            "weight": 0.15,
+            "rationale": "关注：同股不同权"
+          }
+        ]
+      },
+      "valuation": {
+        "total": 59.7,
+        "grade": "C+",
+        "flags": [
+          "增长调整估值 偏弱"
+        ],
+        "factors": [
+          {
+            "name": "相对估值",
+            "score": 81.1,
+            "weight": 0.35,
+            "rationale": "PE 14.5x vs 行业中位 18.0x"
+          },
+          {
+            "name": "现金流估值",
+            "score": 70.1,
+            "weight": 0.25,
+            "rationale": "FCF yield 5.5%；EV/EBITDA 8.5x vs 12.0x"
+          },
+          {
+            "name": "增长调整估值",
+            "score": 0.0,
+            "weight": 0.2,
+            "rationale": "PEG 3.62（PE / 4.0% 增长）"
+          },
+          {
+            "name": "市场折溢价",
+            "score": 69.0,
+            "weight": 0.2,
+            "rationale": "港股机构折价常见，安全边际相对更好；港股通标的有内地增量资金"
+          }
+        ]
+      },
+      "position_cap": 0.08,
+      "connect": {
+        "symbol": "09988.HK",
+        "southbound_eligible": true,
+        "northbound_eligible": false,
+        "has_ah_pair": false,
+        "ah_pair": "",
+        "implication": "南向可买：定价同时受海外资金与内地增量资金影响，需跟踪港股通持股变化。"
+      },
+      "quote": {
+        "source": "sample",
+        "as_of": null,
+        "fields": {
+          "price": "sample",
+          "change_pct": "sample",
+          "pe_ttm": "sample",
+          "pb": "sample",
+          "dividend_yield": "sample",
+          "roe": "sample"
+        }
+      }
+    },
+    {
+      "symbol": "002594.SZ",
+      "name": "比亚迪",
+      "name_en": "BYD",
+      "market": "A",
+      "board": "SZSE",
+      "sector": "制造",
+      "industry": "新能源车",
+      "currency": "CNY",
+      "southbound_eligible": false,
+      "northbound_eligible": true,
+      "ah_pair_symbol": "01211.HK",
+      "notes": "整车吃电池成本；价格战会把上游利润池继续往下游挤。",
+      "price": 280.0,
+      "change_pct": null,
+      "pe_ttm": 22.0,
+      "pb": 4.6,
+      "fcf_yield": 0.015,
+      "dividend_yield": 0.011,
+      "roe": 0.19,
+      "composite": 61.2,
+      "quality": {
+        "total": 67.0,
+        "grade": "B",
+        "flags": [],
+        "factors": [
+          {
+            "name": "盈利能力",
+            "score": 43.9,
+            "weight": 0.25,
+            "rationale": "ROE 19.0% / ROIC 11.0% / 净利率 4.4%"
+          },
+          {
+            "name": "现金流转化",
+            "score": 81.6,
+            "weight": 0.2,
+            "rationale": "OCF/NI 2.74，FCF/NI 0.71"
+          },
+          {
+            "name": "资产负债表",
+            "score": 55.9,
+            "weight": 0.2,
+            "rationale": "净负债/EBITDA 0.4x，流动比 1.16，利息覆盖 10.0x"
+          },
+          {
+            "name": "增长与稳定性",
+            "score": 83.9,
+            "weight": 0.2,
+            "rationale": "收入CAGR 38.0%，EPS CAGR 42.0%，盈利波动 0.28"
+          },
+          {
+            "name": "治理与财务质量",
+            "score": 78.0,
+            "weight": 0.15,
+            "rationale": "治理未见明显红旗"
+          }
+        ]
+      },
+      "valuation": {
+        "total": 58.5,
+        "grade": "C+",
+        "flags": [
+          "现金流估值 偏弱"
+        ],
+        "factors": [
+          {
+            "name": "相对估值",
+            "score": 59.3,
+            "weight": 0.35,
+            "rationale": "PE 22.0x vs 行业中位 20.0x"
+          },
+          {
+            "name": "现金流估值",
+            "score": 27.9,
+            "weight": 0.25,
+            "rationale": "FCF yield 1.5%；EV/EBITDA 14.0x vs 13.0x"
+          },
+          {
+            "name": "增长调整估值",
+            "score": 100.0,
+            "weight": 0.2,
+            "rationale": "PEG 0.52（PE / 42.0% 增长）"
+          },
+          {
+            "name": "市场折溢价",
+            "score": 54.0,
+            "weight": 0.2,
+            "rationale": "A 股流动性溢价，同样基本面通常更贵"
+          }
+        ]
+      },
+      "position_cap": 0.08,
+      "connect": {
+        "symbol": "002594.SZ",
+        "southbound_eligible": false,
+        "northbound_eligible": true,
+        "has_ah_pair": true,
+        "ah_pair": "01211.HK",
+        "implication": "北向可买：海外主动/被动资金会放大风格切换，北向持股是情绪而非基本面本身。"
+      },
+      "quote": {
+        "source": "sample",
+        "as_of": null,
+        "fields": {
+          "price": "sample",
+          "change_pct": "sample",
+          "pe_ttm": "sample",
+          "pb": "sample",
+          "dividend_yield": "sample",
+          "roe": "sample"
+        }
+      }
+    },
+    {
+      "symbol": "01211.HK",
+      "name": "比亚迪股份",
+      "name_en": "BYD-H",
+      "market": "HK",
+      "board": "HKEX",
+      "sector": "制造",
+      "industry": "新能源车",
+      "currency": "HKD",
+      "southbound_eligible": true,
+      "northbound_eligible": false,
+      "ah_pair_symbol": "002594.SZ",
+      "notes": "与 A 股同一集团，港股通可买；价差反映两地投资者结构。",
+      "price": 280.0,
+      "change_pct": null,
+      "pe_ttm": 18.5,
+      "pb": 3.8,
+      "fcf_yield": 0.021,
+      "dividend_yield": 0.014,
+      "roe": 0.19,
+      "composite": 64.5,
+      "quality": {
+        "total": 67.0,
+        "grade": "B",
+        "flags": [],
+        "factors": [
+          {
+            "name": "盈利能力",
+            "score": 43.9,
+            "weight": 0.25,
+            "rationale": "ROE 19.0% / ROIC 11.0% / 净利率 4.4%"
+          },
+          {
+            "name": "现金流转化",
+            "score": 81.6,
+            "weight": 0.2,
+            "rationale": "OCF/NI 2.74，FCF/NI 0.71"
+          },
+          {
+            "name": "资产负债表",
+            "score": 55.9,
+            "weight": 0.2,
+            "rationale": "净负债/EBITDA 0.4x，流动比 1.16，利息覆盖 10.0x"
+          },
+          {
+            "name": "增长与稳定性",
+            "score": 83.9,
+            "weight": 0.2,
+            "rationale": "收入CAGR 38.0%，EPS CAGR 42.0%，盈利波动 0.28"
+          },
+          {
+            "name": "治理与财务质量",
+            "score": 78.0,
+            "weight": 0.15,
+            "rationale": "治理未见明显红旗"
+          }
+        ]
+      },
+      "valuation": {
+        "total": 68.8,
+        "grade": "B",
+        "flags": [],
+        "factors": [
+          {
+            "name": "相对估值",
+            "score": 72.2,
+            "weight": 0.35,
+            "rationale": "PE 18.5x vs 行业中位 20.0x"
+          },
+          {
+            "name": "现金流估值",
+            "score": 38.8,
+            "weight": 0.25,
+            "rationale": "FCF yield 2.1%；EV/EBITDA 11.5x vs 13.0x"
+          },
+          {
+            "name": "增长调整估值",
+            "score": 100.0,
+            "weight": 0.2,
+            "rationale": "PEG 0.44（PE / 42.0% 增长）"
+          },
+          {
+            "name": "市场折溢价",
+            "score": 69.0,
+            "weight": 0.2,
+            "rationale": "港股机构折价常见，安全边际相对更好；港股通标的有内地增量资金"
+          }
+        ]
+      },
+      "position_cap": 0.08,
+      "connect": {
+        "symbol": "01211.HK",
+        "southbound_eligible": true,
+        "northbound_eligible": false,
+        "has_ah_pair": true,
+        "ah_pair": "002594.SZ",
+        "implication": "南向可买：定价同时受海外资金与内地增量资金影响，需跟踪港股通持股变化。"
+      },
+      "quote": {
+        "source": "sample",
+        "as_of": null,
+        "fields": {
+          "price": "sample",
+          "change_pct": "sample",
+          "pe_ttm": "sample",
+          "pb": "sample",
+          "dividend_yield": "sample",
+          "roe": "sample"
+        }
+      }
     }
   ],
   "strategies": [
@@ -1187,6 +1867,20 @@
           }
         },
         {
+          "symbol": "TSM",
+          "name": "台积电",
+          "market": "US",
+          "score": 66.4,
+          "action": "估值偏贵或中性",
+          "reason": "质量 87 / 估值 49 / 技术 52",
+          "extras": {
+            "quality": 86.92,
+            "valuation": 48.63,
+            "position_cap": 0.08,
+            "implied_upside": -0.214
+          }
+        },
+        {
           "symbol": "300750.SZ",
           "name": "宁德时代",
           "market": "A",
@@ -1198,6 +1892,34 @@
             "valuation": 58.12,
             "position_cap": 0.08,
             "implied_upside": -0.091
+          }
+        },
+        {
+          "symbol": "MSFT",
+          "name": "微软",
+          "market": "US",
+          "score": 64.5,
+          "action": "估值偏贵或中性",
+          "reason": "质量 84 / 估值 46 / 技术 54",
+          "extras": {
+            "quality": 84.39,
+            "valuation": 45.95,
+            "position_cap": 0.08,
+            "implied_upside": -0.059
+          }
+        },
+        {
+          "symbol": "01211.HK",
+          "name": "比亚迪股份",
+          "market": "HK",
+          "score": 64.5,
+          "action": "观察名单",
+          "reason": "质量 67 / 估值 69 / 技术 46",
+          "extras": {
+            "quality": 66.97,
+            "valuation": 68.77,
+            "position_cap": 0.08,
+            "implied_upside": 0.081
           }
         },
         {
@@ -1243,6 +1965,20 @@
           }
         },
         {
+          "symbol": "AVGO",
+          "name": "博通",
+          "market": "US",
+          "score": 63.3,
+          "action": "观察名单",
+          "reason": "质量 77 / 估值 52 / 技术 52",
+          "extras": {
+            "quality": 76.81,
+            "valuation": 52.44,
+            "position_cap": 0.08,
+            "implied_upside": -0.028
+          }
+        },
+        {
           "symbol": "JPM",
           "name": "摩根大通",
           "market": "US",
@@ -1254,6 +1990,34 @@
             "valuation": 53.67,
             "position_cap": 0.08,
             "implied_upside": -0.467
+          }
+        },
+        {
+          "symbol": "002594.SZ",
+          "name": "比亚迪",
+          "market": "A",
+          "score": 61.2,
+          "action": "观察名单",
+          "reason": "质量 67 / 估值 58 / 技术 51",
+          "extras": {
+            "quality": 66.97,
+            "valuation": 58.5,
+            "position_cap": 0.08,
+            "implied_upside": -0.091
+          }
+        },
+        {
+          "symbol": "09988.HK",
+          "name": "阿里巴巴",
+          "market": "HK",
+          "score": 61.0,
+          "action": "观察名单",
+          "reason": "质量 65 / 估值 60 / 技术 52",
+          "extras": {
+            "quality": 65.11,
+            "valuation": 59.71,
+            "position_cap": 0.08,
+            "implied_upside": 0.241
           }
         },
         {
@@ -1309,6 +2073,19 @@
           }
         },
         {
+          "symbol": "002594.SZ / 01211.HK",
+          "name": "比亚迪 A/H",
+          "market": "AH",
+          "score": 68.0,
+          "action": "价差中性，先看基本面",
+          "reason": "A 股相对 H 股溢价 9.0%（样本汇率）",
+          "extras": {
+            "ah_premium": 0.09,
+            "southbound": true,
+            "quality": 66.97
+          }
+        },
+        {
           "symbol": "600036.SS / 3968.HK",
           "name": "招商银行 A/H",
           "market": "AH",
@@ -1344,6 +2121,30 @@
           }
         },
         {
+          "symbol": "晶圆代工",
+          "name": "Foundry",
+          "market": "US",
+          "score": 62.65,
+          "action": "标配",
+          "reason": "C+；周期 mid；估值分位 72",
+          "extras": {
+            "grade": "C+",
+            "policy": 46
+          }
+        },
+        {
+          "symbol": "云计算",
+          "name": "Cloud",
+          "market": "US/HK",
+          "score": 60.0,
+          "action": "标配",
+          "reason": "C+；周期 mid；估值分位 74",
+          "extras": {
+            "grade": "C+",
+            "policy": 55
+          }
+        },
+        {
           "symbol": "白酒",
           "name": "Baijiu",
           "market": "A",
@@ -1368,6 +2169,18 @@
           }
         },
         {
+          "symbol": "新能源车",
+          "name": "NEV",
+          "market": "A/HK",
+          "score": 52.78,
+          "action": "低配/等待更好价格",
+          "reason": "C；周期 mid；估值分位 55",
+          "extras": {
+            "grade": "C",
+            "policy": 70
+          }
+        },
+        {
           "symbol": "全球半导体",
           "name": "Global Semiconductors",
           "market": "US/HK/A",
@@ -1380,6 +2193,30 @@
           }
         },
         {
+          "symbol": "消费电子",
+          "name": "Consumer Electronics",
+          "market": "US",
+          "score": 50.07,
+          "action": "低配/等待更好价格",
+          "reason": "C；周期 late；估值分位 80",
+          "extras": {
+            "grade": "C",
+            "policy": 62
+          }
+        },
+        {
+          "symbol": "美股银行",
+          "name": "US Banks",
+          "market": "US",
+          "score": 47.26,
+          "action": "低配/等待更好价格",
+          "reason": "C；周期 mid；估值分位 58",
+          "extras": {
+            "grade": "C",
+            "policy": 60
+          }
+        },
+        {
           "symbol": "中资银行",
           "name": "Chinese Banks",
           "market": "A/HK",
@@ -1389,6 +2226,18 @@
           "extras": {
             "grade": "C",
             "policy": 52
+          }
+        },
+        {
+          "symbol": "本地生活",
+          "name": "Local Services",
+          "market": "HK",
+          "score": 46.65,
+          "action": "低配/等待更好价格",
+          "reason": "C；周期 early；估值分位 46",
+          "extras": {
+            "grade": "C",
+            "policy": 50
           }
         }
       ]
@@ -1439,6 +2288,18 @@
           }
         },
         {
+          "symbol": "01211.HK",
+          "name": "比亚迪股份",
+          "market": "HK",
+          "score": 63.7,
+          "action": "资金噪声，不单独作为买卖点",
+          "reason": "南向 20日持股变化 +0.9%；南向可买：定价同时受海外资金与内地增量资金影响，需跟踪港股通持股变化。",
+          "extras": {
+            "flow_20d": 0.009,
+            "quality": 66.97
+          }
+        },
+        {
           "symbol": "3750.HK",
           "name": "宁德时代-H",
           "market": "HK",
@@ -1448,6 +2309,30 @@
           "extras": {
             "flow_20d": 0.004,
             "quality": 75.04
+          }
+        },
+        {
+          "symbol": "002594.SZ",
+          "name": "比亚迪",
+          "market": "A",
+          "score": 59.3,
+          "action": "资金噪声，不单独作为买卖点",
+          "reason": "北向 20日持股变化 +0.6%；北向可买：海外主动/被动资金会放大风格切换，北向持股是情绪而非基本面本身。",
+          "extras": {
+            "flow_20d": 0.006,
+            "quality": 66.97
+          }
+        },
+        {
+          "symbol": "09988.HK",
+          "name": "阿里巴巴",
+          "market": "HK",
+          "score": 58.0,
+          "action": "资金噪声，不单独作为买卖点",
+          "reason": "南向 20日持股变化 +0.5%；南向可买：定价同时受海外资金与内地增量资金影响，需跟踪港股通持股变化。",
+          "extras": {
+            "flow_20d": 0.005,
+            "quality": 65.11
           }
         },
         {
@@ -1500,6 +2385,19 @@
       "notes": "高端宴席与礼品需求稳，大众价格带竞争更卷；几乎是纯 A 股行业。",
       "leaders": [
         "600519.SS"
+      ],
+      "aliases": [
+        "白酒",
+        "Baijiu",
+        "高端白酒"
+      ],
+      "constituents": [
+        {
+          "symbol": "600519.SS",
+          "name": "贵州茅台",
+          "name_en": "Kweichow Moutai",
+          "market": "A"
+        }
       ],
       "score": {
         "total": 59.0,
@@ -1560,6 +2458,25 @@
         "300750.SZ",
         "3750.HK"
       ],
+      "aliases": [
+        "电池",
+        "EV Battery",
+        "锂电"
+      ],
+      "constituents": [
+        {
+          "symbol": "300750.SZ",
+          "name": "宁德时代",
+          "name_en": "CATL",
+          "market": "A"
+        },
+        {
+          "symbol": "3750.HK",
+          "name": "宁德时代-H",
+          "name_en": "CATL-H",
+          "market": "HK"
+        }
+      ],
       "score": {
         "total": 65.1,
         "grade": "B",
@@ -1605,6 +2522,85 @@
       }
     },
     {
+      "name": "新能源车",
+      "name_en": "NEV",
+      "markets": [
+        "A",
+        "HK"
+      ],
+      "cycle_position": "mid",
+      "notes": "量还在长，价在打；利润常被补贴退坡和价格战从整车层挤走。",
+      "leaders": [
+        "002594.SZ",
+        "01211.HK"
+      ],
+      "aliases": [
+        "汽车",
+        "电动车",
+        "NEV",
+        "EV"
+      ],
+      "constituents": [
+        {
+          "symbol": "002594.SZ",
+          "name": "比亚迪",
+          "name_en": "BYD",
+          "market": "A"
+        },
+        {
+          "symbol": "01211.HK",
+          "name": "比亚迪股份",
+          "name_en": "BYD-H",
+          "market": "HK"
+        }
+      ],
+      "score": {
+        "total": 52.8,
+        "grade": "C",
+        "flags": [
+          "竞争结构 偏弱"
+        ],
+        "factors": [
+          {
+            "name": "需求增长",
+            "score": 83.1,
+            "weight": 0.2,
+            "rationale": "过去3年 32.0%，未来2年预期 14.0%"
+          },
+          {
+            "name": "竞争结构",
+            "score": 30.7,
+            "weight": 0.18,
+            "rationale": "CR5 45%，HHI 980（越高越集中）"
+          },
+          {
+            "name": "利润池",
+            "score": 35.5,
+            "weight": 0.18,
+            "rationale": "行业ROE中位 12.0%，ROIC 8.0%，利润池趋势 -3.0%"
+          },
+          {
+            "name": "政策与监管",
+            "score": 71.4,
+            "weight": 0.16,
+            "rationale": "政策友好度 70/100（A/港股对政策更敏感）"
+          },
+          {
+            "name": "估值周期",
+            "score": 42.9,
+            "weight": 0.14,
+            "rationale": "估值分位 55（越高越贵）"
+          },
+          {
+            "name": "颠覆与周期位置",
+            "score": 48.7,
+            "weight": 0.14,
+            "rationale": "颠覆风险 62，周期 mid"
+          }
+        ]
+      }
+    },
+    {
       "name": "中资银行",
       "name_en": "Chinese Banks",
       "markets": [
@@ -1616,6 +2612,24 @@
       "leaders": [
         "600036.SS",
         "3968.HK"
+      ],
+      "aliases": [
+        "银行",
+        "Chinese Banks"
+      ],
+      "constituents": [
+        {
+          "symbol": "600036.SS",
+          "name": "招商银行",
+          "name_en": "China Merchants Bank",
+          "market": "A"
+        },
+        {
+          "symbol": "3968.HK",
+          "name": "招商银行-H",
+          "name_en": "CMB-H",
+          "market": "HK"
+        }
       ],
       "score": {
         "total": 46.9,
@@ -1666,6 +2680,75 @@
       }
     },
     {
+      "name": "美股银行",
+      "name_en": "US Banks",
+      "markets": [
+        "US"
+      ],
+      "cycle_position": "mid",
+      "notes": "同一银行生意，美股用另一套 PB 与利率周期，不能和中资银行横比倍数。",
+      "leaders": [
+        "JPM"
+      ],
+      "aliases": [
+        "US Banks",
+        "美国银行"
+      ],
+      "constituents": [
+        {
+          "symbol": "JPM",
+          "name": "摩根大通",
+          "name_en": "JPMorgan Chase",
+          "market": "US"
+        }
+      ],
+      "score": {
+        "total": 47.3,
+        "grade": "C",
+        "flags": [
+          "竞争结构 偏弱"
+        ],
+        "factors": [
+          {
+            "name": "需求增长",
+            "score": 42.2,
+            "weight": 0.2,
+            "rationale": "过去3年 9.0%，未来2年预期 6.0%"
+          },
+          {
+            "name": "竞争结构",
+            "score": 24.0,
+            "weight": 0.18,
+            "rationale": "CR5 42%，HHI 850（越高越集中）"
+          },
+          {
+            "name": "利润池",
+            "score": 59.6,
+            "weight": 0.18,
+            "rationale": "行业ROE中位 15.0%，ROIC 13.0%，利润池趋势 +2.0%"
+          },
+          {
+            "name": "政策与监管",
+            "score": 57.1,
+            "weight": 0.16,
+            "rationale": "政策友好度 60/100（A/港股对政策更敏感）"
+          },
+          {
+            "name": "估值周期",
+            "score": 38.6,
+            "weight": 0.14,
+            "rationale": "估值分位 58（越高越贵）"
+          },
+          {
+            "name": "颠覆与周期位置",
+            "score": 66.0,
+            "weight": 0.14,
+            "rationale": "颠覆风险 40，周期 mid"
+          }
+        ]
+      }
+    },
+    {
       "name": "互联网平台",
       "name_en": "China Internet",
       "markets": [
@@ -1676,7 +2759,25 @@
       "notes": "监管从收缩走向常态化，但竞争与广告预算仍决定利润弹性。",
       "leaders": [
         "00700.HK",
-        "03690.HK"
+        "09988.HK"
+      ],
+      "aliases": [
+        "中国互联网",
+        "China Internet"
+      ],
+      "constituents": [
+        {
+          "symbol": "00700.HK",
+          "name": "腾讯控股",
+          "name_en": "Tencent",
+          "market": "HK"
+        },
+        {
+          "symbol": "09988.HK",
+          "name": "阿里巴巴",
+          "name_en": "Alibaba",
+          "market": "HK"
+        }
       ],
       "score": {
         "total": 53.5,
@@ -1723,6 +2824,76 @@
       }
     },
     {
+      "name": "本地生活",
+      "name_en": "Local Services",
+      "markets": [
+        "HK"
+      ],
+      "cycle_position": "early",
+      "notes": "交易额可以很大，利润取决于补贴强度；AI 目前更多是成本项。",
+      "leaders": [
+        "03690.HK"
+      ],
+      "aliases": [
+        "到店",
+        "外卖",
+        "Local Services"
+      ],
+      "constituents": [
+        {
+          "symbol": "03690.HK",
+          "name": "美团",
+          "name_en": "Meituan",
+          "market": "HK"
+        }
+      ],
+      "score": {
+        "total": 46.6,
+        "grade": "C",
+        "flags": [
+          "利润池 偏弱"
+        ],
+        "factors": [
+          {
+            "name": "需求增长",
+            "score": 51.5,
+            "weight": 0.2,
+            "rationale": "过去3年 11.0%，未来2年预期 9.0%"
+          },
+          {
+            "name": "竞争结构",
+            "score": 51.3,
+            "weight": 0.18,
+            "rationale": "CR5 58%，HHI 1250（越高越集中）"
+          },
+          {
+            "name": "利润池",
+            "score": 24.0,
+            "weight": 0.18,
+            "rationale": "行业ROE中位 8.0%，ROIC 6.0%，利润池趋势 +2.0%"
+          },
+          {
+            "name": "政策与监管",
+            "score": 42.9,
+            "weight": 0.16,
+            "rationale": "政策友好度 50/100（A/港股对政策更敏感）"
+          },
+          {
+            "name": "估值周期",
+            "score": 55.7,
+            "weight": 0.14,
+            "rationale": "估值分位 46（越高越贵）"
+          },
+          {
+            "name": "颠覆与周期位置",
+            "score": 58.1,
+            "weight": 0.14,
+            "rationale": "颠覆风险 58，周期 early"
+          }
+        ]
+      }
+    },
+    {
       "name": "全球半导体",
       "name_en": "Global Semiconductors",
       "markets": [
@@ -1733,7 +2904,28 @@
       "cycle_position": "mid",
       "notes": "AI 资本开支驱动；出口管制与客户自制是美股/A 股共同变量。",
       "leaders": [
-        "NVDA"
+        "NVDA",
+        "AVGO"
+      ],
+      "aliases": [
+        "半导体",
+        "GPU",
+        "AI芯片",
+        "算力芯片"
+      ],
+      "constituents": [
+        {
+          "symbol": "NVDA",
+          "name": "英伟达",
+          "name_en": "NVIDIA",
+          "market": "US"
+        },
+        {
+          "symbol": "AVGO",
+          "name": "博通",
+          "name_en": "Broadcom",
+          "market": "US"
+        }
       ],
       "score": {
         "total": 50.7,
@@ -1782,6 +2974,922 @@
           }
         ]
       }
+    },
+    {
+      "name": "晶圆代工",
+      "name_en": "Foundry",
+      "markets": [
+        "US"
+      ],
+      "cycle_position": "mid",
+      "notes": "先进制程产能是物理瓶颈；设计公司再强也要排队。",
+      "leaders": [
+        "TSM"
+      ],
+      "aliases": [
+        "代工",
+        "Foundry",
+        "先进制程"
+      ],
+      "constituents": [
+        {
+          "symbol": "TSM",
+          "name": "台积电",
+          "name_en": "TSMC",
+          "market": "US"
+        }
+      ],
+      "score": {
+        "total": 62.6,
+        "grade": "C+",
+        "flags": [
+          "估值周期 偏弱"
+        ],
+        "factors": [
+          {
+            "name": "需求增长",
+            "score": 65.3,
+            "weight": 0.2,
+            "rationale": "过去3年 16.0%，未来2年预期 12.0%"
+          },
+          {
+            "name": "竞争结构",
+            "score": 89.2,
+            "weight": 0.18,
+            "rationale": "CR5 72%，HHI 2100（越高越集中）"
+          },
+          {
+            "name": "利润池",
+            "score": 93.6,
+            "weight": 0.18,
+            "rationale": "行业ROE中位 24.0%，ROIC 18.0%，利润池趋势 +5.0%"
+          },
+          {
+            "name": "政策与监管",
+            "score": 37.1,
+            "weight": 0.16,
+            "rationale": "政策友好度 46/100（A/港股对政策更敏感）"
+          },
+          {
+            "name": "估值周期",
+            "score": 18.6,
+            "weight": 0.14,
+            "rationale": "估值分位 72（越高越贵）"
+          },
+          {
+            "name": "颠覆与周期位置",
+            "score": 58.1,
+            "weight": 0.14,
+            "rationale": "颠覆风险 50，周期 mid"
+          }
+        ]
+      }
+    },
+    {
+      "name": "云计算",
+      "name_en": "Cloud",
+      "markets": [
+        "US",
+        "HK"
+      ],
+      "cycle_position": "mid",
+      "notes": "把上游算力转租给应用；利润看定价权，风险看资本开支回落。",
+      "leaders": [
+        "MSFT",
+        "09988.HK"
+      ],
+      "aliases": [
+        "云",
+        "Cloud",
+        "IaaS"
+      ],
+      "constituents": [
+        {
+          "symbol": "MSFT",
+          "name": "微软",
+          "name_en": "Microsoft",
+          "market": "US"
+        },
+        {
+          "symbol": "09988.HK",
+          "name": "阿里巴巴",
+          "name_en": "Alibaba",
+          "market": "HK"
+        }
+      ],
+      "score": {
+        "total": 60.0,
+        "grade": "C+",
+        "flags": [
+          "估值周期 偏弱"
+        ],
+        "factors": [
+          {
+            "name": "需求增长",
+            "score": 69.0,
+            "weight": 0.2,
+            "rationale": "过去3年 17.0%，未来2年预期 13.0%"
+          },
+          {
+            "name": "竞争结构",
+            "score": 71.9,
+            "weight": 0.18,
+            "rationale": "CR5 66%，HHI 1700（越高越集中）"
+          },
+          {
+            "name": "利润池",
+            "score": 84.2,
+            "weight": 0.18,
+            "rationale": "行业ROE中位 22.0%，ROIC 14.0%，利润池趋势 +4.0%"
+          },
+          {
+            "name": "政策与监管",
+            "score": 50.0,
+            "weight": 0.16,
+            "rationale": "政策友好度 55/100（A/港股对政策更敏感）"
+          },
+          {
+            "name": "估值周期",
+            "score": 15.7,
+            "weight": 0.14,
+            "rationale": "估值分位 74（越高越贵）"
+          },
+          {
+            "name": "颠覆与周期位置",
+            "score": 56.5,
+            "weight": 0.14,
+            "rationale": "颠覆风险 52，周期 mid"
+          }
+        ]
+      }
+    },
+    {
+      "name": "消费电子",
+      "name_en": "Consumer Electronics",
+      "markets": [
+        "US"
+      ],
+      "cycle_position": "late",
+      "notes": "硬件入口和回购机器；端侧 AI 是叙事，利润仍主要来自生态和价位。",
+      "leaders": [
+        "AAPL"
+      ],
+      "aliases": [
+        "手机",
+        "消费硬件",
+        "Consumer Electronics"
+      ],
+      "constituents": [
+        {
+          "symbol": "AAPL",
+          "name": "苹果",
+          "name_en": "Apple",
+          "market": "US"
+        }
+      ],
+      "score": {
+        "total": 50.1,
+        "grade": "C",
+        "flags": [
+          "需求增长 偏弱",
+          "估值周期 偏弱",
+          "行业估值处于高分位，即使景气好也要降预期回报"
+        ],
+        "factors": [
+          {
+            "name": "需求增长",
+            "score": 31.0,
+            "weight": 0.2,
+            "rationale": "过去3年 3.0%，未来2年预期 5.0%"
+          },
+          {
+            "name": "竞争结构",
+            "score": 57.5,
+            "weight": 0.18,
+            "rationale": "CR5 60%，HHI 1400（越高越集中）"
+          },
+          {
+            "name": "利润池",
+            "score": 90.0,
+            "weight": 0.18,
+            "rationale": "行业ROE中位 40.0%，ROIC 30.0%，利润池趋势 +1.0%"
+          },
+          {
+            "name": "政策与监管",
+            "score": 60.0,
+            "weight": 0.16,
+            "rationale": "政策友好度 62/100（A/港股对政策更敏感）"
+          },
+          {
+            "name": "估值周期",
+            "score": 7.1,
+            "weight": 0.14,
+            "rationale": "估值分位 80（越高越贵）"
+          },
+          {
+            "name": "颠覆与周期位置",
+            "score": 48.0,
+            "weight": 0.14,
+            "rationale": "颠覆风险 48，周期 late"
+          }
+        ]
+      }
+    }
+  ],
+  "chains": [
+    {
+      "id": "ai",
+      "name": "人工智能产业链",
+      "name_en": "AI value chain",
+      "aliases": [
+        "AI",
+        "ai",
+        "人工智能",
+        "算力",
+        "大模型",
+        "算力产业链",
+        "AI上下游"
+      ],
+      "thesis": "利润最先停在不可替代的算力和先进制程；云分成租用；应用层多数是费用项。",
+      "notes": "样本地图，不是完整产业普查。出口管制、客户自制和资本开支回落会改瓶颈位置。",
+      "layers": [
+        {
+          "role": "upstream",
+          "role_zh": "上游",
+          "industry": "全球半导体",
+          "industry_en": "Global Semiconductors",
+          "captures": "训练/推理芯片：量价弹性最大，也是出口管制焦点。",
+          "bottleneck": true,
+          "score": {
+            "total": 50.7,
+            "grade": "C",
+            "flags": [
+              "政策与监管 偏弱",
+              "估值周期 偏弱",
+              "技术或模式颠覆风险高，避免用历史 PE 外推"
+            ],
+            "factors": [
+              {
+                "name": "需求增长",
+                "score": 72.6,
+                "weight": 0.2,
+                "rationale": "过去3年 18.0%，未来2年预期 14.0%"
+              },
+              {
+                "name": "竞争结构",
+                "score": 49.7,
+                "weight": 0.18,
+                "rationale": "CR5 55%，HHI 1300（越高越集中）"
+              },
+              {
+                "name": "利润池",
+                "score": 80.3,
+                "weight": 0.18,
+                "rationale": "行业ROE中位 18.0%，ROIC 16.0%，利润池趋势 +8.0%"
+              },
+              {
+                "name": "政策与监管",
+                "score": 34.3,
+                "weight": 0.16,
+                "rationale": "政策友好度 44/100（A/港股对政策更敏感）"
+              },
+              {
+                "name": "估值周期",
+                "score": 10.0,
+                "weight": 0.14,
+                "rationale": "估值分位 78（越高越贵）"
+              },
+              {
+                "name": "颠覆与周期位置",
+                "score": 42.4,
+                "weight": 0.14,
+                "rationale": "颠覆风险 70，周期 mid"
+              }
+            ]
+          },
+          "stocks": [
+            {
+              "symbol": "NVDA",
+              "name": "英伟达",
+              "name_en": "NVIDIA",
+              "market": "US"
+            },
+            {
+              "symbol": "AVGO",
+              "name": "博通",
+              "name_en": "Broadcom",
+              "market": "US"
+            }
+          ]
+        },
+        {
+          "role": "upstream",
+          "role_zh": "上游",
+          "industry": "晶圆代工",
+          "industry_en": "Foundry",
+          "captures": "先进制程产能：没有它，上游设计订单无法变成货。",
+          "bottleneck": true,
+          "score": {
+            "total": 62.6,
+            "grade": "C+",
+            "flags": [
+              "估值周期 偏弱"
+            ],
+            "factors": [
+              {
+                "name": "需求增长",
+                "score": 65.3,
+                "weight": 0.2,
+                "rationale": "过去3年 16.0%，未来2年预期 12.0%"
+              },
+              {
+                "name": "竞争结构",
+                "score": 89.2,
+                "weight": 0.18,
+                "rationale": "CR5 72%，HHI 2100（越高越集中）"
+              },
+              {
+                "name": "利润池",
+                "score": 93.6,
+                "weight": 0.18,
+                "rationale": "行业ROE中位 24.0%，ROIC 18.0%，利润池趋势 +5.0%"
+              },
+              {
+                "name": "政策与监管",
+                "score": 37.1,
+                "weight": 0.16,
+                "rationale": "政策友好度 46/100（A/港股对政策更敏感）"
+              },
+              {
+                "name": "估值周期",
+                "score": 18.6,
+                "weight": 0.14,
+                "rationale": "估值分位 72（越高越贵）"
+              },
+              {
+                "name": "颠覆与周期位置",
+                "score": 58.1,
+                "weight": 0.14,
+                "rationale": "颠覆风险 50，周期 mid"
+              }
+            ]
+          },
+          "stocks": [
+            {
+              "symbol": "TSM",
+              "name": "台积电",
+              "name_en": "TSMC",
+              "market": "US"
+            }
+          ]
+        },
+        {
+          "role": "midstream",
+          "role_zh": "中游",
+          "industry": "云计算",
+          "industry_en": "Cloud",
+          "captures": "把 GPU 时数租给模型公司，赚差价也承担折旧。",
+          "bottleneck": false,
+          "score": {
+            "total": 60.0,
+            "grade": "C+",
+            "flags": [
+              "估值周期 偏弱"
+            ],
+            "factors": [
+              {
+                "name": "需求增长",
+                "score": 69.0,
+                "weight": 0.2,
+                "rationale": "过去3年 17.0%，未来2年预期 13.0%"
+              },
+              {
+                "name": "竞争结构",
+                "score": 71.9,
+                "weight": 0.18,
+                "rationale": "CR5 66%，HHI 1700（越高越集中）"
+              },
+              {
+                "name": "利润池",
+                "score": 84.2,
+                "weight": 0.18,
+                "rationale": "行业ROE中位 22.0%，ROIC 14.0%，利润池趋势 +4.0%"
+              },
+              {
+                "name": "政策与监管",
+                "score": 50.0,
+                "weight": 0.16,
+                "rationale": "政策友好度 55/100（A/港股对政策更敏感）"
+              },
+              {
+                "name": "估值周期",
+                "score": 15.7,
+                "weight": 0.14,
+                "rationale": "估值分位 74（越高越贵）"
+              },
+              {
+                "name": "颠覆与周期位置",
+                "score": 56.5,
+                "weight": 0.14,
+                "rationale": "颠覆风险 52，周期 mid"
+              }
+            ]
+          },
+          "stocks": [
+            {
+              "symbol": "MSFT",
+              "name": "微软",
+              "name_en": "Microsoft",
+              "market": "US"
+            },
+            {
+              "symbol": "09988.HK",
+              "name": "阿里巴巴",
+              "name_en": "Alibaba",
+              "market": "HK"
+            }
+          ]
+        },
+        {
+          "role": "midstream",
+          "role_zh": "中游",
+          "industry": "互联网平台",
+          "industry_en": "China Internet",
+          "captures": "中文应用分发、广告和云；AI 能提效，但不自动变成和 GPU 一样的利润池。",
+          "bottleneck": false,
+          "score": {
+            "total": 53.5,
+            "grade": "C",
+            "flags": [],
+            "factors": [
+              {
+                "name": "需求增长",
+                "score": 43.4,
+                "weight": 0.2,
+                "rationale": "过去3年 7.0%，未来2年预期 8.0%"
+              },
+              {
+                "name": "竞争结构",
+                "score": 71.1,
+                "weight": 0.18,
+                "rationale": "CR5 68%，HHI 1600（越高越集中）"
+              },
+              {
+                "name": "利润池",
+                "score": 48.2,
+                "weight": 0.18,
+                "rationale": "行业ROE中位 13.0%，ROIC 10.0%，利润池趋势 +3.0%"
+              },
+              {
+                "name": "政策与监管",
+                "score": 40.0,
+                "weight": 0.16,
+                "rationale": "政策友好度 48/100（A/港股对政策更敏感）"
+              },
+              {
+                "name": "估值周期",
+                "score": 64.3,
+                "weight": 0.14,
+                "rationale": "估值分位 40（越高越贵）"
+              },
+              {
+                "name": "颠覆与周期位置",
+                "score": 56.5,
+                "weight": 0.14,
+                "rationale": "颠覆风险 60，周期 early"
+              }
+            ]
+          },
+          "stocks": [
+            {
+              "symbol": "00700.HK",
+              "name": "腾讯控股",
+              "name_en": "Tencent",
+              "market": "HK"
+            },
+            {
+              "symbol": "09988.HK",
+              "name": "阿里巴巴",
+              "name_en": "Alibaba",
+              "market": "HK"
+            }
+          ]
+        },
+        {
+          "role": "downstream",
+          "role_zh": "下游",
+          "industry": "消费电子",
+          "industry_en": "Consumer Electronics",
+          "captures": "端侧入口。硬件周期弱于算力，AI 功能更多是保住 ASP。",
+          "bottleneck": false,
+          "score": {
+            "total": 50.1,
+            "grade": "C",
+            "flags": [
+              "需求增长 偏弱",
+              "估值周期 偏弱",
+              "行业估值处于高分位，即使景气好也要降预期回报"
+            ],
+            "factors": [
+              {
+                "name": "需求增长",
+                "score": 31.0,
+                "weight": 0.2,
+                "rationale": "过去3年 3.0%，未来2年预期 5.0%"
+              },
+              {
+                "name": "竞争结构",
+                "score": 57.5,
+                "weight": 0.18,
+                "rationale": "CR5 60%，HHI 1400（越高越集中）"
+              },
+              {
+                "name": "利润池",
+                "score": 90.0,
+                "weight": 0.18,
+                "rationale": "行业ROE中位 40.0%，ROIC 30.0%，利润池趋势 +1.0%"
+              },
+              {
+                "name": "政策与监管",
+                "score": 60.0,
+                "weight": 0.16,
+                "rationale": "政策友好度 62/100（A/港股对政策更敏感）"
+              },
+              {
+                "name": "估值周期",
+                "score": 7.1,
+                "weight": 0.14,
+                "rationale": "估值分位 80（越高越贵）"
+              },
+              {
+                "name": "颠覆与周期位置",
+                "score": 48.0,
+                "weight": 0.14,
+                "rationale": "颠覆风险 48，周期 late"
+              }
+            ]
+          },
+          "stocks": [
+            {
+              "symbol": "AAPL",
+              "name": "苹果",
+              "name_en": "Apple",
+              "market": "US"
+            }
+          ]
+        },
+        {
+          "role": "downstream",
+          "role_zh": "下游",
+          "industry": "本地生活",
+          "industry_en": "Local Services",
+          "captures": "应用层：订单很大，AI 目前主要降成本，不是单独卖算力。",
+          "bottleneck": false,
+          "score": {
+            "total": 46.6,
+            "grade": "C",
+            "flags": [
+              "利润池 偏弱"
+            ],
+            "factors": [
+              {
+                "name": "需求增长",
+                "score": 51.5,
+                "weight": 0.2,
+                "rationale": "过去3年 11.0%，未来2年预期 9.0%"
+              },
+              {
+                "name": "竞争结构",
+                "score": 51.3,
+                "weight": 0.18,
+                "rationale": "CR5 58%，HHI 1250（越高越集中）"
+              },
+              {
+                "name": "利润池",
+                "score": 24.0,
+                "weight": 0.18,
+                "rationale": "行业ROE中位 8.0%，ROIC 6.0%，利润池趋势 +2.0%"
+              },
+              {
+                "name": "政策与监管",
+                "score": 42.9,
+                "weight": 0.16,
+                "rationale": "政策友好度 50/100（A/港股对政策更敏感）"
+              },
+              {
+                "name": "估值周期",
+                "score": 55.7,
+                "weight": 0.14,
+                "rationale": "估值分位 46（越高越贵）"
+              },
+              {
+                "name": "颠覆与周期位置",
+                "score": 58.1,
+                "weight": 0.14,
+                "rationale": "颠覆风险 58，周期 early"
+              }
+            ]
+          },
+          "stocks": [
+            {
+              "symbol": "03690.HK",
+              "name": "美团",
+              "name_en": "Meituan",
+              "market": "HK"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ev",
+      "name": "新能源车产业链",
+      "name_en": "EV value chain",
+      "aliases": [
+        "新能源",
+        "电动车产业链",
+        "锂电池产业链",
+        "EV chain"
+      ],
+      "thesis": "装车量可以很好看，利润却经常停在电池龙头而不是所有整车厂。",
+      "notes": "价格战会把利润从下游整车挤回有成本曲线的电池层，也可能两头一起打薄。",
+      "layers": [
+        {
+          "role": "upstream",
+          "role_zh": "上游",
+          "industry": "动力电池",
+          "industry_en": "EV Battery",
+          "captures": "电芯与系统：技术路线和产能利用率决定利润。",
+          "bottleneck": true,
+          "score": {
+            "total": 65.1,
+            "grade": "B",
+            "flags": [],
+            "factors": [
+              {
+                "name": "需求增长",
+                "score": 77.3,
+                "weight": 0.2,
+                "rationale": "过去3年 24.0%，未来2年预期 12.0%"
+              },
+              {
+                "name": "竞争结构",
+                "score": 79.8,
+                "weight": 0.18,
+                "rationale": "CR5 71%，HHI 1800（越高越集中）"
+              },
+              {
+                "name": "利润池",
+                "score": 46.6,
+                "weight": 0.18,
+                "rationale": "行业ROE中位 14.0%，ROIC 10.0%，利润池趋势 -2.0%"
+              },
+              {
+                "name": "政策与监管",
+                "score": 74.3,
+                "weight": 0.16,
+                "rationale": "政策友好度 72/100（A/港股对政策更敏感）"
+              },
+              {
+                "name": "估值周期",
+                "score": 52.9,
+                "weight": 0.14,
+                "rationale": "估值分位 48（越高越贵）"
+              },
+              {
+                "name": "颠覆与周期位置",
+                "score": 54.2,
+                "weight": 0.14,
+                "rationale": "颠覆风险 55，周期 mid"
+              }
+            ]
+          },
+          "stocks": [
+            {
+              "symbol": "300750.SZ",
+              "name": "宁德时代",
+              "name_en": "CATL",
+              "market": "A"
+            },
+            {
+              "symbol": "3750.HK",
+              "name": "宁德时代-H",
+              "name_en": "CATL-H",
+              "market": "HK"
+            }
+          ]
+        },
+        {
+          "role": "downstream",
+          "role_zh": "下游",
+          "industry": "新能源车",
+          "industry_en": "NEV",
+          "captures": "整车：量的入口，价的战场。",
+          "bottleneck": false,
+          "score": {
+            "total": 52.8,
+            "grade": "C",
+            "flags": [
+              "竞争结构 偏弱"
+            ],
+            "factors": [
+              {
+                "name": "需求增长",
+                "score": 83.1,
+                "weight": 0.2,
+                "rationale": "过去3年 32.0%，未来2年预期 14.0%"
+              },
+              {
+                "name": "竞争结构",
+                "score": 30.7,
+                "weight": 0.18,
+                "rationale": "CR5 45%，HHI 980（越高越集中）"
+              },
+              {
+                "name": "利润池",
+                "score": 35.5,
+                "weight": 0.18,
+                "rationale": "行业ROE中位 12.0%，ROIC 8.0%，利润池趋势 -3.0%"
+              },
+              {
+                "name": "政策与监管",
+                "score": 71.4,
+                "weight": 0.16,
+                "rationale": "政策友好度 70/100（A/港股对政策更敏感）"
+              },
+              {
+                "name": "估值周期",
+                "score": 42.9,
+                "weight": 0.14,
+                "rationale": "估值分位 55（越高越贵）"
+              },
+              {
+                "name": "颠覆与周期位置",
+                "score": 48.7,
+                "weight": 0.14,
+                "rationale": "颠覆风险 62，周期 mid"
+              }
+            ]
+          },
+          "stocks": [
+            {
+              "symbol": "002594.SZ",
+              "name": "比亚迪",
+              "name_en": "BYD",
+              "market": "A"
+            },
+            {
+              "symbol": "01211.HK",
+              "name": "比亚迪股份",
+              "name_en": "BYD-H",
+              "market": "HK"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "banks",
+      "name": "中美银行对照",
+      "name_en": "Banking comparison",
+      "aliases": [
+        "银行对照",
+        "中美银行"
+      ],
+      "thesis": "这不是上下游，是同一商业模式在两套利率、监管和估值尺子下的对照。",
+      "notes": "不要把招行 PB 和摩根大通 PB 直接相减当成便宜。",
+      "layers": [
+        {
+          "role": "midstream",
+          "role_zh": "中游",
+          "industry": "中资银行",
+          "industry_en": "Chinese Banks",
+          "captures": "净息差、资产质量、A/H 投资者结构。",
+          "bottleneck": false,
+          "score": {
+            "total": 46.9,
+            "grade": "C",
+            "flags": [
+              "需求增长 偏弱",
+              "竞争结构 偏弱",
+              "利润池 偏弱"
+            ],
+            "factors": [
+              {
+                "name": "需求增长",
+                "score": 26.8,
+                "weight": 0.2,
+                "rationale": "过去3年 3.0%，未来2年预期 3.0%"
+              },
+              {
+                "name": "竞争结构",
+                "score": 31.4,
+                "weight": 0.18,
+                "rationale": "CR5 48%，HHI 900（越高越集中）"
+              },
+              {
+                "name": "利润池",
+                "score": 33.6,
+                "weight": 0.18,
+                "rationale": "行业ROE中位 10.0%，ROIC 9.0%，利润池趋势 -1.0%"
+              },
+              {
+                "name": "政策与监管",
+                "score": 45.7,
+                "weight": 0.16,
+                "rationale": "政策友好度 52/100（A/港股对政策更敏感）"
+              },
+              {
+                "name": "估值周期",
+                "score": 90.0,
+                "weight": 0.14,
+                "rationale": "估值分位 22（越高越贵）"
+              },
+              {
+                "name": "颠覆与周期位置",
+                "score": 70.8,
+                "weight": 0.14,
+                "rationale": "颠覆风险 35，周期 trough"
+              }
+            ]
+          },
+          "stocks": [
+            {
+              "symbol": "600036.SS",
+              "name": "招商银行",
+              "name_en": "China Merchants Bank",
+              "market": "A"
+            },
+            {
+              "symbol": "3968.HK",
+              "name": "招商银行-H",
+              "name_en": "CMB-H",
+              "market": "HK"
+            }
+          ]
+        },
+        {
+          "role": "midstream",
+          "role_zh": "中游",
+          "industry": "美股银行",
+          "industry_en": "US Banks",
+          "captures": "美债利率、资本回报、美元流动性。",
+          "bottleneck": false,
+          "score": {
+            "total": 47.3,
+            "grade": "C",
+            "flags": [
+              "竞争结构 偏弱"
+            ],
+            "factors": [
+              {
+                "name": "需求增长",
+                "score": 42.2,
+                "weight": 0.2,
+                "rationale": "过去3年 9.0%，未来2年预期 6.0%"
+              },
+              {
+                "name": "竞争结构",
+                "score": 24.0,
+                "weight": 0.18,
+                "rationale": "CR5 42%，HHI 850（越高越集中）"
+              },
+              {
+                "name": "利润池",
+                "score": 59.6,
+                "weight": 0.18,
+                "rationale": "行业ROE中位 15.0%，ROIC 13.0%，利润池趋势 +2.0%"
+              },
+              {
+                "name": "政策与监管",
+                "score": 57.1,
+                "weight": 0.16,
+                "rationale": "政策友好度 60/100（A/港股对政策更敏感）"
+              },
+              {
+                "name": "估值周期",
+                "score": 38.6,
+                "weight": 0.14,
+                "rationale": "估值分位 58（越高越贵）"
+              },
+              {
+                "name": "颠覆与周期位置",
+                "score": 66.0,
+                "weight": 0.14,
+                "rationale": "颠覆风险 40，周期 mid"
+              }
+            ]
+          },
+          "stocks": [
+            {
+              "symbol": "JPM",
+              "name": "摩根大通",
+              "name_en": "JPMorgan Chase",
+              "market": "US"
+            }
+          ]
+        }
+      ]
     }
   ],
   "reports": [

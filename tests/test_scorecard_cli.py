@@ -53,6 +53,8 @@ def test_json_snapshot_shape(tmp_path: Path):
     path = write_snapshot(tmp_path / "snapshot.json")
     loaded = __import__("json").loads(path.read_text(encoding="utf-8"))
     assert loaded["strategies"] and loaded["industries"] and loaded["reports"]
+    assert loaded["chains"]
+    assert any(chain["id"] == "ai" for chain in loaded["chains"])
 
 
 def test_cli_json(tmp_path: Path, capsys):

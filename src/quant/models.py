@@ -123,6 +123,34 @@ class IndustrySnapshot:
     cycle_position: Literal["early", "mid", "late", "trough"]
     notes: str = ""
     leaders: tuple[str, ...] = ()
+    aliases: tuple[str, ...] = ()
+    constituents: tuple[str, ...] = ()
+
+
+ChainRole = Literal["upstream", "midstream", "downstream"]
+
+
+@dataclass(frozen=True)
+class ChainNode:
+    """One layer on a value chain. `industry` is an IndustrySnapshot name."""
+
+    role: ChainRole
+    industry: str
+    captures: str
+    bottleneck: bool = False
+
+
+@dataclass(frozen=True)
+class ValueChain:
+    """Cross-industry map: who captures profit, who is a bottleneck."""
+
+    id: str
+    name: str
+    name_en: str
+    aliases: tuple[str, ...]
+    thesis: str
+    notes: str
+    nodes: tuple[ChainNode, ...]
 
 
 @dataclass(frozen=True)

@@ -2,10 +2,12 @@
 
 from __future__ import annotations
 
-from quant.models import FactorScore, IndustrySnapshot, ScoreBreakdown
+from quant.models import FactorScore, IndustrySnapshot, ScoreBreakdown, ValueChain
+from quant.sample_data import get_industry, industry_constituents
 from quant.scoring import breakdown, clip, scale
 
 CYCLE_SCORE = {"early": 82.0, "mid": 68.0, "late": 42.0, "trough": 70.0}
+ROLE_ZH = {"upstream": "上游", "midstream": "中游", "downstream": "下游"}
 
 
 def score_industry(industry: IndustrySnapshot) -> ScoreBreakdown:
@@ -74,13 +76,59 @@ def score_industry(industry: IndustrySnapshot) -> ScoreBreakdown:
 
 
 def industry_memo(industry: IndustrySnapshot, score: ScoreBreakdown) -> str:
-    leaders = "、".join(industry.leaders) if industry.leaders else "（样本未指定龙头）"
+    members = industry_constituents(industry)
+    names = "、".join(f"{s.name} ({s.symbol})" for s in members) if members else "（样本未指定成分股）"
     markets = "/".join(m.value for m in industry.markets)
     return (
         f"# {industry.name} / {industry.name_en}\n\n"
         f"- 覆盖市场：{markets}\n"
         f"- 吸引力评分：**{score.total:.1f} ({score.grade})**\n"
         f"- 周期位置：{industry.cycle_position}\n"
-        f"- 观察龙头：{leaders}\n"
+        f"- 成分股：{names}\n"
         f"- 备注：{industry.notes or '无'}\n"
     )
+
+
+def chain_layers(chain: ValueChain) -> list[dict]:
+    layers = []
+    for node in chain.nodes:
+        industry = get_industry(node.industry)
+        layers.append(
+            {
+                "role": node.role,
+                "role_zh": ROLE_ZH[node.role],
+                "industry": industry,
+                "score": score_industry(industry),
+                "captures": node.captures,
+                "bottleneck": node.bottleneck,
+                "stocks": industry_constituents(industry),
+            }
+        )
+    return layers
+
+
+def chain_memo(chain: ValueChain, layers: list[dict] | None = None) -> str:
+    layers = layers or chain_layers(chain)
+    bottlenecks = [layer["industry"].name for layer in layers if layer["bottleneck"]]
+    pool = "、".join(bottlenecks) if bottlenecks else layers[0]["industry"].name
+    lines = [
+        f"# {chain.name} / {chain.name_en}",
+        "",
+        f"- 研究命题：{chain.thesis}",
+        f"- 利润更可能留在：{pool}",
+        f"- 备注：{chain.notes}",
+        "",
+        "## 上下游分层",
+        "",
+    ]
+    for layer in layers:
+        industry, scored = layer["industry"], layer["score"]
+        flag = "（瓶颈）" if layer["bottleneck"] else ""
+        stocks = "、".join(s.name for s in layer["stocks"]) or "（无样本个股）"
+        lines.append(
+            f"### {layer['role_zh']} · {industry.name}{flag} — {scored.total:.1f} ({scored.grade})"
+        )
+        lines.append(f"- 利润怎么留：{layer['captures']}")
+        lines.append(f"- 样本个股：{stocks}")
+        lines.append("")
+    return "\n".join(lines)

@@ -8,6 +8,8 @@ import {
   listReports,
   listStocks,
   listStrategies,
+  listChains,
+  getChain,
   snapshot,
 } from "@/lib/data";
 import { liveDisclaimer, overlayStock, overlayStocks } from "@/server/overlay";
@@ -50,6 +52,18 @@ export const router = {
           throw new ORPCError("NOT_FOUND", { message: `未知行业：${input.name}` });
         }
         return industry;
+      }),
+  },
+  chain: {
+    list: os.handler(() => listChains()),
+    get: os
+      .input(z.object({ id: z.string().min(1) }))
+      .handler(({ input }) => {
+        const chain = getChain(input.id);
+        if (!chain) {
+          throw new ORPCError("NOT_FOUND", { message: `未知产业链：${input.id}` });
+        }
+        return chain;
       }),
   },
   strategy: {

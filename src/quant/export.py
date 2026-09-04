@@ -24,6 +24,7 @@ def snapshot(card: dict | None = None, live: LiveMeta | None = None) -> dict:
         "briefs": [_brief(b, live.quotes.get(b["stock"].symbol) or active_quotes().get(b["stock"].symbol)) for b in card["briefs"]],
         "strategies": [_strategy(result) for result in card["strategies"].values()],
         "industries": [_industry(row) for row in card["industries"]],
+        "chains": [_chain(row) for row in card.get("chains", [])],
         "reports": [_report(row) for row in card["reports"]],
         "markets": [_market(m) for m in Market],
         "connect": dict(CONNECT_RULES),
@@ -117,7 +118,10 @@ def _strategy(result: StrategyResult) -> dict:
 
 
 def _industry(row: dict) -> dict:
+    from quant.sample_data import industry_constituents as members_of
+
     item, scored = row["industry"], row["score"]
+    stocks = members_of(item)
     return {
         "name": item.name,
         "name_en": item.name_en,
@@ -125,7 +129,50 @@ def _industry(row: dict) -> dict:
         "cycle_position": item.cycle_position,
         "notes": item.notes,
         "leaders": list(item.leaders),
+        "aliases": list(item.aliases),
+        "constituents": [
+            {
+                "symbol": stock.symbol,
+                "name": stock.name,
+                "name_en": stock.name_en,
+                "market": stock.market.value,
+            }
+            for stock in stocks
+        ],
         "score": _score(scored),
+    }
+
+
+def _chain(row: dict) -> dict:
+    chain, layers = row["chain"], row["layers"]
+    return {
+        "id": chain.id,
+        "name": chain.name,
+        "name_en": chain.name_en,
+        "aliases": list(chain.aliases),
+        "thesis": chain.thesis,
+        "notes": chain.notes,
+        "layers": [
+            {
+                "role": layer["role"],
+                "role_zh": layer["role_zh"],
+                "industry": layer["industry"].name,
+                "industry_en": layer["industry"].name_en,
+                "captures": layer["captures"],
+                "bottleneck": layer["bottleneck"],
+                "score": _score(layer["score"]),
+                "stocks": [
+                    {
+                        "symbol": stock.symbol,
+                        "name": stock.name,
+                        "name_en": stock.name_en,
+                        "market": stock.market.value,
+                    }
+                    for stock in layer["stocks"]
+                ],
+            }
+            for layer in layers
+        ],
     }
 
 

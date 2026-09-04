@@ -6,9 +6,9 @@ from datetime import date
 from html import escape
 from pathlib import Path
 
-from quant.industry import industry_memo, score_industry
+from quant.industry import chain_layers, chain_memo, industry_memo, score_industry
 from quant.research import extract_claims, reading_checklist, score_research
-from quant.sample_data import REPORTS, get_industry, industries, universe
+from quant.sample_data import REPORTS, chains, get_chain, get_industry, industries, industry_constituents, universe
 from quant.strategies import StrategyResult, run_all_strategies, stock_brief
 
 
@@ -36,6 +36,7 @@ def build_universe_scorecard(*, disclaimer: str | None = None) -> dict:
         "briefs": briefs,
         "strategies": strategies,
         "industries": industry_rows,
+        "chains": [{"chain": item, "layers": chain_layers(item)} for item in chains()],
         "reports": reports,
         "checklist": reading_checklist(),
     }
@@ -263,11 +264,39 @@ def _field_zh(name: str) -> str:
 
 
 def describe_industry(name: str) -> str:
+    try:
+        chain = get_chain(name)
+    except KeyError:
+        chain = None
+    if chain is not None:
+        layers = chain_layers(chain)
+        lines = [chain_memo(chain, layers), "## 各层个股", ""]
+        for layer in layers:
+            lines.append(f"### {layer['role_zh']} · {layer['industry'].name}")
+            for stock in layer["stocks"]:
+                brief = stock_brief(stock.symbol)
+                lines.append(
+                    f"- {stock.name} ({stock.symbol}) 综合 {brief['composite']:.1f} / "
+                    f"质量 {brief['quality'].total:.1f} / 估值 {brief['valuation'].total:.1f}"
+                )
+            lines.append("")
+        lines.append("样本与分层都不是投资建议。")
+        return "\n".join(lines) + "\n"
+
     item = get_industry(name)
     scored = score_industry(item)
     lines = [industry_memo(item, scored), "## 因子", ""]
     for factor in scored.factors:
         lines.append(f"- {factor.name} {factor.score:.1f}：{factor.rationale}")
+    members = industry_constituents(item)
+    if members:
+        lines += ["", "## 成分股", ""]
+        for stock in members:
+            brief = stock_brief(stock.symbol)
+            lines.append(
+                f"- {stock.name} ({stock.symbol}) 综合 {brief['composite']:.1f} / "
+                f"质量 {brief['quality'].total:.1f} / 估值 {brief['valuation'].total:.1f}"
+            )
     if scored.flags:
         lines += ["", "## 警示", ""]
         lines.extend(f"- {flag}" for flag in scored.flags)
