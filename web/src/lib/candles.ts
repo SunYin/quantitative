@@ -178,8 +178,43 @@ export function formatCandleTime(date: Date, precision: TimePrecision): string {
   return date.toISOString().replace(".000Z", "Z");
 }
 
-export function sampleCandles(symbol: string, last: number, days: number): Candle[] {
-  const bars = Math.max(20, Math.round((days * 5) / 7));
+export type ChartSpan = {
+  first: string;
+  last: string;
+  days: number;
+  years: number;
+};
+
+export function chartSpan(candles: Candle[]): ChartSpan | null {
+  if (candles.length < 2) return null;
+  const first = candles[0].time.slice(0, 10);
+  const last = candles[candles.length - 1].time.slice(0, 10);
+  const start = Date.parse(`${first}T00:00:00Z`);
+  const end = Date.parse(`${last}T00:00:00Z`);
+  if (!Number.isFinite(start) || !Number.isFinite(end) || end < start) return null;
+  const days = (end - start) / 86_400_000;
+  return { first, last, days, years: days / 365.25 };
+}
+
+/** 5Y is short when Yahoo (or listing age) covers less than about 4 years. */
+export function isShortHistory(range: ChartRange, span: ChartSpan | null): boolean {
+  if (!span || range !== "5y") return false;
+  return span.years < 4;
+}
+
+export function sampleStepDays(range: ChartRange): number {
+  return CHART_SPECS[range].interval === "1wk" ? 7 : 1;
+}
+
+export function sampleCandles(
+  symbol: string,
+  last: number,
+  days: number,
+  opts: { end?: Date; stepDays?: number } = {},
+): Candle[] {
+  const stepDays = Math.max(1, opts.stepDays ?? 1);
+  const bars =
+    stepDays >= 7 ? Math.max(20, Math.round(days / stepDays)) : Math.max(20, Math.round((days * 5) / 7));
   const rng = mulberry(hash32(symbol));
   const spot = Math.max(0.01, last);
   const closes: number[] = new Array(bars);
@@ -189,20 +224,21 @@ export function sampleCandles(symbol: string, last: number, days: number): Candl
     const ret = (rng() - 0.48) * 0.03;
     px = Math.max(spot * 0.4, px / (1 + ret));
   }
-  const start = Date.UTC(2026, 0, 2);
-  const candles: Candle[] = [];
+  const end = opts.end ?? new Date();
+  const endMs = Date.UTC(end.getUTCFullYear(), end.getUTCMonth(), end.getUTCDate());
+  const built: Candle[] = [];
   let cursor = 0;
-  let i = 0;
-  while (candles.length < bars) {
-    const day = new Date(start + cursor * 86400000);
+  let i = bars - 1;
+  while (i >= 0) {
+    const day = new Date(endMs - cursor * 86_400_000);
     cursor += 1;
     const wd = day.getUTCDay();
-    if (wd === 0 || wd === 6) continue;
+    if (stepDays < 7 && (wd === 0 || wd === 6)) continue;
     const close = closes[i];
     const open = close * (1 + (rng() - 0.5) * 0.012);
     const high = Math.max(open, close) * (1 + rng() * 0.01);
     const low = Math.min(open, close) * (1 - rng() * 0.01);
-    candles.push({
+    built.push({
       time: day.toISOString().slice(0, 10),
       open,
       high,
@@ -210,9 +246,10 @@ export function sampleCandles(symbol: string, last: number, days: number): Candl
       close,
       volume: Math.round(5e5 + rng() * 4e6),
     });
-    i += 1;
+    i -= 1;
+    if (stepDays >= 7) cursor += stepDays - 1;
   }
-  return candles;
+  return built.reverse();
 }
 
 export function movingAverage(candles: Candle[], window: number): Array<number | null> {

@@ -20,7 +20,7 @@ import {
 } from "@/lib/data";
 import { liveDisclaimer, overlayStock, overlayStocks } from "@/server/overlay";
 import { fetchChart, lookupYahooIdentity, toYahooSymbol } from "@/server/yahoo";
-import { CHART_SPECS, RANGE_DAYS, sampleCandles, type ChartRange } from "@/lib/candles";
+import { CHART_SPECS, RANGE_DAYS, sampleCandles, sampleStepDays, type ChartRange } from "@/lib/candles";
 import { guessCurrency, guessListing } from "@/lib/ticker";
 
 export const router = {
@@ -116,7 +116,9 @@ export const router = {
           }
           if (source !== "yahoo") {
             candles = spec.sampleFallback
-              ? sampleCandles(stock.symbol, overlaid.price, RANGE_DAYS[range])
+              ? sampleCandles(stock.symbol, overlaid.price, RANGE_DAYS[range], {
+                  stepDays: sampleStepDays(range),
+                })
               : [];
           }
           const changePct =

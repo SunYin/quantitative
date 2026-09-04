@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useRef, useState } from "react";
 import type { ChartPayload, ChartRange, Candle } from "@/lib/candles";
-import { CHART_SPECS, isLiveRange, movingAverage } from "@/lib/candles";
+import { CHART_SPECS, chartSpan, isLiveRange, isShortHistory, movingAverage } from "@/lib/candles";
 import { isLatestChartGeneration, startChartGeneration } from "@/lib/chart-switch";
 import { client } from "@/lib/orpc";
 import { ChangePct, SourceBadge } from "@/components/research";
@@ -66,6 +66,8 @@ export function KlineChart({ initial }: { initial: ChartPayload }) {
   const upColor = asian ? "#f43f5e" : "#34d399";
   const downColor = asian ? "#34d399" : "#f43f5e";
   const spec = CHART_SPECS[payload.range];
+  const span = chartSpan(payload.candles);
+  const shortHistory = isShortHistory(payload.range, span);
   const hint =
     error ??
     (pending && selectedRange !== payload.range
@@ -74,11 +76,13 @@ export function KlineChart({ initial }: { initial: ChartPayload }) {
         ? isLiveRange(payload.range)
           ? t("chart.emptyLive")
           : t("chart.empty")
-        : payload.source === "yahoo"
-          ? isLiveRange(payload.range)
-            ? t("chart.yahooLiveHint")
-            : t("chart.yahooHint")
-          : t("chart.sampleHint"));
+        : shortHistory
+          ? t("chart.shortHistory", { years: span ? span.years.toFixed(1) : "—" })
+          : payload.source === "yahoo"
+            ? isLiveRange(payload.range)
+              ? t("chart.yahooLiveHint")
+              : t("chart.yahooHint")
+            : t("chart.sampleHint"));
 
   return (
     <section className="space-y-3">
@@ -116,6 +120,12 @@ export function KlineChart({ initial }: { initial: ChartPayload }) {
               {t("chart.asOf")} {payload.asOf}
             </span>
           ) : null}
+          {span ? (
+            <span className="text-xs text-muted-foreground">
+              {t("chart.span", { from: span.first, to: span.last })}
+              {payload.range === "5y" ? ` · ${t("chart.weekly")}` : ""}
+            </span>
+          ) : null}
           {isLiveRange(selectedRange) ? (
             <span className="text-xs text-emerald-300/80">{t("chart.livePoll")}</span>
           ) : null}
@@ -134,6 +144,8 @@ export function KlineChart({ initial }: { initial: ChartPayload }) {
         hover={hover}
         onHover={setHover}
         pending={pending}
+        axisFrom={span?.first ?? null}
+        axisTo={span?.last ?? null}
       />
       <Legend
         candle={payload.candles[hover ?? payload.candles.length - 1]}
@@ -253,6 +265,8 @@ function ChartSvg({
   hover,
   onHover,
   pending,
+  axisFrom,
+  axisTo,
 }: {
   candles: Candle[];
   style: "line" | "candle";
@@ -263,6 +277,8 @@ function ChartSvg({
   hover: number | null;
   onHover: (index: number | null) => void;
   pending: boolean;
+  axisFrom: string | null;
+  axisTo: string | null;
 }) {
   const { t } = useI18n();
   const ma5 = useMemo(() => movingAverage(candles, 5), [candles]);
@@ -278,7 +294,7 @@ function ChartSvg({
   }
 
   const { width, priceH, volH, pad, minP, maxP, maxV, innerW } = layout;
-  const height = pad.t + priceH + 12 + volH + pad.b;
+  const height = pad.t + priceH + 12 + volH + pad.b + 14;
   const barW = Math.max(style === "line" ? 1 : 2, (innerW / candles.length) * (style === "line" ? 0.55 : 0.7));
   const last = candles[candles.length - 1];
   const lineUp = previousClose != null ? last.close >= previousClose : last.close >= last.open;
@@ -366,6 +382,23 @@ function ChartSvg({
           <path d={maPath(ma5)} fill="none" stroke="#38bdf8" strokeWidth="1.25" />
           <path d={maPath(ma20)} fill="none" stroke="#fbbf24" strokeWidth="1.25" />
         </>
+      ) : null}
+      {axisFrom ? (
+        <text x={pad.l} y={height - 4} fill="currentColor" fillOpacity="0.55" fontSize="11">
+          {axisFrom}
+        </text>
+      ) : null}
+      {axisTo ? (
+        <text
+          x={width - pad.r}
+          y={height - 4}
+          textAnchor="end"
+          fill="currentColor"
+          fillOpacity="0.55"
+          fontSize="11"
+        >
+          {axisTo}
+        </text>
       ) : null}
     </svg>
   );

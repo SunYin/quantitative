@@ -2,10 +2,14 @@ import assert from "node:assert/strict";
 import { test } from "node:test";
 import {
   CHART_SPECS,
+  chartSpan,
   formatCandleTime,
   isChartRange,
   isLiveRange,
+  isShortHistory,
   parseYahooQuotes,
+  sampleCandles,
+  sampleStepDays,
 } from "./candles.ts";
 
 test("1m still means one month, not one minute", () => {
@@ -44,4 +48,28 @@ test("formatCandleTime does not collapse a session to one bar", () => {
   const a = formatCandleTime(new Date("2026-09-04T01:31:00.000Z"), "minute");
   const b = formatCandleTime(new Date("2026-09-04T01:32:00.000Z"), "minute");
   assert.notEqual(a, b);
+});
+
+test("5y sample path covers about five years ending at as-of", () => {
+  const end = new Date("2026-09-04T00:00:00.000Z");
+  const candles = sampleCandles("00700.HK", 400, CHART_SPECS["5y"].lookbackDays, {
+    end,
+    stepDays: sampleStepDays("5y"),
+  });
+  const span = chartSpan(candles);
+  assert.ok(span);
+  assert.equal(span.last, "2026-09-04");
+  assert.ok(span.years >= 4.5 && span.years <= 5.4, `years=${span.years}`);
+  assert.equal(isShortHistory("5y", span), false);
+});
+
+test("5y history shorter than four years is flagged, not padded", () => {
+  const short = chartSpan([
+    { time: "2025-05-18", open: 1, high: 1, low: 1, close: 1, volume: 1 },
+    { time: "2026-09-04", open: 1, high: 1, low: 1, close: 1, volume: 1 },
+  ]);
+  assert.ok(short);
+  assert.ok(short.years < 2);
+  assert.equal(isShortHistory("5y", short), true);
+  assert.equal(isShortHistory("1y", short), false);
 });

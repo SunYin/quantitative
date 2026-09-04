@@ -27,3 +27,10 @@
 - **THEN** SHALL 以最后一次点击为准，并立即高亮该按钮
 - **AND** SHALL NOT 因进行中的请求而禁用全部周期按钮
 - **AND** 失败时 SHALL 显示错误文案并保留上一幅图，而不是无响应
+
+#### Scenario: Five-year range shows actual span
+
+- **WHEN** 用户选择 5 年
+- **THEN** SHALL 展示周 K，并标明实际起止日期
+- **AND** 若上市或 Yahoo 历史不足约 4 年，SHALL 声明不是满 5 年，且 SHALL NOT 用样本路径补假的 5 年 Yahoo 周线
+- **AND** 页面 SHALL 声明不构成投资建议
