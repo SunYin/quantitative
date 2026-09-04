@@ -1,0 +1,1931 @@
+{
+  "as_of": "2026-09-04",
+  "disclaimer": "样本数据仅供方法演示，不构成投资建议，也不是实时行情。",
+  "briefs": [
+    {
+      "symbol": "600519.SS",
+      "name": "贵州茅台",
+      "name_en": "Kweichow Moutai",
+      "market": "A",
+      "board": "SSE",
+      "sector": "主要消费",
+      "industry": "白酒",
+      "currency": "CNY",
+      "southbound_eligible": false,
+      "northbound_eligible": true,
+      "ah_pair_symbol": null,
+      "notes": "北向核心持仓；品牌护城河极强，估值贵是常态。",
+      "pe_ttm": 22.5,
+      "pb": 8.4,
+      "fcf_yield": 0.041,
+      "dividend_yield": 0.018,
+      "composite": 70.1,
+      "quality": {
+        "total": 85.9,
+        "grade": "A",
+        "flags": [],
+        "factors": [
+          {
+            "name": "盈利能力",
+            "score": 100.0,
+            "weight": 0.25,
+            "rationale": "ROE 31.0% / ROIC 29.0% / 净利率 49.0%"
+          },
+          {
+            "name": "现金流转化",
+            "score": 62.9,
+            "weight": 0.2,
+            "rationale": "OCF/NI 0.94，FCF/NI 0.88"
+          },
+          {
+            "name": "资产负债表",
+            "score": 100.0,
+            "weight": 0.2,
+            "rationale": "净负债/EBITDA -1.2x，流动比 4.67，利息覆盖 575.0x"
+          },
+          {
+            "name": "增长与稳定性",
+            "score": 83.0,
+            "weight": 0.2,
+            "rationale": "收入CAGR 16.0%，EPS CAGR 15.0%，盈利波动 0.08"
+          },
+          {
+            "name": "治理与财务质量",
+            "score": 78.0,
+            "weight": 0.15,
+            "rationale": "治理未见明显红旗"
+          }
+        ]
+      },
+      "valuation": {
+        "total": 55.9,
+        "grade": "C+",
+        "flags": [],
+        "factors": [
+          {
+            "name": "相对估值",
+            "score": 65.0,
+            "weight": 0.35,
+            "rationale": "PE 22.5x vs 行业中位 22.0x"
+          },
+          {
+            "name": "现金流估值",
+            "score": 38.8,
+            "weight": 0.25,
+            "rationale": "FCF yield 4.1%"
+          },
+          {
+            "name": "增长调整估值",
+            "score": 63.4,
+            "weight": 0.2,
+            "rationale": "PEG 1.41（PE / 16.0% 增长）"
+          },
+          {
+            "name": "市场折溢价",
+            "score": 54.0,
+            "weight": 0.2,
+            "rationale": "A 股流动性溢价，同样基本面通常更贵"
+          }
+        ]
+      },
+      "position_cap": 0.08,
+      "connect": {
+        "symbol": "600519.SS",
+        "southbound_eligible": false,
+        "northbound_eligible": true,
+        "has_ah_pair": false,
+        "ah_pair": "",
+        "implication": "北向可买：海外主动/被动资金会放大风格切换，北向持股是情绪而非基本面本身。"
+      }
+    },
+    {
+      "symbol": "300750.SZ",
+      "name": "宁德时代",
+      "name_en": "CATL",
+      "market": "A",
+      "board": "SZSE",
+      "sector": "制造",
+      "industry": "电池",
+      "currency": "CNY",
+      "southbound_eligible": false,
+      "northbound_eligible": true,
+      "ah_pair_symbol": "3750.HK",
+      "notes": "锂电周期+全球份额；A/H 价差是港股通研究的经典样本。",
+      "pe_ttm": 19.8,
+      "pb": 4.1,
+      "fcf_yield": 0.028,
+      "dividend_yield": 0.012,
+      "composite": 64.8,
+      "quality": {
+        "total": 75.0,
+        "grade": "B+",
+        "flags": [],
+        "factors": [
+          {
+            "name": "盈利能力",
+            "score": 63.2,
+            "weight": 0.25,
+            "rationale": "ROE 22.0% / ROIC 14.0% / 净利率 13.6%"
+          },
+          {
+            "name": "现金流转化",
+            "score": 74.9,
+            "weight": 0.2,
+            "rationale": "OCF/NI 1.47，FCF/NI 0.53"
+          },
+          {
+            "name": "资产负债表",
+            "score": 87.6,
+            "weight": 0.2,
+            "rationale": "净负债/EBITDA -0.6x，流动比 1.75，利息覆盖 19.1x"
+          },
+          {
+            "name": "增长与稳定性",
+            "score": 75.1,
+            "weight": 0.2,
+            "rationale": "收入CAGR 21.0%，EPS CAGR 12.0%，盈利波动 0.22"
+          },
+          {
+            "name": "治理与财务质量",
+            "score": 78.0,
+            "weight": 0.15,
+            "rationale": "治理未见明显红旗"
+          }
+        ]
+      },
+      "valuation": {
+        "total": 58.1,
+        "grade": "C+",
+        "flags": [],
+        "factors": [
+          {
+            "name": "相对估值",
+            "score": 59.3,
+            "weight": 0.35,
+            "rationale": "PE 19.8x vs 行业中位 18.0x"
+          },
+          {
+            "name": "现金流估值",
+            "score": 38.8,
+            "weight": 0.25,
+            "rationale": "FCF yield 2.8%；EV/EBITDA 12.5x vs 12.0x"
+          },
+          {
+            "name": "增长调整估值",
+            "score": 84.4,
+            "weight": 0.2,
+            "rationale": "PEG 0.94（PE / 21.0% 增长）"
+          },
+          {
+            "name": "市场折溢价",
+            "score": 54.0,
+            "weight": 0.2,
+            "rationale": "A 股流动性溢价，同样基本面通常更贵"
+          }
+        ]
+      },
+      "position_cap": 0.08,
+      "connect": {
+        "symbol": "300750.SZ",
+        "southbound_eligible": false,
+        "northbound_eligible": true,
+        "has_ah_pair": true,
+        "ah_pair": "3750.HK",
+        "implication": "北向可买：海外主动/被动资金会放大风格切换，北向持股是情绪而非基本面本身。"
+      }
+    },
+    {
+      "symbol": "3750.HK",
+      "name": "宁德时代-H",
+      "name_en": "CATL-H",
+      "market": "HK",
+      "board": "HKEX",
+      "sector": "制造",
+      "industry": "电池",
+      "currency": "HKD",
+      "southbound_eligible": true,
+      "northbound_eligible": false,
+      "ah_pair_symbol": "300750.SZ",
+      "notes": "H 股样本价用于演示 A/H 溢价，不是实时盘口。",
+      "pe_ttm": 16.2,
+      "pb": 3.3,
+      "fcf_yield": 0.034,
+      "dividend_yield": 0.014,
+      "composite": 69.7,
+      "quality": {
+        "total": 75.0,
+        "grade": "B+",
+        "flags": [],
+        "factors": [
+          {
+            "name": "盈利能力",
+            "score": 63.2,
+            "weight": 0.25,
+            "rationale": "ROE 22.0% / ROIC 14.0% / 净利率 13.6%"
+          },
+          {
+            "name": "现金流转化",
+            "score": 74.9,
+            "weight": 0.2,
+            "rationale": "OCF/NI 1.47，FCF/NI 0.53"
+          },
+          {
+            "name": "资产负债表",
+            "score": 87.6,
+            "weight": 0.2,
+            "rationale": "净负债/EBITDA -0.6x，流动比 1.75，利息覆盖 19.1x"
+          },
+          {
+            "name": "增长与稳定性",
+            "score": 75.1,
+            "weight": 0.2,
+            "rationale": "收入CAGR 21.0%，EPS CAGR 12.0%，盈利波动 0.22"
+          },
+          {
+            "name": "治理与财务质量",
+            "score": 78.0,
+            "weight": 0.15,
+            "rationale": "治理未见明显红旗"
+          }
+        ]
+      },
+      "valuation": {
+        "total": 70.5,
+        "grade": "B",
+        "flags": [],
+        "factors": [
+          {
+            "name": "相对估值",
+            "score": 74.1,
+            "weight": 0.35,
+            "rationale": "PE 16.2x vs 行业中位 18.0x"
+          },
+          {
+            "name": "现金流估值",
+            "score": 49.1,
+            "weight": 0.25,
+            "rationale": "FCF yield 3.4%；EV/EBITDA 10.4x vs 12.0x"
+          },
+          {
+            "name": "增长调整估值",
+            "score": 92.2,
+            "weight": 0.2,
+            "rationale": "PEG 0.77（PE / 21.0% 增长）"
+          },
+          {
+            "name": "市场折溢价",
+            "score": 69.0,
+            "weight": 0.2,
+            "rationale": "港股机构折价常见，安全边际相对更好；港股通标的有内地增量资金"
+          }
+        ]
+      },
+      "position_cap": 0.12,
+      "connect": {
+        "symbol": "3750.HK",
+        "southbound_eligible": true,
+        "northbound_eligible": false,
+        "has_ah_pair": true,
+        "ah_pair": "300750.SZ",
+        "implication": "南向可买：定价同时受海外资金与内地增量资金影响，需跟踪港股通持股变化。"
+      }
+    },
+    {
+      "symbol": "600036.SS",
+      "name": "招商银行",
+      "name_en": "China Merchants Bank",
+      "market": "A",
+      "board": "SSE",
+      "sector": "金融",
+      "industry": "银行",
+      "currency": "CNY",
+      "southbound_eligible": false,
+      "northbound_eligible": true,
+      "ah_pair_symbol": "3968.HK",
+      "notes": "零售银行质量标杆；A/H 长期溢价，适合讲折溢价而不是无风险套利。",
+      "pe_ttm": 6.4,
+      "pb": 0.92,
+      "fcf_yield": null,
+      "dividend_yield": 0.051,
+      "composite": 58.9,
+      "quality": {
+        "total": 69.3,
+        "grade": "B",
+        "flags": [],
+        "factors": [
+          {
+            "name": "盈利能力",
+            "score": 53.8,
+            "weight": 0.25,
+            "rationale": "ROE 14.5% / ROIC 12.0% / 净利率 44.0%"
+          },
+          {
+            "name": "现金流转化",
+            "score": 80.6,
+            "weight": 0.2,
+            "rationale": "OCF/NI 1.16，FCF/NI 1.16"
+          },
+          {
+            "name": "资产负债表",
+            "score": 71.6,
+            "weight": 0.2,
+            "rationale": "NPL 0.95% / CET1 13.5%"
+          },
+          {
+            "name": "增长与稳定性",
+            "score": 68.5,
+            "weight": 0.2,
+            "rationale": "收入CAGR 4.0%，EPS CAGR 5.0%，盈利波动 0.07"
+          },
+          {
+            "name": "治理与财务质量",
+            "score": 78.0,
+            "weight": 0.15,
+            "rationale": "治理未见明显红旗"
+          }
+        ]
+      },
+      "valuation": {
+        "total": 48.9,
+        "grade": "C",
+        "flags": [
+          "相对估值 偏弱"
+        ],
+        "factors": [
+          {
+            "name": "相对估值",
+            "score": 30.8,
+            "weight": 0.35,
+            "rationale": "PB 0.92 vs A 同行中位 0.65"
+          },
+          {
+            "name": "现金流估值",
+            "score": 50.0,
+            "weight": 0.25,
+            "rationale": "无 FCF 收益率，中性处理"
+          },
+          {
+            "name": "增长调整估值",
+            "score": 69.1,
+            "weight": 0.2,
+            "rationale": "PEG 1.28（PE / 5.0% 增长）"
+          },
+          {
+            "name": "市场折溢价",
+            "score": 59.0,
+            "weight": 0.2,
+            "rationale": "A 股流动性溢价，同样基本面通常更贵；股息率 5.1%"
+          }
+        ]
+      },
+      "position_cap": 0.08,
+      "connect": {
+        "symbol": "600036.SS",
+        "southbound_eligible": false,
+        "northbound_eligible": true,
+        "has_ah_pair": true,
+        "ah_pair": "3968.HK",
+        "implication": "北向可买：海外主动/被动资金会放大风格切换，北向持股是情绪而非基本面本身。"
+      }
+    },
+    {
+      "symbol": "3968.HK",
+      "name": "招商银行-H",
+      "name_en": "CMB-H",
+      "market": "HK",
+      "board": "HKEX",
+      "sector": "金融",
+      "industry": "银行",
+      "currency": "HKD",
+      "southbound_eligible": true,
+      "northbound_eligible": false,
+      "ah_pair_symbol": "600036.SS",
+      "notes": "港股通南向重仓品种之一，股息和折价是常见叙事。",
+      "pe_ttm": 5.2,
+      "pb": 0.74,
+      "fcf_yield": null,
+      "dividend_yield": 0.062,
+      "composite": 64.0,
+      "quality": {
+        "total": 69.3,
+        "grade": "B",
+        "flags": [],
+        "factors": [
+          {
+            "name": "盈利能力",
+            "score": 53.8,
+            "weight": 0.25,
+            "rationale": "ROE 14.5% / ROIC 12.0% / 净利率 44.0%"
+          },
+          {
+            "name": "现金流转化",
+            "score": 80.6,
+            "weight": 0.2,
+            "rationale": "OCF/NI 1.16，FCF/NI 1.16"
+          },
+          {
+            "name": "资产负债表",
+            "score": 71.6,
+            "weight": 0.2,
+            "rationale": "NPL 0.95% / CET1 13.5%"
+          },
+          {
+            "name": "增长与稳定性",
+            "score": 68.5,
+            "weight": 0.2,
+            "rationale": "收入CAGR 4.0%，EPS CAGR 5.0%，盈利波动 0.07"
+          },
+          {
+            "name": "治理与财务质量",
+            "score": 78.0,
+            "weight": 0.15,
+            "rationale": "治理未见明显红旗"
+          }
+        ]
+      },
+      "valuation": {
+        "total": 61.8,
+        "grade": "C+",
+        "flags": [],
+        "factors": [
+          {
+            "name": "相对估值",
+            "score": 52.9,
+            "weight": 0.35,
+            "rationale": "PB 0.74 vs HK 同行中位 0.65"
+          },
+          {
+            "name": "现金流估值",
+            "score": 50.0,
+            "weight": 0.25,
+            "rationale": "无 FCF 收益率，中性处理"
+          },
+          {
+            "name": "增长调整估值",
+            "score": 80.0,
+            "weight": 0.2,
+            "rationale": "PEG 1.04（PE / 5.0% 增长）"
+          },
+          {
+            "name": "市场折溢价",
+            "score": 74.0,
+            "weight": 0.2,
+            "rationale": "港股机构折价常见，安全边际相对更好；港股通标的有内地增量资金；股息率 6.2%"
+          }
+        ]
+      },
+      "position_cap": 0.08,
+      "connect": {
+        "symbol": "3968.HK",
+        "southbound_eligible": true,
+        "northbound_eligible": false,
+        "has_ah_pair": true,
+        "ah_pair": "600036.SS",
+        "implication": "南向可买：定价同时受海外资金与内地增量资金影响，需跟踪港股通持股变化。"
+      }
+    },
+    {
+      "symbol": "00700.HK",
+      "name": "腾讯控股",
+      "name_en": "Tencent",
+      "market": "HK",
+      "board": "HKEX",
+      "sector": "可选消费/科技",
+      "industry": "互联网平台",
+      "currency": "HKD",
+      "southbound_eligible": true,
+      "northbound_eligible": false,
+      "ah_pair_symbol": null,
+      "notes": "港股通核心资产；游戏+广告+金融科技，监管与竞争是主风险。",
+      "pe_ttm": 19.5,
+      "pb": 3.6,
+      "fcf_yield": 0.046,
+      "dividend_yield": 0.011,
+      "composite": 63.9,
+      "quality": {
+        "total": 73.8,
+        "grade": "B",
+        "flags": [
+          "不同投票权：控制权与经济权分离"
+        ],
+        "factors": [
+          {
+            "name": "盈利能力",
+            "score": 67.7,
+            "weight": 0.25,
+            "rationale": "ROE 20.0% / ROIC 13.0% / 净利率 29.0%"
+          },
+          {
+            "name": "现金流转化",
+            "score": 82.0,
+            "weight": 0.2,
+            "rationale": "OCF/NI 1.26，FCF/NI 0.92"
+          },
+          {
+            "name": "资产负债表",
+            "score": 82.8,
+            "weight": 0.2,
+            "rationale": "净负债/EBITDA -0.2x，流动比 1.68，利息覆盖 16.8x"
+          },
+          {
+            "name": "增长与稳定性",
+            "score": 66.9,
+            "weight": 0.2,
+            "rationale": "收入CAGR 9.0%，EPS CAGR 11.0%，盈利波动 0.18"
+          },
+          {
+            "name": "治理与财务质量",
+            "score": 70.0,
+            "weight": 0.15,
+            "rationale": "关注：同股不同权"
+          }
+        ]
+      },
+      "valuation": {
+        "total": 56.9,
+        "grade": "C+",
+        "flags": [],
+        "factors": [
+          {
+            "name": "相对估值",
+            "score": 60.5,
+            "weight": 0.35,
+            "rationale": "PE 19.5x vs 行业中位 18.0x"
+          },
+          {
+            "name": "现金流估值",
+            "score": 50.3,
+            "weight": 0.25,
+            "rationale": "FCF yield 4.6%；EV/EBITDA 13.2x vs 12.0x"
+          },
+          {
+            "name": "增长调整估值",
+            "score": 46.7,
+            "weight": 0.2,
+            "rationale": "PEG 1.77（PE / 11.0% 增长）"
+          },
+          {
+            "name": "市场折溢价",
+            "score": 69.0,
+            "weight": 0.2,
+            "rationale": "港股机构折价常见，安全边际相对更好；港股通标的有内地增量资金"
+          }
+        ]
+      },
+      "position_cap": 0.08,
+      "connect": {
+        "symbol": "00700.HK",
+        "southbound_eligible": true,
+        "northbound_eligible": false,
+        "has_ah_pair": false,
+        "ah_pair": "",
+        "implication": "南向可买：定价同时受海外资金与内地增量资金影响，需跟踪港股通持股变化。"
+      }
+    },
+    {
+      "symbol": "03690.HK",
+      "name": "美团",
+      "name_en": "Meituan",
+      "market": "HK",
+      "board": "HKEX",
+      "sector": "可选消费",
+      "industry": "本地生活",
+      "currency": "HKD",
+      "southbound_eligible": true,
+      "northbound_eligible": false,
+      "ah_pair_symbol": null,
+      "notes": "本地生活竞争激烈，利润率对补贴和监管敏感。",
+      "pe_ttm": 24.0,
+      "pb": 3.9,
+      "fcf_yield": 0.032,
+      "dividend_yield": 0.0,
+      "composite": 64.4,
+      "quality": {
+        "total": 73.9,
+        "grade": "B",
+        "flags": [
+          "不同投票权：控制权与经济权分离"
+        ],
+        "factors": [
+          {
+            "name": "盈利能力",
+            "score": 42.2,
+            "weight": 0.25,
+            "rationale": "ROE 16.0% / ROIC 11.0% / 净利率 8.2%"
+          },
+          {
+            "name": "现金流转化",
+            "score": 100.0,
+            "weight": 0.2,
+            "rationale": "OCF/NI 1.78，FCF/NI 1.44"
+          },
+          {
+            "name": "资产负债表",
+            "score": 96.4,
+            "weight": 0.2,
+            "rationale": "净负债/EBITDA -1.8x，流动比 2.00，利息覆盖 16.2x"
+          },
+          {
+            "name": "增长与稳定性",
+            "score": 67.9,
+            "weight": 0.2,
+            "rationale": "收入CAGR 18.0%，EPS CAGR 25.0%，盈利波动 0.35"
+          },
+          {
+            "name": "治理与财务质量",
+            "score": 70.0,
+            "weight": 0.15,
+            "rationale": "关注：同股不同权"
+          }
+        ]
+      },
+      "valuation": {
+        "total": 60.8,
+        "grade": "C+",
+        "flags": [],
+        "factors": [
+          {
+            "name": "相对估值",
+            "score": 59.9,
+            "weight": 0.35,
+            "rationale": "PE 24.0x vs 行业中位 22.0x"
+          },
+          {
+            "name": "现金流估值",
+            "score": 37.2,
+            "weight": 0.25,
+            "rationale": "FCF yield 3.2%；EV/EBITDA 16.5x vs 14.0x"
+          },
+          {
+            "name": "增长调整估值",
+            "score": 83.6,
+            "weight": 0.2,
+            "rationale": "PEG 0.96（PE / 25.0% 增长）"
+          },
+          {
+            "name": "市场折溢价",
+            "score": 69.0,
+            "weight": 0.2,
+            "rationale": "港股机构折价常见，安全边际相对更好；港股通标的有内地增量资金"
+          }
+        ]
+      },
+      "position_cap": 0.06,
+      "connect": {
+        "symbol": "03690.HK",
+        "southbound_eligible": true,
+        "northbound_eligible": false,
+        "has_ah_pair": false,
+        "ah_pair": "",
+        "implication": "南向可买：定价同时受海外资金与内地增量资金影响，需跟踪港股通持股变化。"
+      }
+    },
+    {
+      "symbol": "AAPL",
+      "name": "苹果",
+      "name_en": "Apple",
+      "market": "US",
+      "board": "NASDAQ",
+      "sector": "信息技术",
+      "industry": "消费电子",
+      "currency": "USD",
+      "southbound_eligible": false,
+      "northbound_eligible": false,
+      "ah_pair_symbol": null,
+      "notes": "美股质量+回购机器；PE 贵但 FCF 和资本回报极强。",
+      "pe_ttm": 33.0,
+      "pb": 48.0,
+      "fcf_yield": 0.031,
+      "dividend_yield": 0.0045,
+      "composite": 59.5,
+      "quality": {
+        "total": 80.2,
+        "grade": "B+",
+        "flags": [],
+        "factors": [
+          {
+            "name": "盈利能力",
+            "score": 99.1,
+            "weight": 0.25,
+            "rationale": "ROE 145.0% / ROIC 48.0% / 净利率 24.0%"
+          },
+          {
+            "name": "现金流转化",
+            "score": 90.1,
+            "weight": 0.2,
+            "rationale": "OCF/NI 1.26，FCF/NI 1.15"
+          },
+          {
+            "name": "资产负债表",
+            "score": 62.9,
+            "weight": 0.2,
+            "rationale": "净负债/EBITDA 0.3x，流动比 0.87，利息覆盖 31.5x"
+          },
+          {
+            "name": "增长与稳定性",
+            "score": 65.4,
+            "weight": 0.2,
+            "rationale": "收入CAGR 2.0%，EPS CAGR 7.0%，盈利波动 0.11"
+          },
+          {
+            "name": "治理与财务质量",
+            "score": 78.0,
+            "weight": 0.15,
+            "rationale": "治理未见明显红旗"
+          }
+        ]
+      },
+      "valuation": {
+        "total": 38.9,
+        "grade": "D",
+        "flags": [
+          "现金流估值 偏弱",
+          "增长调整估值 偏弱"
+        ],
+        "factors": [
+          {
+            "name": "相对估值",
+            "score": 53.4,
+            "weight": 0.35,
+            "rationale": "PE 33.0x vs 行业中位 28.0x"
+          },
+          {
+            "name": "现金流估值",
+            "score": 31.3,
+            "weight": 0.25,
+            "rationale": "FCF yield 3.1%；EV/EBITDA 24.0x vs 18.0x"
+          },
+          {
+            "name": "增长调整估值",
+            "score": 0.0,
+            "weight": 0.2,
+            "rationale": "PEG 4.71（PE / 7.0% 增长）"
+          },
+          {
+            "name": "市场折溢价",
+            "score": 62.0,
+            "weight": 0.2,
+            "rationale": "美股信息披露完整，折现率随美债波动"
+          }
+        ]
+      },
+      "position_cap": 0.04,
+      "connect": {
+        "symbol": "AAPL",
+        "southbound_eligible": false,
+        "northbound_eligible": false,
+        "has_ah_pair": false,
+        "ah_pair": "",
+        "implication": "美股：通过 ADR/普通股交易，与 A/H 价差无直接套利通道。"
+      }
+    },
+    {
+      "symbol": "NVDA",
+      "name": "英伟达",
+      "name_en": "NVIDIA",
+      "market": "US",
+      "board": "NASDAQ",
+      "sector": "信息技术",
+      "industry": "半导体",
+      "currency": "USD",
+      "southbound_eligible": false,
+      "northbound_eligible": false,
+      "ah_pair_symbol": null,
+      "notes": "算力周期龙头；高增长对高估值，颠覆风险来自客户自制与资本开支回落。",
+      "pe_ttm": 42.0,
+      "pb": 32.0,
+      "fcf_yield": 0.019,
+      "dividend_yield": 0.0003,
+      "composite": 66.6,
+      "quality": {
+        "total": 85.3,
+        "grade": "A",
+        "flags": [],
+        "factors": [
+          {
+            "name": "盈利能力",
+            "score": 100.0,
+            "weight": 0.25,
+            "rationale": "ROE 91.0% / ROIC 75.0% / 净利率 52.0%"
+          },
+          {
+            "name": "现金流转化",
+            "score": 73.9,
+            "weight": 0.2,
+            "rationale": "OCF/NI 1.08，FCF/NI 0.97"
+          },
+          {
+            "name": "资产负债表",
+            "score": 93.5,
+            "weight": 0.2,
+            "rationale": "净负债/EBITDA -0.4x，流动比 4.11，利息覆盖 261.5x"
+          },
+          {
+            "name": "增长与稳定性",
+            "score": 75.5,
+            "weight": 0.2,
+            "rationale": "收入CAGR 72.0%，EPS CAGR 95.0%，盈利波动 0.40"
+          },
+          {
+            "name": "治理与财务质量",
+            "score": 78.0,
+            "weight": 0.15,
+            "rationale": "治理未见明显红旗"
+          }
+        ]
+      },
+      "valuation": {
+        "total": 54.4,
+        "grade": "C",
+        "flags": [
+          "现金流估值 偏弱"
+        ],
+        "factors": [
+          {
+            "name": "相对估值",
+            "score": 51.9,
+            "weight": 0.35,
+            "rationale": "PE 42.0x vs 行业中位 35.0x"
+          },
+          {
+            "name": "现金流估值",
+            "score": 15.2,
+            "weight": 0.25,
+            "rationale": "FCF yield 1.9%；EV/EBITDA 34.0x vs 22.0x"
+          },
+          {
+            "name": "增长调整估值",
+            "score": 100.0,
+            "weight": 0.2,
+            "rationale": "PEG 0.44（PE / 95.0% 增长）"
+          },
+          {
+            "name": "市场折溢价",
+            "score": 62.0,
+            "weight": 0.2,
+            "rationale": "美股信息披露完整，折现率随美债波动"
+          }
+        ]
+      },
+      "position_cap": 0.06,
+      "connect": {
+        "symbol": "NVDA",
+        "southbound_eligible": false,
+        "northbound_eligible": false,
+        "has_ah_pair": false,
+        "ah_pair": "",
+        "implication": "美股：通过 ADR/普通股交易，与 A/H 价差无直接套利通道。"
+      }
+    },
+    {
+      "symbol": "JPM",
+      "name": "摩根大通",
+      "name_en": "JPMorgan Chase",
+      "market": "US",
+      "board": "NYSE",
+      "sector": "金融",
+      "industry": "银行",
+      "currency": "USD",
+      "southbound_eligible": false,
+      "northbound_eligible": false,
+      "ah_pair_symbol": null,
+      "notes": "美股银行对照样本：同样银行，美股 PB 体系与 A/H 完全不同。",
+      "pe_ttm": 12.2,
+      "pb": 1.85,
+      "fcf_yield": null,
+      "dividend_yield": 0.023,
+      "composite": 63.2,
+      "quality": {
+        "total": 74.9,
+        "grade": "B",
+        "flags": [],
+        "factors": [
+          {
+            "name": "盈利能力",
+            "score": 65.5,
+            "weight": 0.25,
+            "rationale": "ROE 16.0% / ROIC 14.0% / 净利率 30.0%"
+          },
+          {
+            "name": "现金流转化",
+            "score": 75.7,
+            "weight": 0.2,
+            "rationale": "OCF/NI 1.13，FCF/NI 1.13"
+          },
+          {
+            "name": "资产负债表",
+            "score": 88.7,
+            "weight": 0.2,
+            "rationale": "NPL 0.70% / CET1 15.1%"
+          },
+          {
+            "name": "增长与稳定性",
+            "score": 69.9,
+            "weight": 0.2,
+            "rationale": "收入CAGR 11.0%，EPS CAGR 9.0%，盈利波动 0.16"
+          },
+          {
+            "name": "治理与财务质量",
+            "score": 78.0,
+            "weight": 0.15,
+            "rationale": "治理未见明显红旗"
+          }
+        ]
+      },
+      "valuation": {
+        "total": 53.7,
+        "grade": "C",
+        "flags": [],
+        "factors": [
+          {
+            "name": "相对估值",
+            "score": 38.3,
+            "weight": 0.35,
+            "rationale": "PB 1.85 vs US 同行中位 1.40"
+          },
+          {
+            "name": "现金流估值",
+            "score": 50.0,
+            "weight": 0.25,
+            "rationale": "无 FCF 收益率，中性处理"
+          },
+          {
+            "name": "增长调整估值",
+            "score": 76.9,
+            "weight": 0.2,
+            "rationale": "PEG 1.11（PE / 11.0% 增长）"
+          },
+          {
+            "name": "市场折溢价",
+            "score": 62.0,
+            "weight": 0.2,
+            "rationale": "美股信息披露完整，折现率随美债波动"
+          }
+        ]
+      },
+      "position_cap": 0.08,
+      "connect": {
+        "symbol": "JPM",
+        "southbound_eligible": false,
+        "northbound_eligible": false,
+        "has_ah_pair": false,
+        "ah_pair": "",
+        "implication": "美股：通过 ADR/普通股交易，与 A/H 价差无直接套利通道。"
+      }
+    }
+  ],
+  "strategies": [
+    {
+      "id": "quality_value",
+      "name": "质量-价值",
+      "objective": "在三个市场用同一套质量门槛，再用当地估值习惯给安全边际。",
+      "notes": [
+        "A 股同样质量通常更贵，不应用港股的 PE 直接横比。",
+        "金融股以 PB/ROE 和资产质量为主，不要强行看 EV/EBITDA。"
+      ],
+      "rows": [
+        {
+          "symbol": "600519.SS",
+          "name": "贵州茅台",
+          "market": "A",
+          "score": 70.1,
+          "action": "观察名单",
+          "reason": "质量 86 / 估值 56 / 技术 61",
+          "extras": {
+            "quality": 85.89,
+            "valuation": 55.9,
+            "position_cap": 0.08,
+            "implied_upside": -0.022
+          }
+        },
+        {
+          "symbol": "3750.HK",
+          "name": "宁德时代-H",
+          "market": "HK",
+          "score": 69.7,
+          "action": "重点研究",
+          "reason": "质量 75 / 估值 70 / 技术 52",
+          "extras": {
+            "quality": 75.04,
+            "valuation": 70.45,
+            "position_cap": 0.12,
+            "implied_upside": 0.111
+          }
+        },
+        {
+          "symbol": "NVDA",
+          "name": "英伟达",
+          "market": "US",
+          "score": 66.6,
+          "action": "观察名单",
+          "reason": "质量 85 / 估值 54 / 技术 43",
+          "extras": {
+            "quality": 85.28,
+            "valuation": 54.36,
+            "position_cap": 0.06,
+            "implied_upside": -0.167
+          }
+        },
+        {
+          "symbol": "300750.SZ",
+          "name": "宁德时代",
+          "market": "A",
+          "score": 64.8,
+          "action": "观察名单",
+          "reason": "质量 75 / 估值 58 / 技术 52",
+          "extras": {
+            "quality": 75.04,
+            "valuation": 58.12,
+            "position_cap": 0.08,
+            "implied_upside": -0.091
+          }
+        },
+        {
+          "symbol": "03690.HK",
+          "name": "美团",
+          "market": "HK",
+          "score": 64.4,
+          "action": "重点研究",
+          "reason": "质量 74 / 估值 61 / 技术 46",
+          "extras": {
+            "quality": 73.92,
+            "valuation": 60.81,
+            "position_cap": 0.06,
+            "implied_upside": -0.083
+          }
+        },
+        {
+          "symbol": "3968.HK",
+          "name": "招商银行-H",
+          "market": "HK",
+          "score": 64.0,
+          "action": "观察名单",
+          "reason": "质量 69 / 估值 62 / 技术 54",
+          "extras": {
+            "quality": 69.27,
+            "valuation": 61.82,
+            "position_cap": 0.08,
+            "implied_upside": 0.25
+          }
+        },
+        {
+          "symbol": "00700.HK",
+          "name": "腾讯控股",
+          "market": "HK",
+          "score": 63.9,
+          "action": "观察名单",
+          "reason": "质量 74 / 估值 57 / 技术 53",
+          "extras": {
+            "quality": 73.79,
+            "valuation": 56.9,
+            "position_cap": 0.08,
+            "implied_upside": -0.077
+          }
+        },
+        {
+          "symbol": "JPM",
+          "name": "摩根大通",
+          "market": "US",
+          "score": 63.2,
+          "action": "观察名单",
+          "reason": "质量 75 / 估值 54 / 技术 53",
+          "extras": {
+            "quality": 74.94,
+            "valuation": 53.67,
+            "position_cap": 0.08,
+            "implied_upside": -0.467
+          }
+        },
+        {
+          "symbol": "AAPL",
+          "name": "苹果",
+          "market": "US",
+          "score": 59.5,
+          "action": "估值偏贵或中性",
+          "reason": "质量 80 / 估值 39 / 技术 52",
+          "extras": {
+            "quality": 80.17,
+            "valuation": 38.93,
+            "position_cap": 0.04,
+            "implied_upside": -0.152
+          }
+        },
+        {
+          "symbol": "600036.SS",
+          "name": "招商银行",
+          "market": "A",
+          "score": 58.9,
+          "action": "估值偏贵或中性",
+          "reason": "质量 69 / 估值 49 / 技术 55",
+          "extras": {
+            "quality": 69.27,
+            "valuation": 48.89,
+            "position_cap": 0.08,
+            "implied_upside": 0.016
+          }
+        }
+      ]
+    },
+    {
+      "id": "ah_premium",
+      "name": "A/H 溢价",
+      "objective": "解释两地价差的投资者结构，而不是假设可以瞬间抹平。",
+      "notes": [
+        "A 与 H 是不同股份，税费、借券、额度与结算都不同。",
+        "港股通让价差可以收窄，但不能消灭流动性折价和治理折价。"
+      ],
+      "rows": [
+        {
+          "symbol": "300750.SZ / 3750.HK",
+          "name": "宁德时代 A/H",
+          "market": "AH",
+          "score": 73.6,
+          "action": "价差中性，先看基本面",
+          "reason": "A 股相对 H 股溢价 18.0%（样本汇率）",
+          "extras": {
+            "ah_premium": 0.1799,
+            "southbound": true,
+            "quality": 75.04
+          }
+        },
+        {
+          "symbol": "600036.SS / 3968.HK",
+          "name": "招商银行 A/H",
+          "market": "AH",
+          "score": 54.0,
+          "action": "关注 H 股相对折价",
+          "reason": "A 股相对 H 股溢价 39.6%（样本汇率）",
+          "extras": {
+            "ah_premium": 0.396,
+            "southbound": true,
+            "quality": 69.27
+          }
+        }
+      ]
+    },
+    {
+      "id": "industry_rotation",
+      "name": "行业轮动",
+      "objective": "先给行业打分，再在行业里挑质量股，避免先选故事再找行业。",
+      "notes": [
+        "政策分对 A 股/港股权重大，对美股权重应下调。"
+      ],
+      "rows": [
+        {
+          "symbol": "动力电池",
+          "name": "EV Battery",
+          "market": "A/HK",
+          "score": 65.08,
+          "action": "标配",
+          "reason": "B；周期 mid；估值分位 48",
+          "extras": {
+            "grade": "B",
+            "policy": 72
+          }
+        },
+        {
+          "symbol": "白酒",
+          "name": "Baijiu",
+          "market": "A",
+          "score": 59.04,
+          "action": "标配",
+          "reason": "C+；周期 mid；估值分位 62",
+          "extras": {
+            "grade": "C+",
+            "policy": 58
+          }
+        },
+        {
+          "symbol": "互联网平台",
+          "name": "China Internet",
+          "market": "HK/US",
+          "score": 53.47,
+          "action": "低配/等待更好价格",
+          "reason": "C；周期 early；估值分位 40",
+          "extras": {
+            "grade": "C",
+            "policy": 48
+          }
+        },
+        {
+          "symbol": "全球半导体",
+          "name": "Global Semiconductors",
+          "market": "US/HK/A",
+          "score": 50.74,
+          "action": "低配/等待更好价格",
+          "reason": "C；周期 mid；估值分位 78",
+          "extras": {
+            "grade": "C",
+            "policy": 44
+          }
+        },
+        {
+          "symbol": "中资银行",
+          "name": "Chinese Banks",
+          "market": "A/HK",
+          "score": 46.89,
+          "action": "低配/等待更好价格",
+          "reason": "C；周期 trough；估值分位 22",
+          "extras": {
+            "grade": "C",
+            "policy": 52
+          }
+        }
+      ]
+    },
+    {
+      "id": "connect_flow",
+      "name": "互联互通资金",
+      "objective": "把港股通/北向当成拥挤度与边际定价，而不是基本面证据。",
+      "notes": [
+        "南向持股集中在少数龙头，排名变化比绝对买入更有信息。",
+        "额度打满的日子信号失效，应标记为微观结构事件。"
+      ],
+      "rows": [
+        {
+          "symbol": "00700.HK",
+          "name": "腾讯控股",
+          "market": "HK",
+          "score": 71.3,
+          "action": "资金与质量同向，纳入跟踪",
+          "reason": "南向 20日持股变化 +1.8%；南向可买：定价同时受海外资金与内地增量资金影响，需跟踪港股通持股变化。",
+          "extras": {
+            "flow_20d": 0.018,
+            "quality": 73.79
+          }
+        },
+        {
+          "symbol": "600519.SS",
+          "name": "贵州茅台",
+          "market": "A",
+          "score": 67.1,
+          "action": "资金噪声，不单独作为买卖点",
+          "reason": "北向 20日持股变化 +0.7%；北向可买：海外主动/被动资金会放大风格切换，北向持股是情绪而非基本面本身。",
+          "extras": {
+            "flow_20d": 0.007,
+            "quality": 85.89
+          }
+        },
+        {
+          "symbol": "3968.HK",
+          "name": "招商银行-H",
+          "market": "HK",
+          "score": 64.9,
+          "action": "资金与质量同向，纳入跟踪",
+          "reason": "南向 20日持股变化 +1.1%；南向可买：定价同时受海外资金与内地增量资金影响，需跟踪港股通持股变化。",
+          "extras": {
+            "flow_20d": 0.011,
+            "quality": 69.27
+          }
+        },
+        {
+          "symbol": "3750.HK",
+          "name": "宁德时代-H",
+          "market": "HK",
+          "score": 63.3,
+          "action": "资金噪声，不单独作为买卖点",
+          "reason": "南向 20日持股变化 +0.4%；南向可买：定价同时受海外资金与内地增量资金影响，需跟踪港股通持股变化。",
+          "extras": {
+            "flow_20d": 0.004,
+            "quality": 75.04
+          }
+        },
+        {
+          "symbol": "600036.SS",
+          "name": "招商银行",
+          "market": "A",
+          "score": 55.9,
+          "action": "资金噪声，不单独作为买卖点",
+          "reason": "北向 20日持股变化 +0.3%；北向可买：海外主动/被动资金会放大风格切换，北向持股是情绪而非基本面本身。",
+          "extras": {
+            "flow_20d": 0.003,
+            "quality": 69.27
+          }
+        },
+        {
+          "symbol": "03690.HK",
+          "name": "美团",
+          "market": "HK",
+          "score": 52.9,
+          "action": "资金噪声，不单独作为买卖点",
+          "reason": "南向 20日持股变化 -0.6%；南向可买：定价同时受海外资金与内地增量资金影响，需跟踪港股通持股变化。",
+          "extras": {
+            "flow_20d": -0.006,
+            "quality": 73.92
+          }
+        },
+        {
+          "symbol": "300750.SZ",
+          "name": "宁德时代",
+          "market": "A",
+          "score": 50.4,
+          "action": "资金噪声，不单独作为买卖点",
+          "reason": "北向 20日持股变化 -0.9%；北向可买：海外主动/被动资金会放大风格切换，北向持股是情绪而非基本面本身。",
+          "extras": {
+            "flow_20d": -0.009,
+            "quality": 75.04
+          }
+        }
+      ]
+    }
+  ],
+  "industries": [
+    {
+      "name": "白酒",
+      "name_en": "Baijiu",
+      "markets": [
+        "A"
+      ],
+      "cycle_position": "mid",
+      "notes": "高端宴席与礼品需求稳，大众价格带竞争更卷；几乎是纯 A 股行业。",
+      "leaders": [
+        "600519.SS"
+      ],
+      "score": {
+        "total": 59.0,
+        "grade": "C+",
+        "flags": [
+          "估值周期 偏弱"
+        ],
+        "factors": [
+          {
+            "name": "需求增长",
+            "score": 38.5,
+            "weight": 0.2,
+            "rationale": "过去3年 8.0%，未来2年预期 5.0%"
+          },
+          {
+            "name": "竞争结构",
+            "score": 60.9,
+            "weight": 0.18,
+            "rationale": "CR5 62%，HHI 1450（越高越集中）"
+          },
+          {
+            "name": "利润池",
+            "score": 90.0,
+            "weight": 0.18,
+            "rationale": "行业ROE中位 22.0%，ROIC 20.0%，利润池趋势 +1.0%"
+          },
+          {
+            "name": "政策与监管",
+            "score": 54.3,
+            "weight": 0.16,
+            "rationale": "政策友好度 58/100（A/港股对政策更敏感）"
+          },
+          {
+            "name": "估值周期",
+            "score": 32.9,
+            "weight": 0.14,
+            "rationale": "估值分位 62（越高越贵）"
+          },
+          {
+            "name": "颠覆与周期位置",
+            "score": 77.7,
+            "weight": 0.14,
+            "rationale": "颠覆风险 25，周期 mid"
+          }
+        ]
+      }
+    },
+    {
+      "name": "动力电池",
+      "name_en": "EV Battery",
+      "markets": [
+        "A",
+        "HK"
+      ],
+      "cycle_position": "mid",
+      "notes": "全球份额向龙头集中，但资本开支与价格战会吃掉利润池。",
+      "leaders": [
+        "300750.SZ",
+        "3750.HK"
+      ],
+      "score": {
+        "total": 65.1,
+        "grade": "B",
+        "flags": [],
+        "factors": [
+          {
+            "name": "需求增长",
+            "score": 77.3,
+            "weight": 0.2,
+            "rationale": "过去3年 24.0%，未来2年预期 12.0%"
+          },
+          {
+            "name": "竞争结构",
+            "score": 79.8,
+            "weight": 0.18,
+            "rationale": "CR5 71%，HHI 1800（越高越集中）"
+          },
+          {
+            "name": "利润池",
+            "score": 46.6,
+            "weight": 0.18,
+            "rationale": "行业ROE中位 14.0%，ROIC 10.0%，利润池趋势 -2.0%"
+          },
+          {
+            "name": "政策与监管",
+            "score": 74.3,
+            "weight": 0.16,
+            "rationale": "政策友好度 72/100（A/港股对政策更敏感）"
+          },
+          {
+            "name": "估值周期",
+            "score": 52.9,
+            "weight": 0.14,
+            "rationale": "估值分位 48（越高越贵）"
+          },
+          {
+            "name": "颠覆与周期位置",
+            "score": 54.2,
+            "weight": 0.14,
+            "rationale": "颠覆风险 55，周期 mid"
+          }
+        ]
+      }
+    },
+    {
+      "name": "中资银行",
+      "name_en": "Chinese Banks",
+      "markets": [
+        "A",
+        "HK"
+      ],
+      "cycle_position": "trough",
+      "notes": "资产质量与净息差是主线；A 股溢价、H 股折价长期存在。",
+      "leaders": [
+        "600036.SS",
+        "3968.HK"
+      ],
+      "score": {
+        "total": 46.9,
+        "grade": "C",
+        "flags": [
+          "需求增长 偏弱",
+          "竞争结构 偏弱",
+          "利润池 偏弱"
+        ],
+        "factors": [
+          {
+            "name": "需求增长",
+            "score": 26.8,
+            "weight": 0.2,
+            "rationale": "过去3年 3.0%，未来2年预期 3.0%"
+          },
+          {
+            "name": "竞争结构",
+            "score": 31.4,
+            "weight": 0.18,
+            "rationale": "CR5 48%，HHI 900（越高越集中）"
+          },
+          {
+            "name": "利润池",
+            "score": 33.6,
+            "weight": 0.18,
+            "rationale": "行业ROE中位 10.0%，ROIC 9.0%，利润池趋势 -1.0%"
+          },
+          {
+            "name": "政策与监管",
+            "score": 45.7,
+            "weight": 0.16,
+            "rationale": "政策友好度 52/100（A/港股对政策更敏感）"
+          },
+          {
+            "name": "估值周期",
+            "score": 90.0,
+            "weight": 0.14,
+            "rationale": "估值分位 22（越高越贵）"
+          },
+          {
+            "name": "颠覆与周期位置",
+            "score": 70.8,
+            "weight": 0.14,
+            "rationale": "颠覆风险 35，周期 trough"
+          }
+        ]
+      }
+    },
+    {
+      "name": "互联网平台",
+      "name_en": "China Internet",
+      "markets": [
+        "HK",
+        "US"
+      ],
+      "cycle_position": "early",
+      "notes": "监管从收缩走向常态化，但竞争与广告预算仍决定利润弹性。",
+      "leaders": [
+        "00700.HK",
+        "03690.HK"
+      ],
+      "score": {
+        "total": 53.5,
+        "grade": "C",
+        "flags": [],
+        "factors": [
+          {
+            "name": "需求增长",
+            "score": 43.4,
+            "weight": 0.2,
+            "rationale": "过去3年 7.0%，未来2年预期 8.0%"
+          },
+          {
+            "name": "竞争结构",
+            "score": 71.1,
+            "weight": 0.18,
+            "rationale": "CR5 68%，HHI 1600（越高越集中）"
+          },
+          {
+            "name": "利润池",
+            "score": 48.2,
+            "weight": 0.18,
+            "rationale": "行业ROE中位 13.0%，ROIC 10.0%，利润池趋势 +3.0%"
+          },
+          {
+            "name": "政策与监管",
+            "score": 40.0,
+            "weight": 0.16,
+            "rationale": "政策友好度 48/100（A/港股对政策更敏感）"
+          },
+          {
+            "name": "估值周期",
+            "score": 64.3,
+            "weight": 0.14,
+            "rationale": "估值分位 40（越高越贵）"
+          },
+          {
+            "name": "颠覆与周期位置",
+            "score": 56.5,
+            "weight": 0.14,
+            "rationale": "颠覆风险 60，周期 early"
+          }
+        ]
+      }
+    },
+    {
+      "name": "全球半导体",
+      "name_en": "Global Semiconductors",
+      "markets": [
+        "US",
+        "HK",
+        "A"
+      ],
+      "cycle_position": "mid",
+      "notes": "AI 资本开支驱动；出口管制与客户自制是美股/A 股共同变量。",
+      "leaders": [
+        "NVDA"
+      ],
+      "score": {
+        "total": 50.7,
+        "grade": "C",
+        "flags": [
+          "政策与监管 偏弱",
+          "估值周期 偏弱",
+          "技术或模式颠覆风险高，避免用历史 PE 外推"
+        ],
+        "factors": [
+          {
+            "name": "需求增长",
+            "score": 72.6,
+            "weight": 0.2,
+            "rationale": "过去3年 18.0%，未来2年预期 14.0%"
+          },
+          {
+            "name": "竞争结构",
+            "score": 49.7,
+            "weight": 0.18,
+            "rationale": "CR5 55%，HHI 1300（越高越集中）"
+          },
+          {
+            "name": "利润池",
+            "score": 80.3,
+            "weight": 0.18,
+            "rationale": "行业ROE中位 18.0%，ROIC 16.0%，利润池趋势 +8.0%"
+          },
+          {
+            "name": "政策与监管",
+            "score": 34.3,
+            "weight": 0.16,
+            "rationale": "政策友好度 44/100（A/港股对政策更敏感）"
+          },
+          {
+            "name": "估值周期",
+            "score": 10.0,
+            "weight": 0.14,
+            "rationale": "估值分位 78（越高越贵）"
+          },
+          {
+            "name": "颠覆与周期位置",
+            "score": 42.4,
+            "weight": 0.14,
+            "rationale": "颠覆风险 70，周期 mid"
+          }
+        ]
+      }
+    }
+  ],
+  "reports": [
+    {
+      "id": "tencent-init",
+      "title": "腾讯：游戏与广告修复，首次覆盖买入",
+      "broker": "某券商海外",
+      "symbol": "00700.HK",
+      "rating": "buy",
+      "target_price": 620.0,
+      "current_price": 410.0,
+      "published": "2026-03-01",
+      "body": "核心结论：我们认为腾讯将重新获得游戏与广告的利润弹性。投资逻辑是国内游戏版号常态化，广告主预算回升，以及金融科技合规后利润率修复。关键假设包括：明年游戏收入增长 12%，广告 ASP 提升 6%，市占维持。目标价 620 港元，对应 28x PE，未做完整敏感性分析。风险：宏观经济波动，监管再收紧，竞争加剧。渠道调研显示部分广告主预算回升，但样本有限。",
+      "score": {
+        "total": 63.0,
+        "grade": "C+",
+        "flags": [
+          "首次覆盖且给买入：检查是否在帮投行客户做市值管理"
+        ],
+        "factors": [
+          {
+            "name": "投资逻辑清晰度",
+            "score": 83,
+            "weight": 0.2,
+            "rationale": "逻辑关键词 4 处，正文 177 字"
+          },
+          {
+            "name": "证据质量",
+            "score": 62,
+            "weight": 0.2,
+            "rationale": "一手/数据线索 3，抽取数字 4 个"
+          },
+          {
+            "name": "估值严谨度",
+            "score": 65,
+            "weight": 0.18,
+            "rationale": "估值方法线索 3"
+          },
+          {
+            "name": "风险披露",
+            "score": 47,
+            "weight": 0.17,
+            "rationale": "风险线索 3，模板风险 1"
+          },
+          {
+            "name": "独立性",
+            "score": 62.0,
+            "weight": 0.15,
+            "rationale": "承销/首覆买入会降低独立权重；卖方卖出评级更稀缺"
+          },
+          {
+            "name": "目标价纪律",
+            "score": 50.0,
+            "weight": 0.1,
+            "rationale": "隐含上行 51%，偏乐观"
+          }
+        ]
+      },
+      "claims": {
+        "thesis_like": [
+          "核心结论：我们认为腾讯将重新获得游戏与广告的利润弹性。",
+          "投资逻辑是国内游戏版号常态化，广告主预算回升，以及金融科技合规后利润率修复。",
+          "关键假设包括：明年游戏收入增长 12%，广告 ASP 提升 6%，市占维持。"
+        ],
+        "evidence_like": [
+          "关键假设包括：明年游戏收入增长 12%，广告 ASP 提升 6%，市占维持。",
+          "渠道调研显示部分广告主预算回升，但样本有限。"
+        ],
+        "risk_like": [
+          "风险：宏观经济波动，监管再收紧，竞争加剧。"
+        ],
+        "numbers": [
+          "12%",
+          "6%",
+          "620",
+          "28"
+        ]
+      }
+    },
+    {
+      "id": "cmb-ah",
+      "title": "招商银行 A/H：质量溢价仍在，H 股股息更有吸引力",
+      "broker": "中资研究所",
+      "symbol": "3968.HK",
+      "rating": "overweight",
+      "target_price": 46.0,
+      "current_price": 28.5,
+      "published": "2026-02-12",
+      "body": "核心结论：招行零售资产质量仍优于同业，H 股 PB 0.74x 低于 A 股。投资逻辑：净息差企稳、财富管理中收回升、港股通南向持续增持。关键假设：NPL 维持 1% 以下，ROE 14%-15%，派息率 35%。估值采用 PB-ROE 与 DDM，并对净息差做了敏感性。风险：房地产相关敞口恶化、零售信贷成本上升、若内地资金流出则折价扩大。公告显示核心一级资本充足率 13.5%。",
+      "score": {
+        "total": 57.6,
+        "grade": "C+",
+        "flags": [],
+        "factors": [
+          {
+            "name": "投资逻辑清晰度",
+            "score": 71,
+            "weight": 0.2,
+            "rationale": "逻辑关键词 3 处，正文 191 字"
+          },
+          {
+            "name": "证据质量",
+            "score": 58,
+            "weight": 0.2,
+            "rationale": "一手/数据线索 1，抽取数字 6 个"
+          },
+          {
+            "name": "估值严谨度",
+            "score": 56,
+            "weight": 0.18,
+            "rationale": "估值方法线索 2"
+          },
+          {
+            "name": "风险披露",
+            "score": 35,
+            "weight": 0.17,
+            "rationale": "风险线索 1，模板风险 0"
+          },
+          {
+            "name": "独立性",
+            "score": 72.0,
+            "weight": 0.15,
+            "rationale": "承销/首覆买入会降低独立权重；卖方卖出评级更稀缺"
+          },
+          {
+            "name": "目标价纪律",
+            "score": 50.0,
+            "weight": 0.1,
+            "rationale": "隐含上行 61%，偏乐观"
+          }
+        ]
+      },
+      "claims": {
+        "thesis_like": [
+          "核心结论：招行零售资产质量仍优于同业，H 股 PB 0.",
+          "投资逻辑：净息差企稳、财富管理中收回升、港股通南向持续增持。",
+          "关键假设：NPL 维持 1% 以下，ROE 14%-15%，派息率 35%。"
+        ],
+        "evidence_like": [
+          "公告显示核心一级资本充足率 13."
+        ],
+        "risk_like": [
+          "风险：房地产相关敞口恶化、零售信贷成本上升、若内地资金流出则折价扩大。"
+        ],
+        "numbers": [
+          "0.74",
+          "1%",
+          "14%",
+          "15%",
+          "35%",
+          "13.5%"
+        ]
+      }
+    },
+    {
+      "id": "nvda-hype",
+      "title": "NVIDIA: only way is up",
+      "broker": "Promo Capital",
+      "symbol": "NVDA",
+      "rating": "buy",
+      "target_price": 260.0,
+      "current_price": 120.0,
+      "published": "2026-01-08",
+      "body": "We believe NVIDIA will keep winning forever. Space is huge and certain. No real bear case. Must go up. Target implies 2x from here. Macro risk only. We are also the underwriter on a related financing.",
+      "score": {
+        "total": 36.8,
+        "grade": "D",
+        "flags": [
+          "证据质量 偏弱",
+          "估值严谨度 偏弱",
+          "目标价纪律 偏弱",
+          "首次覆盖且给买入：检查是否在帮投行客户做市值管理",
+          "报告机构同时是承销商/财务顾问，独立性打折"
+        ],
+        "factors": [
+          {
+            "name": "投资逻辑清晰度",
+            "score": 47,
+            "weight": 0.2,
+            "rationale": "逻辑关键词 1 处，正文 200 字"
+          },
+          {
+            "name": "证据质量",
+            "score": 32,
+            "weight": 0.2,
+            "rationale": "一手/数据线索 0，抽取数字 1 个"
+          },
+          {
+            "name": "估值严谨度",
+            "score": 28,
+            "weight": 0.18,
+            "rationale": "估值方法线索 0"
+          },
+          {
+            "name": "风险披露",
+            "score": 45,
+            "weight": 0.17,
+            "rationale": "风险线索 2，模板风险 0"
+          },
+          {
+            "name": "独立性",
+            "score": 37.0,
+            "weight": 0.15,
+            "rationale": "承销/首覆买入会降低独立权重；卖方卖出评级更稀缺"
+          },
+          {
+            "name": "目标价纪律",
+            "score": 28.0,
+            "weight": 0.1,
+            "rationale": "隐含上行 117% 过高，需拆假设"
+          }
+        ]
+      },
+      "claims": {
+        "thesis_like": [
+          "We believe NVIDIA will keep winning forever."
+        ],
+        "evidence_like": [],
+        "risk_like": [
+          "No real bear case.",
+          "Macro risk only."
+        ],
+        "numbers": [
+          "2"
+        ]
+      }
+    }
+  ],
+  "markets": [
+    {
+      "market": "A",
+      "currency": "CNY",
+      "settlement": "T+1 (cash T+0 restricted)",
+      "price_limit": "±10% main board / ±20% ChiNext & STAR (normal days)",
+      "lot_convention": "100-share board lot; no odd-lot trading for most retail",
+      "shorting": "Limited; refinancing and designated shorts only",
+      "primary_research": "Broker notes, 交易所公告, 北向持股, 申万/中信行业",
+      "key_flows": "北向资金, 融资融券, 公募抱团, 产业资本增减持",
+      "valuation_habit": "PE/PEG for growth; PB for banks; 政策溢价常见",
+      "governance_focus": [
+        "应收账款与商誉",
+        "大股东质押与减持",
+        "关联交易与资金占用",
+        "审计意见与财务真实性"
+      ],
+      "industry_taxonomy": "申万 / 中信"
+    },
+    {
+      "market": "HK",
+      "currency": "HKD",
+      "settlement": "T+2",
+      "price_limit": "None (wide gap risk)",
+      "lot_convention": "Issuer-defined board lot",
+      "shorting": "Active; designated list, stamp duty on both sides",
+      "primary_research": "Sell-side EN/CN, southbound holdings, HKEX filings",
+      "key_flows": "南向港股通, 海外主动资金, 指数再平衡",
+      "valuation_habit": "H often cheaper than A; P/S for internet; P/EV for insurers",
+      "governance_focus": [
+        "老千股与频繁供股",
+        "不同投票权 / WVR",
+        "关联交易与私有化折价",
+        "审计更换与财报延迟"
+      ],
+      "industry_taxonomy": "Hang Seng Industry / GICS overlay"
+    },
+    {
+      "market": "US",
+      "currency": "USD",
+      "settlement": "T+1",
+      "price_limit": "None; LULD trading pauses",
+      "lot_convention": "1 share",
+      "shorting": "Deep locate market; 13F / FINRA short interest",
+      "primary_research": "10-K/10-Q/8-K, earnings calls, 13F, sell-side",
+      "key_flows": "ETF/被动, 回购, 利率敏感板块轮动",
+      "valuation_habit": "FCF yield / EV-EBITDA core; PEG and rule-of-40 for software",
+      "governance_focus": [
+        "稀释与 SBC",
+        "关联方与 going-concern",
+        "非GAAP 调节质量",
+        "董事会独立性与激励"
+      ],
+      "industry_taxonomy": "GICS"
+    }
+  ],
+  "connect": {
+    "southbound_name": "港股通 (沪港通/深港通南向)",
+    "northbound_name": "沪股通 / 深股通 (北向)",
+    "southbound_currency": "CNY converted to HKD under a closed loop",
+    "northbound_currency": "HKD/USD converted to CNY under a closed loop",
+    "quota_note": "Daily quota can bind on extreme days; stock-level eligibility is a list, not the whole market.",
+    "eligibility_southbound": "Hang Seng Composite Large/Mid Cap and selected Small Cap, plus dual-listed A/H names that meet HKEX & Connect criteria.",
+    "eligibility_northbound": "SSE/SZSE names in official Connect lists; ST / risk-alert names are typically excluded.",
+    "practical_edge": "Connect does not equal free arb. A and H are different share classes, with different investor bases, taxes, and borrowing markets."
+  },
+  "checklist": [
+    "用两句话复述卖方结论，复述不出来就先不要看目标价。",
+    "找出 1-2 个可证伪的关键假设（量、价、费率、市占、利率）。",
+    "核对估值方法是否匹配行业：银行看 PB/ROTE，互联网看 P/S 与 FCF，周期看中周期 EV/EBITDA。",
+    "把目标价还原成隐含倍数，再和十年分位比较。",
+    "风险章节是真实情景还是模板？有没有量化下行。",
+    "作者近期是否连续上调/下调，以及是否同时覆盖产业链上下游。",
+    "港股通/北向标的要额外看资金持仓变化，而不是把资金当基本面。",
+    "A/H 同时覆盖时，两地目标价差应能被汇率、流动性、股东结构解释。",
+    "美股报告优先对 10-K 风险因素和电话会问答，而不是摘要页。",
+    "把报告当成假设生成器，而不是结论外包。"
+  ]
+}

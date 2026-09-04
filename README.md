@@ -26,6 +26,19 @@ python3 -m quant demo
 
 `quant demo` 会在 `reports/scorecard.html` 生成完整记分卡。
 
+### 研究看板（Next.js + oRPC + shadcn）
+
+打分仍在 Python。看板只读 `quant json` 快照，不在前端重写估值。
+
+```bash
+python3 -m quant json -o web/src/data/snapshot.json
+cd web
+npm install
+npm run dev
+```
+
+打开 http://localhost:3000 ：总览、个股、行业、策略、研报、市场规则。
+
 ## 研究层级
 
 ```
@@ -61,6 +74,7 @@ python3 -m quant demo
 
 ```
 src/quant/          分析引擎与 CLI
+web/                Next.js 研究看板（oRPC + shadcn）
 docs/               方法论文档
 tests/              单元测试（不依赖行情网络）
 reports/            demo 输出

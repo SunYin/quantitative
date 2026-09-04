@@ -9,6 +9,7 @@ from quant.markets import CONNECT_RULES, PROFILES
 from quant.models import Market
 from quant.research import reading_checklist
 from quant.sample_data import REPORTS, STOCKS
+from quant.export import write_snapshot
 from quant.scorecard import describe_industry, describe_report, describe_stock, write_reports
 
 
@@ -31,6 +32,9 @@ def main(argv: list[str] | None = None) -> int:
     research = sub.add_parser("research", help="研报审阅")
     research.add_argument("report_id", nargs="?", default="cmb-ah", help="tencent-init | cmb-ah | nvda-hype")
 
+    dump = sub.add_parser("json", help="导出研究快照 JSON（供看板使用）")
+    dump.add_argument("-o", "--output", default="web/src/data/snapshot.json", help="输出文件")
+
     sub.add_parser("markets", help="三地市场规则对照")
     sub.add_parser("checklist", help="读研报清单")
     sub.add_parser("universe", help="列出样本股票")
@@ -50,6 +54,10 @@ def main(argv: list[str] | None = None) -> int:
         return 0
     if args.cmd == "research":
         print(describe_report(args.report_id))
+        return 0
+    if args.cmd == "json":
+        path = write_snapshot(args.output)
+        print(f"wrote {path}")
         return 0
     if args.cmd == "markets":
         _print_markets()
