@@ -1,69 +1,118 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import type { ChartPayload, ChartRange, Candle } from "@/lib/candles";
-import { movingAverage } from "@/lib/candles";
+import { CHART_SPECS, isLiveRange, movingAverage } from "@/lib/candles";
 import { client } from "@/lib/orpc";
-import { SourceBadge } from "@/components/research";
+import { ChangePct, SourceBadge } from "@/components/research";
 import { useI18n } from "@/components/locale-provider";
 import { numberLocale } from "@/i18n/config";
 
-const RANGES: ChartRange[] = ["1m", "3m", "6m", "1y"];
+const SESSION_RANGES: ChartRange[] = ["intraday", "1d", "5d"];
+const HISTORY_RANGES: ChartRange[] = ["1m", "3m", "6m", "1y", "5y"];
 
 export function KlineChart({ initial }: { initial: ChartPayload }) {
   const { locale, t } = useI18n();
   const [payload, setPayload] = useState(initial);
   const [hover, setHover] = useState<number | null>(null);
   const [pending, setPending] = useState(false);
+  const pendingRef = useRef(false);
 
-  async function setRange(range: ChartRange) {
-    if (range === payload.range || pending) return;
-    setPending(true);
+  async function load(range: ChartRange, silent = false) {
+    if (pendingRef.current) return;
+    pendingRef.current = true;
+    if (!silent) setPending(true);
     try {
       const next = await client.stock.chart({ symbol: payload.symbol, range });
       setPayload(next);
-      setHover(null);
+      if (!silent) setHover(null);
     } finally {
+      pendingRef.current = false;
       setPending(false);
     }
   }
 
+  useEffect(() => {
+    if (!isLiveRange(payload.range)) return;
+    const symbol = payload.symbol;
+    const range = payload.range;
+    const id = window.setInterval(() => {
+      if (document.visibilityState === "hidden" || pendingRef.current) return;
+      pendingRef.current = true;
+      void client.stock
+        .chart({ symbol, range })
+        .then((next) => setPayload(next))
+        .finally(() => {
+          pendingRef.current = false;
+        });
+    }, 20_000);
+    return () => window.clearInterval(id);
+  }, [payload.range, payload.symbol]);
+
   const asian = payload.market === "A" || payload.market === "HK";
   const upColor = asian ? "#f43f5e" : "#34d399";
   const downColor = asian ? "#34d399" : "#f43f5e";
+  const spec = CHART_SPECS[payload.range];
+  const hint =
+    payload.candles.length === 0
+      ? isLiveRange(payload.range)
+        ? t("chart.emptyLive")
+        : t("chart.empty")
+      : payload.source === "yahoo"
+        ? isLiveRange(payload.range)
+          ? t("chart.yahooLiveHint")
+          : t("chart.yahooHint")
+        : t("chart.sampleHint");
 
   return (
     <section className="space-y-3">
       <div className="flex flex-wrap items-center justify-between gap-2">
         <div className="flex flex-wrap items-center gap-2">
-          <h2 className="text-lg font-semibold tracking-tight">{t("chart.title")}</h2>
+          <h2 className="text-lg font-semibold tracking-tight">
+            {payload.range === "intraday" ? t("chart.title.intraday") : t("chart.title")}
+          </h2>
           <SourceBadge locale={locale} source={payload.source} />
         </div>
-        <div className="flex gap-1">
-          {RANGES.map((range) => (
-            <button
-              key={range}
-              type="button"
-              onClick={() => void setRange(range)}
-              className={`rounded-md px-2.5 py-1 text-xs ${
-                payload.range === range ? "bg-muted text-foreground" : "text-muted-foreground hover:bg-muted/60"
-              }`}
-            >
-              {t(`chart.range.${range}`)}
-            </button>
-          ))}
+        <div className="flex flex-col items-end gap-1">
+          <RangeRow
+            ranges={SESSION_RANGES}
+            current={payload.range}
+            pending={pending}
+            onPick={(range) => void load(range)}
+          />
+          <RangeRow
+            ranges={HISTORY_RANGES}
+            current={payload.range}
+            pending={pending}
+            onPick={(range) => void load(range)}
+          />
         </div>
       </div>
+      {payload.lastPrice != null ? (
+        <p className="flex flex-wrap items-baseline gap-x-3 gap-y-1 text-sm">
+          <span className="text-2xl font-semibold tabular-nums">
+            {payload.lastPrice.toLocaleString(numberLocale(locale), { maximumFractionDigits: 2 })}{" "}
+            <span className="text-sm font-normal text-muted-foreground">{payload.currency}</span>
+          </span>
+          <ChangePct value={payload.changePct} />
+          {payload.asOf ? (
+            <span className="text-xs text-muted-foreground">
+              {t("chart.asOf")} {payload.asOf}
+            </span>
+          ) : null}
+          {isLiveRange(payload.range) ? (
+            <span className="text-xs text-emerald-300/80">{t("chart.livePoll")}</span>
+          ) : null}
+        </p>
+      ) : null}
       <p className="text-xs text-muted-foreground">
-        {payload.candles.length === 0
-          ? t("chart.empty")
-          : payload.source === "yahoo"
-            ? t("chart.yahooHint")
-            : t("chart.sampleHint")}{" "}
-        {t("chart.notAdvice")}
+        {hint} {t("chart.notAdvice")}
       </p>
-      <CandleSvg
+      <ChartSvg
         candles={payload.candles}
+        style={spec.style}
+        previousClose={payload.previousClose}
+        showMa={spec.style === "candle" && spec.precision === "day"}
         upColor={upColor}
         downColor={downColor}
         hover={hover}
@@ -72,30 +121,70 @@ export function KlineChart({ initial }: { initial: ChartPayload }) {
       />
       <Legend
         candle={payload.candles[hover ?? payload.candles.length - 1]}
+        range={payload.range}
+        style={spec.style}
         currency={payload.currency}
         locale={locale}
         upColor={upColor}
         downColor={downColor}
         asian={asian}
+        showMa={spec.style === "candle" && spec.precision === "day"}
       />
     </section>
   );
 }
 
+function RangeRow({
+  ranges,
+  current,
+  pending,
+  onPick,
+}: {
+  ranges: ChartRange[];
+  current: ChartRange;
+  pending: boolean;
+  onPick: (range: ChartRange) => void;
+}) {
+  const { t } = useI18n();
+  return (
+    <div className="flex flex-wrap justify-end gap-1">
+      {ranges.map((range) => (
+        <button
+          key={range}
+          type="button"
+          onClick={() => onPick(range)}
+          disabled={pending}
+          className={`rounded-md px-2.5 py-1 text-xs ${
+            current === range ? "bg-muted text-foreground" : "text-muted-foreground hover:bg-muted/60"
+          }`}
+        >
+          {t(`chart.range.${range}`)}
+        </button>
+      ))}
+    </div>
+  );
+}
+
 function Legend({
   candle,
+  range,
+  style,
   currency,
   locale,
   upColor,
   downColor,
   asian,
+  showMa,
 }: {
   candle?: Candle;
+  range: ChartRange;
+  style: "line" | "candle";
   currency: string;
   locale: string;
   upColor: string;
   downColor: string;
   asian: boolean;
+  showMa: boolean;
 }) {
   const { t } = useI18n();
   if (!candle) return null;
@@ -104,18 +193,22 @@ function Legend({
     value.toLocaleString(numberLocale(locale as "zh-CN" | "zh-Hant" | "en"), { maximumFractionDigits: 2 });
   return (
     <div className="flex flex-wrap gap-x-4 gap-y-1 text-xs text-muted-foreground">
-      <span className="tabular-nums text-foreground">{candle.time}</span>
+      <span className="tabular-nums text-foreground">{formatLegendTime(candle.time, range, locale)}</span>
+      {style === "candle" ? (
+        <>
+          <span>
+            O <span className="tabular-nums text-foreground">{fmt(candle.open)}</span>
+          </span>
+          <span>
+            H <span className="tabular-nums text-foreground">{fmt(candle.high)}</span>
+          </span>
+          <span>
+            L <span className="tabular-nums text-foreground">{fmt(candle.low)}</span>
+          </span>
+        </>
+      ) : null}
       <span>
-        O <span className="tabular-nums text-foreground">{fmt(candle.open)}</span>
-      </span>
-      <span>
-        H <span className="tabular-nums text-foreground">{fmt(candle.high)}</span>
-      </span>
-      <span>
-        L <span className="tabular-nums text-foreground">{fmt(candle.low)}</span>
-      </span>
-      <span>
-        C{" "}
+        {style === "line" ? t("chart.last") : "C"}{" "}
         <span className="tabular-nums" style={{ color: up ? upColor : downColor }}>
           {fmt(candle.close)} {currency}
         </span>
@@ -123,16 +216,21 @@ function Legend({
       <span>
         V <span className="tabular-nums text-foreground">{candle.volume.toLocaleString(numberLocale(locale as "zh-CN"))}</span>
       </span>
-      <span>
-        {t("chart.ma5")} / {t("chart.ma20")}
-      </span>
+      {showMa ? (
+        <span>
+          {t("chart.ma5")} / {t("chart.ma20")}
+        </span>
+      ) : null}
       <span>{asian ? t("chart.colorsCN") : t("chart.colorsUS")}</span>
     </div>
   );
 }
 
-function CandleSvg({
+function ChartSvg({
   candles,
+  style,
+  previousClose,
+  showMa,
   upColor,
   downColor,
   hover,
@@ -140,6 +238,9 @@ function CandleSvg({
   pending,
 }: {
   candles: Candle[];
+  style: "line" | "candle";
+  previousClose: number | null;
+  showMa: boolean;
   upColor: string;
   downColor: string;
   hover: number | null;
@@ -149,7 +250,7 @@ function CandleSvg({
   const { t } = useI18n();
   const ma5 = useMemo(() => movingAverage(candles, 5), [candles]);
   const ma20 = useMemo(() => movingAverage(candles, 20), [candles]);
-  const layout = useMemo(() => layoutChart(candles), [candles]);
+  const layout = useMemo(() => layoutChart(candles, previousClose), [candles, previousClose]);
 
   if (candles.length === 0) {
     return (
@@ -161,7 +262,10 @@ function CandleSvg({
 
   const { width, priceH, volH, pad, minP, maxP, maxV, innerW } = layout;
   const height = pad.t + priceH + 12 + volH + pad.b;
-  const barW = Math.max(2, (innerW / candles.length) * 0.7);
+  const barW = Math.max(style === "line" ? 1 : 2, (innerW / candles.length) * (style === "line" ? 0.55 : 0.7));
+  const last = candles[candles.length - 1];
+  const lineUp = previousClose != null ? last.close >= previousClose : last.close >= last.open;
+  const lineColor = lineUp ? upColor : downColor;
 
   function xOf(i: number) {
     return pad.l + ((i + 0.5) / candles.length) * innerW;
@@ -178,6 +282,7 @@ function CandleSvg({
     series
       .map((value, i) => (value == null ? "" : `${i === 0 || series[i - 1] == null ? "M" : "L"} ${xOf(i)} ${yPrice(value)}`))
       .join(" ");
+  const closePath = candles.map((candle, i) => `${i === 0 ? "M" : "L"} ${xOf(i)} ${yPrice(candle.close)}`).join(" ");
 
   return (
     <svg
@@ -202,6 +307,18 @@ function CandleSvg({
           strokeOpacity="0.2"
         />
       ) : null}
+      {previousClose != null ? (
+        <line
+          x1={pad.l}
+          x2={width - pad.r}
+          y1={yPrice(previousClose)}
+          y2={yPrice(previousClose)}
+          stroke="currentColor"
+          strokeOpacity="0.35"
+          strokeDasharray="4 3"
+        />
+      ) : null}
+      {style === "line" ? <path d={closePath} fill="none" stroke={lineColor} strokeWidth="1.75" /> : null}
       {candles.map((candle, i) => {
         const up = candle.close >= candle.open;
         const color = up ? upColor : downColor;
@@ -209,27 +326,35 @@ function CandleSvg({
         const y2 = yPrice(Math.min(candle.open, candle.close));
         const body = Math.max(1, y2 - y1);
         return (
-          <g key={candle.time}>
-            <line x1={xOf(i)} x2={xOf(i)} y1={yPrice(candle.high)} y2={yPrice(candle.low)} stroke={color} strokeWidth="1" />
-            <rect x={xOf(i) - barW / 2} y={y1} width={barW} height={body} fill={color} />
+          <g key={`${candle.time}-${i}`}>
+            {style === "candle" ? (
+              <>
+                <line x1={xOf(i)} x2={xOf(i)} y1={yPrice(candle.high)} y2={yPrice(candle.low)} stroke={color} strokeWidth="1" />
+                <rect x={xOf(i) - barW / 2} y={y1} width={barW} height={body} fill={color} />
+              </>
+            ) : null}
             <rect
               x={xOf(i) - barW / 2}
               y={yVol(candle.volume)}
               width={barW}
               height={Math.max(1, pad.t + priceH + 12 + volH - yVol(candle.volume))}
-              fill={color}
+              fill={style === "line" ? lineColor : color}
               opacity="0.45"
             />
           </g>
         );
       })}
-      <path d={maPath(ma5)} fill="none" stroke="#38bdf8" strokeWidth="1.25" />
-      <path d={maPath(ma20)} fill="none" stroke="#fbbf24" strokeWidth="1.25" />
+      {showMa ? (
+        <>
+          <path d={maPath(ma5)} fill="none" stroke="#38bdf8" strokeWidth="1.25" />
+          <path d={maPath(ma20)} fill="none" stroke="#fbbf24" strokeWidth="1.25" />
+        </>
+      ) : null}
     </svg>
   );
 }
 
-function layoutChart(candles: Candle[]) {
+function layoutChart(candles: Candle[], previousClose: number | null) {
   const width = 920;
   const pad = { l: 8, r: 8, t: 12, b: 8 };
   const priceH = 240;
@@ -237,6 +362,10 @@ function layoutChart(candles: Candle[]) {
   const innerW = width - pad.l - pad.r;
   const highs = candles.map((c) => c.high);
   const lows = candles.map((c) => c.low);
+  if (previousClose != null) {
+    highs.push(previousClose);
+    lows.push(previousClose);
+  }
   const minP = Math.min(...lows);
   const maxP = Math.max(...highs);
   const padP = (maxP - minP) * 0.06 || maxP * 0.02;
@@ -250,4 +379,18 @@ function layoutChart(candles: Candle[]) {
     maxP: maxP + padP,
     maxV: Math.max(...candles.map((c) => c.volume), 1),
   };
+}
+
+function formatLegendTime(time: string, range: ChartRange, locale: string) {
+  if (!isLiveRange(range)) return time;
+  const iso = time.includes("T") ? time : `${time}T00:00:00Z`;
+  const date = new Date(iso);
+  if (Number.isNaN(date.getTime())) return time;
+  return date.toLocaleString(numberLocale(locale as "zh-CN" | "zh-Hant" | "en"), {
+    month: "2-digit",
+    day: "2-digit",
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: false,
+  });
 }

@@ -7,17 +7,124 @@ export type Candle = {
   volume: number;
 };
 
-export type ChartRange = "1m" | "3m" | "6m" | "1y";
+export const CHART_RANGES = ["intraday", "1d", "5d", "1m", "3m", "6m", "1y", "5y"] as const;
+export type ChartRange = (typeof CHART_RANGES)[number];
+
+export type ChartStyle = "line" | "candle";
+export type ChartInterval = "1m" | "5m" | "15m" | "1d" | "1wk";
+export type TimePrecision = "day" | "minute";
+
+export type ChartSpec = {
+  interval: ChartInterval;
+  lookbackDays: number;
+  style: ChartStyle;
+  sampleFallback: boolean;
+  ttlMs: number;
+  minBars: number;
+  precision: TimePrecision;
+  includePrePost: boolean;
+};
+
+export const CHART_SPECS: Record<ChartRange, ChartSpec> = {
+  intraday: {
+    interval: "1m",
+    lookbackDays: 1.4,
+    style: "line",
+    sampleFallback: false,
+    ttlMs: 15_000,
+    minBars: 2,
+    precision: "minute",
+    includePrePost: false,
+  },
+  "1d": {
+    interval: "5m",
+    lookbackDays: 1.4,
+    style: "candle",
+    sampleFallback: false,
+    ttlMs: 15_000,
+    minBars: 2,
+    precision: "minute",
+    includePrePost: false,
+  },
+  "5d": {
+    interval: "15m",
+    lookbackDays: 8,
+    style: "candle",
+    sampleFallback: false,
+    ttlMs: 30_000,
+    minBars: 4,
+    precision: "minute",
+    includePrePost: false,
+  },
+  "1m": {
+    interval: "1d",
+    lookbackDays: 31,
+    style: "candle",
+    sampleFallback: true,
+    ttlMs: 60_000,
+    minBars: 8,
+    precision: "day",
+    includePrePost: false,
+  },
+  "3m": {
+    interval: "1d",
+    lookbackDays: 93,
+    style: "candle",
+    sampleFallback: true,
+    ttlMs: 60_000,
+    minBars: 8,
+    precision: "day",
+    includePrePost: false,
+  },
+  "6m": {
+    interval: "1d",
+    lookbackDays: 186,
+    style: "candle",
+    sampleFallback: true,
+    ttlMs: 60_000,
+    minBars: 8,
+    precision: "day",
+    includePrePost: false,
+  },
+  "1y": {
+    interval: "1d",
+    lookbackDays: 370,
+    style: "candle",
+    sampleFallback: true,
+    ttlMs: 60_000,
+    minBars: 8,
+    precision: "day",
+    includePrePost: false,
+  },
+  "5y": {
+    interval: "1wk",
+    lookbackDays: 365 * 5 + 7,
+    style: "candle",
+    sampleFallback: true,
+    ttlMs: 60_000,
+    minBars: 8,
+    precision: "day",
+    includePrePost: false,
+  },
+};
 
 export const RANGE_DAYS: Record<ChartRange, number> = {
-  "1m": 31,
-  "3m": 93,
-  "6m": 186,
-  "1y": 370,
+  intraday: CHART_SPECS.intraday.lookbackDays,
+  "1d": CHART_SPECS["1d"].lookbackDays,
+  "5d": CHART_SPECS["5d"].lookbackDays,
+  "1m": CHART_SPECS["1m"].lookbackDays,
+  "3m": CHART_SPECS["3m"].lookbackDays,
+  "6m": CHART_SPECS["6m"].lookbackDays,
+  "1y": CHART_SPECS["1y"].lookbackDays,
+  "5y": CHART_SPECS["5y"].lookbackDays,
 };
 
 export function isChartRange(value: string): value is ChartRange {
-  return value === "1m" || value === "3m" || value === "6m" || value === "1y";
+  return (CHART_RANGES as readonly string[]).includes(value);
+}
+
+export function isLiveRange(range: ChartRange): boolean {
+  return !CHART_SPECS[range].sampleFallback;
 }
 
 export type ChartPayload = {
@@ -25,8 +132,14 @@ export type ChartPayload = {
   market: string;
   currency: string;
   range: ChartRange;
+  style: ChartStyle;
+  interval: ChartInterval;
   source: "yahoo" | "sample";
   candles: Candle[];
+  previousClose: number | null;
+  lastPrice: number | null;
+  changePct: number | null;
+  asOf: string | null;
 };
 
 type YahooQuote = {
@@ -38,7 +151,7 @@ type YahooQuote = {
   volume?: number | null;
 };
 
-export function parseYahooQuotes(quotes: YahooQuote[]): Candle[] {
+export function parseYahooQuotes(quotes: YahooQuote[], precision: TimePrecision = "day"): Candle[] {
   const out: Candle[] = [];
   for (const row of quotes) {
     const close = finite(row.close);
@@ -49,7 +162,7 @@ export function parseYahooQuotes(quotes: YahooQuote[]): Candle[] {
     const date = toDate(row.date);
     if (!date) continue;
     out.push({
-      time: date.toISOString().slice(0, 10),
+      time: formatCandleTime(date, precision),
       open,
       high: Math.max(high, open, close),
       low: Math.min(low, open, close),
@@ -58,6 +171,11 @@ export function parseYahooQuotes(quotes: YahooQuote[]): Candle[] {
     });
   }
   return out;
+}
+
+export function formatCandleTime(date: Date, precision: TimePrecision): string {
+  if (precision === "day") return date.toISOString().slice(0, 10);
+  return date.toISOString().replace(".000Z", "Z");
 }
 
 export function sampleCandles(symbol: string, last: number, days: number): Candle[] {

@@ -20,7 +20,7 @@ import {
 } from "@/lib/data";
 import { liveDisclaimer, overlayStock, overlayStocks } from "@/server/overlay";
 import { fetchChart, lookupYahooIdentity, toYahooSymbol } from "@/server/yahoo";
-import { RANGE_DAYS, sampleCandles, type ChartRange } from "@/lib/candles";
+import { CHART_SPECS, RANGE_DAYS, sampleCandles, type ChartRange } from "@/lib/candles";
 import { guessCurrency, guessListing } from "@/lib/ticker";
 
 export const router = {
@@ -88,51 +88,83 @@ export const router = {
       .input(
         z.object({
           symbol: z.string().min(1),
-          range: z.enum(["1m", "3m", "6m", "1y"]).default("6m"),
+          range: z.enum(["intraday", "1d", "5d", "1m", "3m", "6m", "1y", "5y"]).default("6m"),
         }),
       )
       .handler(async ({ input }) => {
         const stock = getStock(input.symbol);
         const range = input.range as ChartRange;
+        const spec = CHART_SPECS[range];
         if (stock) {
           const overlaid = await overlayStock(stock);
           let source: "yahoo" | "sample" = "sample";
           let candles = [] as ReturnType<typeof sampleCandles>;
+          let previousClose: number | null = null;
+          let lastPrice: number | null = overlaid.price ?? null;
+          let asOf: string | null = overlaid.quote.as_of ?? null;
           try {
             const live = await fetchChart(stock.symbol, range);
-            if (live.length >= 8) {
-              candles = live;
+            if (live.candles.length >= spec.minBars) {
+              candles = live.candles;
               source = "yahoo";
+              previousClose = live.previousClose;
+              lastPrice = live.lastPrice ?? lastPrice;
+              asOf = live.asOf ?? asOf;
             }
           } catch {
             candles = [];
           }
           if (source !== "yahoo") {
-            candles = sampleCandles(stock.symbol, overlaid.price, RANGE_DAYS[range]);
+            candles = spec.sampleFallback
+              ? sampleCandles(stock.symbol, overlaid.price, RANGE_DAYS[range])
+              : [];
           }
+          const changePct =
+            overlaid.change_pct ??
+            (lastPrice != null && previousClose ? lastPrice / previousClose - 1 : null);
           return {
             symbol: stock.symbol,
             market: stock.market,
             currency: overlaid.currency,
             range,
+            style: spec.style,
+            interval: spec.interval,
             source,
             candles,
+            previousClose,
+            lastPrice,
+            changePct,
+            asOf,
           };
         }
         let candles = [] as ReturnType<typeof sampleCandles>;
+        let previousClose: number | null = null;
+        let lastPrice: number | null = null;
+        let asOf: string | null = null;
         try {
-          candles = await fetchChart(input.symbol, range);
+          const live = await fetchChart(input.symbol, range);
+          candles = live.candles;
+          previousClose = live.previousClose;
+          lastPrice = live.lastPrice;
+          asOf = live.asOf;
         } catch {
           candles = [];
         }
         const listing = guessListing(input.symbol);
+        const changePct = lastPrice != null && previousClose ? lastPrice / previousClose - 1 : null;
         return {
           symbol: toYahooSymbol(input.symbol),
           market: listing.market,
           currency: guessCurrency(input.symbol, listing.market),
           range,
+          style: spec.style,
+          interval: spec.interval,
           source: "yahoo" as const,
           candles,
+          previousClose,
+          lastPrice,
+          changePct,
+          asOf,
         };
       }),
   },

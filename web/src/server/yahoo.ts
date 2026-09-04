@@ -1,4 +1,4 @@
-import { parseYahooQuotes, type Candle, type ChartRange, RANGE_DAYS } from "@/lib/candles";
+import { parseYahooQuotes, type Candle, type ChartRange, CHART_SPECS } from "@/lib/candles";
 import { guessCurrency, tickerCandidates } from "@/lib/ticker";
 import YahooFinance from "yahoo-finance2";
 
@@ -33,9 +33,16 @@ export type YahooIdentity = {
   quote: LiveFields;
 };
 
+export type ChartFetch = {
+  candles: Candle[];
+  previousClose: number | null;
+  lastPrice: number | null;
+  asOf: string | null;
+};
+
 let cache: { at: number; quotes: Record<string, LiveFields> } | null = null;
 let inflight: Promise<Record<string, LiveFields>> | null = null;
-const chartCache = new Map<string, { at: number; candles: Candle[] }>();
+const chartCache = new Map<string, { at: number; value: ChartFetch }>();
 const identityCache = new Map<string, { at: number; value: YahooIdentity | null }>();
 const CHART_TIMEOUT_MS = 10_000;
 
@@ -102,22 +109,34 @@ export async function lookupYahooIdentity(query: string): Promise<YahooIdentity 
   return null;
 }
 
-export async function fetchChart(symbol: string, range: ChartRange): Promise<Candle[]> {
-  if (process.env.NEXT_PHASE === "phase-production-build") return [];
+export async function fetchChart(symbol: string, range: ChartRange): Promise<ChartFetch> {
+  const empty: ChartFetch = { candles: [], previousClose: null, lastPrice: null, asOf: null };
+  if (process.env.NEXT_PHASE === "phase-production-build") return empty;
+  const spec = CHART_SPECS[range];
   const key = `${toYahooSymbol(symbol)}:${range}`;
   const hit = chartCache.get(key);
-  if (hit && Date.now() - hit.at < TTL_MS) return hit.candles;
+  if (hit && Date.now() - hit.at < spec.ttlMs) return hit.value;
   const client = getClient();
-  if (!client.chart) return [];
-  const period1 = new Date(Date.now() - RANGE_DAYS[range] * 86_400_000);
+  if (!client.chart) return empty;
+  const period1 = new Date(Date.now() - spec.lookbackDays * 86_400_000);
   const raw = await withTimeout(
-    client.chart(toYahooSymbol(symbol), { period1, interval: "1d" }),
+    client.chart(toYahooSymbol(symbol), {
+      period1,
+      interval: spec.interval,
+      includePrePost: spec.includePrePost,
+    }),
     CHART_TIMEOUT_MS,
   );
   const quotes = (raw as { quotes?: Array<Record<string, unknown>> })?.quotes ?? [];
-  const candles = parseYahooQuotes(quotes);
-  chartCache.set(key, { at: Date.now(), candles });
-  return candles;
+  const meta = (raw as { meta?: Record<string, unknown> })?.meta ?? {};
+  const value: ChartFetch = {
+    candles: parseYahooQuotes(quotes, spec.precision),
+    previousClose: num(meta.previousClose ?? meta.chartPreviousClose),
+    lastPrice: num(meta.regularMarketPrice),
+    asOf: asOf(meta.regularMarketTime) ?? null,
+  };
+  chartCache.set(key, { at: Date.now(), value });
+  return value;
 }
 
 export async function fetchLiveQuotes(symbols: string[]): Promise<Record<string, LiveFields>> {
