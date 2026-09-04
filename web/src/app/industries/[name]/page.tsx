@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { ChainMermaid } from "@/components/chain-mermaid";
+import { CycleMeter } from "@/components/cycle-meter";
 import { Disclaimer, FactorList, MarketBadge, ScorePills, StockLink } from "@/components/research";
 import { api } from "@/lib/api";
 import { getI18n } from "@/i18n/server";
@@ -39,9 +41,10 @@ export default async function IndustryDetailPage({
           <p className="text-muted-foreground">{locale === "en" ? industry.name : industry.name_en}</p>
         </div>
         <p className="text-sm text-muted-foreground">
-          {industry.score.total.toFixed(1)} {industry.score.grade} · {industry.cycle_position}
+          {industry.score.total.toFixed(1)} {industry.score.grade}
         </p>
       </div>
+      <CycleMeter position={industry.cycle_position} />
       <Disclaimer locale={locale} text={meta.disclaimer} asOf={meta.as_of} live={meta.live} />
       <div className="flex flex-wrap gap-1">
         {industry.markets.map((market) => (
@@ -50,18 +53,23 @@ export default async function IndustryDetailPage({
       </div>
       <p className="text-sm text-muted-foreground">{tx(industry.notes)}</p>
       {related.length > 0 ? (
-        <p className="text-sm">
-          {t("industries.related")}
+        <div className="space-y-4">
+          <p className="text-sm">
+            {t("industries.related")}
+            {related.map((chain) => (
+              <Link
+                key={chain.id}
+                href={`/chains/${encodeURIComponent(chain.id)}`}
+                className="mr-2 text-sky-300 hover:underline"
+              >
+                {name(chain.name, chain.name_en)}
+              </Link>
+            ))}
+          </p>
           {related.map((chain) => (
-            <Link
-              key={chain.id}
-              href={`/chains/${encodeURIComponent(chain.id)}`}
-              className="mr-2 text-sky-300 hover:underline"
-            >
-              {name(chain.name, chain.name_en)}
-            </Link>
+            <ChainMermaid key={chain.id} chain={chain} compact />
           ))}
-        </p>
+        </div>
       ) : null}
       <section className="grid gap-4 md:grid-cols-2">
         <Card>

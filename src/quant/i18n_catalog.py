@@ -367,6 +367,8 @@ PHRASES: dict[str, str] = {
     # Live / CLI status
     "Yahoo 不可用，已回退样本": "Yahoo unavailable; fell back to sample",
     "只仍用样本": "names still on sample",
+    "```mermaid": "```mermaid",
+    "flowchart LR": "flowchart LR",
     "未知代码": "Unknown symbol",
     "未知行业": "Unknown industry",
     "未知产业链": "Unknown chain",

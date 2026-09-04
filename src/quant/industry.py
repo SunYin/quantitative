@@ -89,6 +89,38 @@ def industry_memo(industry: IndustrySnapshot, score: ScoreBreakdown) -> str:
     )
 
 
+def chain_mermaid(chain: ValueChain, *, english: bool = False) -> str:
+    """Mermaid flowchart of chain layers. Display-only; not a trading signal."""
+    grouped: dict[str, list[tuple[int, object]]] = {"upstream": [], "midstream": [], "downstream": []}
+    for index, node in enumerate(chain.nodes):
+        grouped.setdefault(node.role, []).append((index, node))
+    lines = ["flowchart LR"]
+    occupied = [role for role in ("upstream", "midstream", "downstream") if grouped.get(role)]
+    for role in occupied:
+        title = role.capitalize() if english else ROLE_ZH[role]
+        lines.append(f'  subgraph {role}["{title}"]')
+        for index, node in grouped[role]:
+            industry = get_industry(node.industry)
+            label = industry.name_en if english else industry.name
+            if node.bottleneck:
+                flag = "bottleneck" if english else "瓶颈"
+                label = f"{label}<br/>{flag}"
+            lines.append(f'    n{index}["{_mermaid_label(label)}"]')
+        lines.append("  end")
+    if len(occupied) == 1:
+        items = grouped[occupied[0]]
+        for (left, _), (right, _) in zip(items, items[1:]):
+            lines.append(f"  n{left} -.-> n{right}")
+    else:
+        for left_role, right_role in zip(occupied, occupied[1:]):
+            lines.append(f"  {left_role} --> {right_role}")
+    return "\n".join(lines)
+
+
+def _mermaid_label(text: str) -> str:
+    return text.replace('"', "#quot;").replace("]", "﹚").replace("[", "﹙")
+
+
 def chain_layers(chain: ValueChain) -> list[dict]:
     layers = []
     for node in chain.nodes:

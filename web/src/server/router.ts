@@ -16,6 +16,8 @@ import {
   snapshot,
 } from "@/lib/data";
 import { liveDisclaimer, overlayStock, overlayStocks } from "@/server/overlay";
+import { fetchChart } from "@/server/yahoo";
+import { RANGE_DAYS, sampleCandles, type ChartRange } from "@/lib/candles";
 
 export const router = {
   meta: {
@@ -43,6 +45,43 @@ export const router = {
           throw new ORPCError("NOT_FOUND", { message: `未知代码：${input.symbol}` });
         }
         return overlayStock(stock);
+      }),
+    chart: os
+      .input(
+        z.object({
+          symbol: z.string().min(1),
+          range: z.enum(["1m", "3m", "6m", "1y"]).default("6m"),
+        }),
+      )
+      .handler(async ({ input }) => {
+        const stock = getStock(input.symbol);
+        if (!stock) {
+          throw new ORPCError("NOT_FOUND", { message: `未知代码：${input.symbol}` });
+        }
+        const overlaid = await overlayStock(stock);
+        const range = input.range as ChartRange;
+        let source: "yahoo" | "sample" = "sample";
+        let candles = [] as ReturnType<typeof sampleCandles>;
+        try {
+          const live = await fetchChart(stock.symbol, range);
+          if (live.length >= 8) {
+            candles = live;
+            source = "yahoo";
+          }
+        } catch {
+          candles = [];
+        }
+        if (source !== "yahoo") {
+          candles = sampleCandles(stock.symbol, overlaid.price, RANGE_DAYS[range]);
+        }
+        return {
+          symbol: stock.symbol,
+          market: stock.market,
+          currency: overlaid.currency,
+          range,
+          source,
+          candles,
+        };
       }),
   },
   industry: {

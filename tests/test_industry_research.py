@@ -61,6 +61,7 @@ def test_cli_industry_ai(capsys):
     assert main(["industry", "AI"]) == 0
     out = capsys.readouterr().out
     assert "上游" in out and "下游" in out
+    assert "flowchart" in out
     assert "英伟达" in out
     assert "不构成投资建议" in out or "不是投资建议" in out
 

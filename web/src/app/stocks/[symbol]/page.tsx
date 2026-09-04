@@ -12,6 +12,7 @@ import {
   multiple,
   pct,
 } from "@/components/research";
+import { KlineChart } from "@/components/kline-chart";
 import { api } from "@/lib/api";
 import { getI18n } from "@/i18n/server";
 
@@ -28,7 +29,11 @@ export default async function StockDetailPage({
   } catch {
     notFound();
   }
-  const [meta, industries] = await Promise.all([api.meta.get(), api.industry.list()]);
+  const [meta, industries, chart] = await Promise.all([
+    api.meta.get(),
+    api.industry.list(),
+    api.stock.chart({ symbol: stock.symbol, range: "6m" }),
+  ]);
   const fields = stock.quote.fields;
   const home =
     industries.find((item) => item.name === stock.industry) ??
@@ -52,6 +57,11 @@ export default async function StockDetailPage({
       </div>
       <Disclaimer locale={locale} text={meta.disclaimer} asOf={meta.as_of} live={meta.live} />
       <p className="text-sm text-muted-foreground">{tx(stock.connect.implication)}</p>
+      <Card>
+        <CardContent className="pt-6">
+          <KlineChart initial={chart} />
+        </CardContent>
+      </Card>
       <section className="grid gap-4 md:grid-cols-3">
         <Card>
           <CardHeader>

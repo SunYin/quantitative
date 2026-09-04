@@ -2,6 +2,8 @@
 
 import { useMemo, useState } from "react";
 import Link from "next/link";
+import { ChainMermaid } from "@/components/chain-mermaid";
+import { CycleMeter } from "@/components/cycle-meter";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { MarketBadge, ScorePills, StockLink } from "@/components/research";
 import type { Industry, StockBrief, ValueChain } from "@/lib/data";
@@ -64,6 +66,7 @@ export function IndustryBoard({
               </CardHeader>
               <CardContent className="space-y-2 text-sm">
                 <p>{tx(chain.thesis)}</p>
+                <ChainMermaid chain={chain} compact />
                 <p className="text-muted-foreground">
                   {chain.layers
                     .map((layer) => `${t(`role.${layer.role}`)}·${name(layer.industry, layer.industry_en)}`)
@@ -96,11 +99,12 @@ export function IndustryBoard({
                     </span>
                   </Link>
                   <span className="text-sm text-muted-foreground">
-                    {industry.score.total.toFixed(1)} {industry.score.grade} · {industry.cycle_position}
+                    {industry.score.total.toFixed(1)} {industry.score.grade}
                   </span>
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-3">
+                <CycleMeter position={industry.cycle_position} />
                 <div className="flex flex-wrap gap-1">
                   {industry.markets.map((market) => (
                     <MarketBadge key={market} market={market} />

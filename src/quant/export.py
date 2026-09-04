@@ -148,6 +148,8 @@ def _industry(row: dict) -> dict:
 
 
 def _chain(row: dict) -> dict:
+    from quant.industry import chain_mermaid
+
     chain, layers = row["chain"], row["layers"]
     return {
         "id": chain.id,
@@ -156,6 +158,7 @@ def _chain(row: dict) -> dict:
         "aliases": list(chain.aliases),
         "thesis": chain.thesis,
         "notes": chain.notes,
+        "mermaid": chain_mermaid(chain),
         "layers": [
             {
                 "role": layer["role"],

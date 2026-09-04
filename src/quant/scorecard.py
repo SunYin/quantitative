@@ -7,7 +7,7 @@ from html import escape
 from pathlib import Path
 
 from quant.i18n import html_lang, translate
-from quant.industry import chain_layers, chain_memo, industry_memo, score_industry
+from quant.industry import chain_layers, chain_memo, chain_mermaid, industry_memo, score_industry
 from quant.research import extract_claims, reading_checklist, score_research
 from quant.sample_data import REPORTS, chains, get_chain, get_industry, industries, industry_constituents, universe
 from quant.strategies import StrategyResult, run_all_strategies, stock_brief
@@ -282,7 +282,10 @@ def describe_industry(name: str) -> str:
                     f"质量 {brief['quality'].total:.1f} / 估值 {brief['valuation'].total:.1f}"
                 )
             lines.append("")
-        lines.append("样本与分层都不是投资建议。")
+        from quant.i18n import current_locale
+
+        mermaid = chain_mermaid(chain, english=current_locale() == "en")
+        lines += ["```mermaid", mermaid, "```", "", "样本与分层都不是投资建议。"]
         return translate("\n".join(lines) + "\n")
 
     item = get_industry(name)

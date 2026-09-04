@@ -6114,6 +6114,7 @@
       ],
       "thesis": "利润最先停在不可替代的算力和先进制程；云分成租用；应用层多数是费用项。",
       "notes": "样本地图，不是完整产业普查。出口管制、客户自制和资本开支回落会改瓶颈位置。",
+      "mermaid": "flowchart LR\n  subgraph upstream[\"上游\"]\n    n0[\"全球半导体<br/>瓶颈\"]\n    n1[\"晶圆代工<br/>瓶颈\"]\n  end\n  subgraph midstream[\"中游\"]\n    n2[\"云计算\"]\n    n3[\"互联网平台\"]\n  end\n  subgraph downstream[\"下游\"]\n    n4[\"消费电子\"]\n    n5[\"本地生活\"]\n  end\n  upstream --> midstream\n  midstream --> downstream",
       "layers": [
         {
           "role": "upstream",
@@ -6533,6 +6534,7 @@
       ],
       "thesis": "装车量可以很好看，利润却经常停在电池龙头而不是所有整车厂。",
       "notes": "价格战会把利润从下游整车挤回有成本曲线的电池层，也可能两头一起打薄。",
+      "mermaid": "flowchart LR\n  subgraph upstream[\"上游\"]\n    n0[\"动力电池<br/>瓶颈\"]\n  end\n  subgraph downstream[\"下游\"]\n    n1[\"新能源车\"]\n  end\n  upstream --> downstream",
       "layers": [
         {
           "role": "upstream",
@@ -6684,6 +6686,7 @@
       ],
       "thesis": "这不是上下游，是同一商业模式在两套利率、监管和估值尺子下的对照。",
       "notes": "不要把招行 PB 和摩根大通 PB 直接相减当成便宜。",
+      "mermaid": "flowchart LR\n  subgraph midstream[\"中游\"]\n    n0[\"中资银行\"]\n    n1[\"美股银行\"]\n  end\n  n0 -.-> n1",
       "layers": [
         {
           "role": "midstream",
@@ -6829,6 +6832,7 @@
       ],
       "thesis": "化石能源分红和绿电装机不是同一利润池；公用事业吃的是电价合同。",
       "notes": "对照切片，不是严格上下游。油价、组件价格和来水会改谁留下利润。",
+      "mermaid": "flowchart LR\n  subgraph upstream[\"上游\"]\n    n0[\"石油\"]\n  end\n  subgraph midstream[\"中游\"]\n    n1[\"光伏<br/>瓶颈\"]\n  end\n  subgraph downstream[\"下游\"]\n    n2[\"公用事业\"]\n  end\n  upstream --> midstream\n  midstream --> downstream",
       "layers": [
         {
           "role": "upstream",
@@ -7038,6 +7042,7 @@
       ],
       "thesis": "礼来的代谢管线和恒瑞/百济的兑现节奏不是同一估值语言。",
       "notes": "不是原料药到制剂的制造链，是三地创新药利润池对照。",
+      "mermaid": "flowchart LR\n  subgraph upstream[\"上游\"]\n    n0[\"创新药<br/>瓶颈\"]\n  end",
       "layers": [
         {
           "role": "upstream",
@@ -7929,6 +7934,8 @@
       "beta 接近市场，趋势过滤中性": "Beta near the market; trend filter is neutral",
       "Yahoo 不可用，已回退样本": "Yahoo unavailable; fell back to sample",
       "只仍用样本": "names still on sample",
+      "```mermaid": "```mermaid",
+      "flowchart LR": "flowchart LR",
       "未知代码": "Unknown symbol",
       "未知行业": "Unknown industry",
       "未知产业链": "Unknown chain",

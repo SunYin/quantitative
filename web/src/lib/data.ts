@@ -127,7 +127,8 @@ export type ValueChain = {
   aliases: string[];
   thesis: string;
   notes: string;
-  layers: ChainLayer[];
+    mermaid?: string;
+    layers: ChainLayer[];
 };
 
 export type Report = {

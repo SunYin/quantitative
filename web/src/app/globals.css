@@ -127,4 +127,11 @@
   html {
     @apply font-sans;
   }
+  .chain-mermaid svg {
+    max-width: 100%;
+    height: auto;
+  }
+  .chain-mermaid a {
+    text-decoration: none;
+  }
 }

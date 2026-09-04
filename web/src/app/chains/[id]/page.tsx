@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { ChainMermaid } from "@/components/chain-mermaid";
 import { Disclaimer, FactorList, ScorePills, StockLink } from "@/components/research";
 import { api } from "@/lib/api";
 import { getI18n } from "@/i18n/server";
@@ -33,6 +34,7 @@ export default async function ChainDetailPage({
       <Disclaimer locale={locale} text={meta.disclaimer} asOf={meta.as_of} live={meta.live} />
       <p>{tx(chain.thesis)}</p>
       <p className="text-sm text-muted-foreground">{tx(chain.notes)}</p>
+      <ChainMermaid chain={chain} />
       <p className="text-sm text-muted-foreground">
         {chain.layers.map((layer) => `${t(`role.${layer.role}`)}·${name(layer.industry, layer.industry_en)}`).join(" → ")}
       </p>

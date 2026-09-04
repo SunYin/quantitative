@@ -1,3 +1,4 @@
+import { parseYahooQuotes, type Candle, type ChartRange, RANGE_DAYS } from "@/lib/candles";
 import YahooFinance from "yahoo-finance2";
 
 export type LiveFields = {
@@ -13,6 +14,7 @@ export type LiveFields = {
 type YahooClient = {
   quote: (query: string | string[], opts?: Record<string, unknown>) => Promise<unknown>;
   quoteSummary?: (query: string, opts?: Record<string, unknown>) => Promise<unknown>;
+  chart?: (query: string, opts?: Record<string, unknown>) => Promise<unknown>;
 };
 
 type YahooCtor = new (opts?: Record<string, unknown>) => YahooClient;
@@ -23,6 +25,8 @@ const FUND_TIMEOUT_MS = 5_000;
 
 let cache: { at: number; quotes: Record<string, LiveFields> } | null = null;
 let inflight: Promise<Record<string, LiveFields>> | null = null;
+const chartCache = new Map<string, { at: number; candles: Candle[] }>();
+const CHART_TIMEOUT_MS = 10_000;
 
 export function toYahooSymbol(symbol: string): string {
   const raw = symbol.trim().toUpperCase();
@@ -31,6 +35,24 @@ export function toYahooSymbol(symbol: string): string {
     return `${Number.parseInt(hk[1], 10).toString().padStart(4, "0")}.HK`;
   }
   return raw;
+}
+
+export async function fetchChart(symbol: string, range: ChartRange): Promise<Candle[]> {
+  if (process.env.NEXT_PHASE === "phase-production-build") return [];
+  const key = `${toYahooSymbol(symbol)}:${range}`;
+  const hit = chartCache.get(key);
+  if (hit && Date.now() - hit.at < TTL_MS) return hit.candles;
+  const client = getClient();
+  if (!client.chart) return [];
+  const period1 = new Date(Date.now() - RANGE_DAYS[range] * 86_400_000);
+  const raw = await withTimeout(
+    client.chart(toYahooSymbol(symbol), { period1, interval: "1d" }),
+    CHART_TIMEOUT_MS,
+  );
+  const quotes = (raw as { quotes?: Array<Record<string, unknown>> })?.quotes ?? [];
+  const candles = parseYahooQuotes(quotes);
+  chartCache.set(key, { at: Date.now(), candles });
+  return candles;
 }
 
 export async function fetchLiveQuotes(symbols: string[]): Promise<Record<string, LiveFields>> {
