@@ -161,7 +161,7 @@ def render_html(card: dict | None = None) -> str:
 <main>
   <h1>跨市场股票研究记分卡</h1>
   <p class="lead">{escape(card['disclaimer'])} 生成日期 {escape(card['as_of'])}。</p>
-  <h2>个股综合（样本宇宙）</h2>
+  <h2>个股综合（样本池）</h2>
   <table>
     <thead><tr><th>代码</th><th>名称</th><th>市场</th><th>综合</th><th>质量</th><th>估值</th><th>仓位上限</th><th>行业</th></tr></thead>
     <tbody>{''.join(rows)}</tbody>

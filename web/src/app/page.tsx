@@ -1,5 +1,6 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import { CoverageBoard, CoverageStats } from "@/components/coverage-board";
 import {
   ChangePct,
   Disclaimer,
@@ -14,13 +15,11 @@ import { getI18n } from "@/i18n/server";
 
 export default async function HomePage() {
   const { locale, t } = await getI18n();
-  const [meta, stocks, industries, strategies] = await Promise.all([
+  const [meta, coverage, stocks] = await Promise.all([
     api.meta.get(),
+    api.coverage.get(),
     api.universe.list(),
-    api.industry.list(),
-    api.strategy.list(),
   ]);
-  const markets = new Set(stocks.map((s) => s.market));
 
   return (
     <>
@@ -29,12 +28,8 @@ export default async function HomePage() {
         <p className="mt-1 text-muted-foreground">{t("home.subtitle")}</p>
       </div>
       <Disclaimer locale={locale} text={meta.disclaimer} asOf={meta.as_of} live={meta.live} />
-      <section className="grid gap-3 sm:grid-cols-4">
-        <Stat label={t("stat.stocks")} value={String(stocks.length)} />
-        <Stat label={t("stat.markets")} value={[...markets].join(" / ")} />
-        <Stat label={t("stat.industries")} value={String(industries.length)} />
-        <Stat label={t("stat.strategies")} value={String(strategies.length)} />
-      </section>
+      <CoverageBoard locale={locale} coverage={coverage} />
+      <CoverageStats locale={locale} coverage={coverage} />
       <Card>
         <CardHeader>
           <CardTitle>{t("home.composite")}</CardTitle>
@@ -88,16 +83,5 @@ export default async function HomePage() {
         </CardContent>
       </Card>
     </>
-  );
-}
-
-function Stat({ label, value }: { label: string; value: string }) {
-  return (
-    <Card>
-      <CardHeader className="pb-2">
-        <CardTitle className="text-sm text-muted-foreground">{label}</CardTitle>
-      </CardHeader>
-      <CardContent className="text-2xl font-semibold">{value}</CardContent>
-    </Card>
   );
 }

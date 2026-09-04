@@ -1,3 +1,4 @@
+import { CoverageBoard } from "@/components/coverage-board";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Disclaimer, MarketBadge } from "@/components/research";
 import { api } from "@/lib/api";
@@ -5,11 +6,16 @@ import { getI18n } from "@/i18n/server";
 
 export default async function MarketsPage() {
   const { locale, t, tx } = await getI18n();
-  const [meta, markets] = await Promise.all([api.meta.get(), api.market.list()]);
+  const [meta, coverage, markets] = await Promise.all([
+    api.meta.get(),
+    api.coverage.get(),
+    api.market.list(),
+  ]);
   return (
     <>
       <h1 className="text-3xl font-semibold tracking-tight">{t("markets.title")}</h1>
       <Disclaimer locale={locale} text={meta.disclaimer} asOf={meta.as_of} live={meta.live} />
+      <CoverageBoard locale={locale} coverage={coverage} />
       <div className="grid gap-4 md:grid-cols-3">
         {markets.map((market) => (
           <Card key={market.market}>

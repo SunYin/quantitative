@@ -11,7 +11,13 @@ from quant.live import disclaimer_for, live_session
 from quant.markets import CONNECT_RULES, PROFILES
 from quant.models import Market
 from quant.research import reading_checklist
-from quant.sample_data import REPORTS, STOCKS
+from quant.sample_data import (
+    IPO_DISCLAIMER,
+    REPORTS,
+    STOCKS,
+    coverage,
+    ipos,
+)
 from quant.scorecard import describe_industry, describe_report, describe_stock, write_reports
 
 
@@ -57,8 +63,10 @@ def main(argv: list[str] | None = None) -> int:
     _add_lang(markets)
     checklist = sub.add_parser("checklist", help="读研报清单")
     _add_lang(checklist)
-    universe = sub.add_parser("universe", help="列出样本股票")
+    universe = sub.add_parser("universe", help="列出样本股票与分市场覆盖")
     _add_lang(universe)
+    ipo_cmd = sub.add_parser("ipos", help="列出 IPO / 新股管道样本")
+    _add_lang(ipo_cmd)
 
     args = parser.parse_args(argv)
     set_locale(getattr(args, "lang", "zh-CN"))
@@ -96,14 +104,58 @@ def main(argv: list[str] | None = None) -> int:
             print(f"{i}. {translate(item)}")
         return 0
     if args.cmd == "universe":
+        _print_coverage()
         for symbol, stock in STOCKS.items():
             name = translate(stock.name)
             industry_name = translate(stock.industry)
             print(f"{symbol:12} {stock.market.value:3} {name}  {industry_name}")
         print("\n" + translate("研报样本:") + " " + ", ".join(REPORTS))
         return 0
+    if args.cmd == "ipos":
+        _print_ipos()
+        return 0
     parser.error(f"unknown command {args.cmd}")
     return 2
+
+
+IPO_STATUS_LABEL = {
+    "hearing": "上会",
+    "filed": "已申报",
+    "passed": "过会",
+    "subscribed": "申购",
+    "priced": "已定价",
+    "listed": "已上市",
+    "postponed": "暂缓",
+}
+
+
+def _print_coverage() -> None:
+    cov = coverage()
+    print(translate("# 覆盖（样本 vs 全市场约数）"))
+    print(translate(cov["disclaimer"]))
+    for row in cov["markets"]:
+        print(
+            f"{row['market']:3}  {translate('样本')} {row['sample']} / {translate('约上市')} {row['listed_approx']}"
+        )
+    print(
+        f"{translate('合计'):3}  {translate('样本')} {cov['sample_total']} / {translate('约上市')} {cov['listed_approx_total']}"
+    )
+    print()
+
+
+def _print_ipos() -> None:
+    print(translate("# IPO / 新股管道（研究样本）"))
+    print(translate(IPO_DISCLAIMER))
+    print()
+    for deal in ipos():
+        status = translate(IPO_STATUS_LABEL.get(deal.status, deal.status))
+        name = translate(deal.name)
+        industry_name = translate(deal.industry)
+        print(
+            f"{deal.id:16} {deal.market.value:3} {status:8} {deal.expected_date}  {name}  {industry_name}"
+        )
+    print()
+    print(translate("未上市名字不能当已有代码去打分。不构成投资建议。"))
 
 
 def _print_markets() -> None:

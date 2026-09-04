@@ -8,7 +8,7 @@ from pathlib import Path
 from quant.i18n import catalog_payload
 from quant.live import LiveMeta, LiveQuote, active_quotes, quote_block, sample_live_meta
 from quant.markets import CONNECT_RULES, PROFILES
-from quant.models import Market, ScoreBreakdown, Stock
+from quant.models import IPODeal, Market, ScoreBreakdown, Stock
 from quant.scorecard import build_universe_scorecard
 from quant.strategies import StrategyResult
 
@@ -30,6 +30,8 @@ def snapshot(card: dict | None = None, live: LiveMeta | None = None) -> dict:
         "markets": [_market(m) for m in Market],
         "connect": dict(CONNECT_RULES),
         "checklist": list(card["checklist"]),
+        "coverage": _coverage(),
+        "ipos": [_ipo(deal) for deal in _ipos()],
         "i18n": catalog_payload(),
     }
 
@@ -209,6 +211,38 @@ def _market(market: Market) -> dict:
         "valuation_habit": profile.valuation_habit,
         "governance_focus": list(profile.governance_focus),
         "industry_taxonomy": profile.industry_taxonomy,
+    }
+
+
+def _coverage() -> dict:
+    from quant.sample_data import coverage
+
+    return coverage()
+
+
+def _ipos() -> list[IPODeal]:
+    from quant.sample_data import ipos
+
+    return ipos()
+
+
+def _ipo(deal: IPODeal) -> dict:
+    return {
+        "id": deal.id,
+        "name": deal.name,
+        "name_en": deal.name_en,
+        "market": deal.market.value,
+        "board": deal.board,
+        "industry": deal.industry,
+        "status": deal.status,
+        "expected_date": deal.expected_date,
+        "currency": deal.currency,
+        "proceeds": deal.proceeds,
+        "sponsor": deal.sponsor,
+        "notes": deal.notes,
+        "comparables": list(deal.comparables),
+        "chain_id": deal.chain_id,
+        "listed_symbol": deal.listed_symbol,
     }
 
 

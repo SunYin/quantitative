@@ -184,6 +184,8 @@ export type Snapshot = {
   markets: MarketProfile[];
   connect: Record<string, string>;
   checklist: string[];
+  coverage?: Coverage;
+  ipos?: IPODeal[];
   i18n?: {
     locales: string[];
     default: string;
@@ -191,6 +193,40 @@ export type Snapshot = {
     fragments: { src: string; en: string }[];
     s2hk: Record<string, string>;
   };
+};
+
+export type CoverageMarket = {
+  market: string;
+  sample: number;
+  listed_approx: number;
+};
+
+export type Coverage = {
+  disclaimer: string;
+  ipo_disclaimer: string;
+  markets: CoverageMarket[];
+  sample_total: number;
+  listed_approx_total: number;
+  industry_count: number;
+  ipo_count: number;
+};
+
+export type IPODeal = {
+  id: string;
+  name: string;
+  name_en: string;
+  market: string;
+  board: string;
+  industry: string;
+  status: string;
+  expected_date: string;
+  currency: string;
+  proceeds: number | null;
+  sponsor: string;
+  notes: string;
+  comparables: string[];
+  chain_id: string | null;
+  listed_symbol: string | null;
 };
 
 export const snapshot = snapshotJson as Snapshot;
@@ -272,4 +308,20 @@ export function listReports(): Report[] {
 
 export function getReport(id: string): Report | undefined {
   return snapshot.reports.find((item) => item.id === id);
+}
+
+export function getCoverage(): Coverage | undefined {
+  return snapshot.coverage;
+}
+
+export function listIpos(): IPODeal[] {
+  return [...(snapshot.ipos ?? [])];
+}
+
+export function getIpo(id: string): IPODeal | undefined {
+  const key = decodeURIComponent(id).trim().toLowerCase().replace(/[\s_-]/g, "");
+  return listIpos().find((item) => {
+    const labels = [item.id, item.name, item.name_en];
+    return labels.some((label) => label.toLowerCase().replace(/[\s_-]/g, "") === key);
+  });
 }

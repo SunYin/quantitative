@@ -82,7 +82,7 @@ def to_hant(text: str) -> str:
 
 
 def entity_en() -> dict[str, str]:
-    from quant.sample_data import CHAINS, INDUSTRIES, STOCKS
+    from quant.sample_data import CHAINS, INDUSTRIES, STOCKS, ipos
 
     names: dict[str, str] = {}
     for stock in STOCKS.values():
@@ -91,6 +91,8 @@ def entity_en() -> dict[str, str]:
         names[item.name] = item.name_en
     for chain in CHAINS.values():
         names[chain.name] = chain.name_en
+    for deal in ipos():
+        names[deal.name] = deal.name_en
     names.setdefault("银行", "Banks")
     names.setdefault("半导体", "Semiconductors")
     names.setdefault("金融", "Financials")
@@ -99,6 +101,9 @@ def entity_en() -> dict[str, str]:
     names.setdefault("制造", "Industrials")
     names.setdefault("可选消费", "Consumer discretionary")
     names.setdefault("可选消费/科技", "Discretionary / tech")
+    names.setdefault("医药", "Healthcare")
+    names.setdefault("能源", "Energy")
+    names.setdefault("公用事业", "Utilities")
     return names
 
 

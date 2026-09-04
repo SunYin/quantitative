@@ -8,6 +8,7 @@ const NAV = [
   { href: "/", key: "nav.overview" },
   { href: "/stocks", key: "nav.stocks" },
   { href: "/industries", key: "nav.industries" },
+  { href: "/ipos", key: "nav.ipos" },
   { href: "/strategies", key: "nav.strategies" },
   { href: "/reports", key: "nav.reports" },
   { href: "/markets", key: "nav.markets" },

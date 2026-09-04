@@ -6,8 +6,9 @@
 
 ## 你能用它做什么
 
-- 给茅台、招行 A/H、腾讯、美团、苹果、英伟达等样本打**质量 / 估值 / 综合分**
+- 给茅台、招行 A/H、腾讯、美团、苹果、英伟达、平安、礼来等样本打**质量 / 估值 / 综合分**
 - 做**行业吸引力**与**产业链**（例如 `quant industry AI` 看算力上下游和成分股）
+- 看 **A / 港 / 美样本只数 vs 全市场约数**（`quant universe`），以及 **IPO/新股管道**（`quant ipos`）
 - 计算 **A/H 溢价** 与南向/北向资金拥挤度
 - 用清单和启发式给**研报**打分，抓逻辑句、数字和红旗
 - 导出 HTML / Markdown 研究记分卡
@@ -17,6 +18,7 @@
 ```bash
 python3 -m pip install -e ".[dev]"
 python3 -m quant universe
+python3 -m quant ipos
 python3 -m quant markets
 python3 -m quant analyze 00700.HK
 python3 -m quant analyze 00700.HK --live
@@ -41,7 +43,9 @@ npm install
 npm run dev
 ```
 
-打开 http://localhost:3000 ：总览、个股带实时报价（若 Yahoo 可用），行业、策略、研报、市场规则。页面会标明 Yahoo / 样本来源。顶栏可切 **简体 / 繁體 / EN**（写入 cookie；无选择时看浏览器语言）。
+打开 http://localhost:3000 ：总览会按 A / 港 / 美列出**样本只数**和全市场约数；行业、策略、研报、**新股/IPO**、市场规则。页面会标明 Yahoo / 样本来源。顶栏可切 **简体 / 繁體 / EN**（写入 cookie；无选择时看浏览器语言）。
+
+`/ipos` 是研究样本日历（上会/申报/过会/申购等），不是交易所官方名单；未上市名字不能当已有代码去打分。约数也不是官方普查。样本与实时数据均不构成投资建议。
 
 CLI 同样支持 `--lang`：
 
@@ -63,7 +67,7 @@ Railway 服务请这样设：
 1. 部署 **包含 `web/` 的分支**（不要只部署几乎空的 `main`）。
 2. 根目录保持仓库根，让 Railway 使用检测到的 `Dockerfile`；或把 Root Directory 设为 `web`（会用 `web/Dockerfile`）。
 3. 不要再手写 Python start command。
-4. 生成域名后打开 `/`，应看到免责声明和样本宇宙。
+4. 生成域名后打开 `/`，应看到免责声明、A/港/美样本只数和样本池。
 
 ## 研究层级
 

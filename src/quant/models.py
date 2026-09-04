@@ -153,6 +153,30 @@ class ValueChain:
     nodes: tuple[ChainNode, ...]
 
 
+IPOStatus = Literal["hearing", "filed", "passed", "subscribed", "priced", "listed", "postponed"]
+
+
+@dataclass(frozen=True)
+class IPODeal:
+    """Sample IPO / new-listing pipeline. Not an exchange official calendar."""
+
+    id: str
+    name: str
+    name_en: str
+    market: Market
+    board: str
+    industry: str
+    status: IPOStatus
+    expected_date: str
+    currency: str
+    proceeds: float | None
+    sponsor: str
+    notes: str
+    comparables: tuple[str, ...] = ()
+    chain_id: str | None = None
+    listed_symbol: str | None = None
+
+
 @dataclass(frozen=True)
 class ResearchReport:
     title: str

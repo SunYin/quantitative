@@ -1,3 +1,4 @@
+import { CoverageBoard } from "@/components/coverage-board";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import {
@@ -14,11 +15,17 @@ import { getI18n } from "@/i18n/server";
 
 export default async function StocksPage() {
   const { locale, t, tx } = await getI18n();
-  const [meta, stocks] = await Promise.all([api.meta.get(), api.universe.list()]);
+  const [meta, coverage, stocks] = await Promise.all([
+    api.meta.get(),
+    api.coverage.get(),
+    api.universe.list(),
+  ]);
   return (
     <>
       <h1 className="text-3xl font-semibold tracking-tight">{t("stocks.title")}</h1>
+      <p className="text-muted-foreground">{t("stocks.lead")}</p>
       <Disclaimer locale={locale} text={meta.disclaimer} asOf={meta.as_of} live={meta.live} />
+      <CoverageBoard locale={locale} coverage={coverage} />
       <Card>
         <CardHeader>
           <CardTitle>{t("stocks.universe")}</CardTitle>

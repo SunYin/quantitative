@@ -37,6 +37,12 @@ function entityMap(): Record<string, string> {
       names[layer.industry] = layer.industry_en;
     }
   }
+  for (const deal of snapshot.ipos ?? []) {
+    names[deal.name] = deal.name_en;
+  }
+  names["医药"] = "Healthcare";
+  names["能源"] = "Energy";
+  names["公用事业"] = "Utilities";
   return names;
 }
 

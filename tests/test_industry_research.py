@@ -20,9 +20,11 @@ def test_semiconductor_flags_rich_valuation():
 
 def test_more_industries_cover_orphans():
     names = {item.name for item in industries()}
-    assert len(names) > 5
+    assert len(names) >= 16
     assert "消费电子" in names
     assert "本地生活" in names
+    assert "创新药" in names
+    assert "保险" in names
     apple = {s.symbol for s in industry_constituents(get_industry("消费电子"))}
     meituan = {s.symbol for s in industry_constituents(get_industry("本地生活"))}
     assert "AAPL" in apple

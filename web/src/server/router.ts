@@ -10,6 +10,9 @@ import {
   listStrategies,
   listChains,
   getChain,
+  getCoverage,
+  listIpos,
+  getIpo,
   snapshot,
 } from "@/lib/data";
 import { liveDisclaimer, overlayStock, overlayStocks } from "@/server/overlay";
@@ -83,6 +86,27 @@ export const router = {
   },
   market: {
     list: os.handler(() => snapshot.markets),
+  },
+  coverage: {
+    get: os.handler(() => {
+      const coverage = getCoverage();
+      if (!coverage) {
+        throw new ORPCError("NOT_FOUND", { message: "覆盖数据未导出" });
+      }
+      return coverage;
+    }),
+  },
+  ipo: {
+    list: os.handler(() => listIpos()),
+    get: os
+      .input(z.object({ id: z.string().min(1) }))
+      .handler(({ input }) => {
+        const deal = getIpo(input.id);
+        if (!deal) {
+          throw new ORPCError("NOT_FOUND", { message: `未知 IPO：${input.id}` });
+        }
+        return deal;
+      }),
   },
 };
 

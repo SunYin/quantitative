@@ -6,11 +6,20 @@ from quant.models import (
     ChainNode,
     Financials,
     IndustrySnapshot,
+    IPODeal,
     Market,
     ResearchReport,
     SectorStyle,
     Stock,
     ValueChain,
+)
+from quant.sample_extra import (
+    IPOS,
+    extra_chains,
+    extra_industries,
+    extra_stocks,
+    get_ipo,
+    patch_industries,
 )
 
 
@@ -1089,6 +1098,11 @@ CHAINS: dict[str, ValueChain] = {
     ),
 }
 
+STOCKS.update(extra_stocks())
+patch_industries(INDUSTRIES)
+INDUSTRIES.update(extra_industries())
+CHAINS.update(extra_chains())
+
 
 REPORTS: dict[str, ResearchReport] = {
     "tencent-init": ResearchReport(
@@ -1162,7 +1176,61 @@ CONNECT_FLOWS = {
     "300750.SZ": {"northbound_holding_change_20d": -0.009, "northbound_rank": 11},
     "600036.SS": {"northbound_holding_change_20d": 0.003, "northbound_rank": 9},
     "002594.SZ": {"northbound_holding_change_20d": 0.006, "northbound_rank": 14},
+    "02318.HK": {"southbound_holding_change_20d": 0.007, "southbound_rank": 7},
+    "01299.HK": {"southbound_holding_change_20d": 0.003, "southbound_rank": 14},
+    "06160.HK": {"southbound_holding_change_20d": 0.002, "southbound_rank": 22},
+    "00883.HK": {"southbound_holding_change_20d": 0.010, "southbound_rank": 4},
+    "00388.HK": {"southbound_holding_change_20d": 0.001, "southbound_rank": 18},
+    "01810.HK": {"southbound_holding_change_20d": 0.008, "southbound_rank": 9},
+    "000858.SZ": {"northbound_holding_change_20d": 0.004, "northbound_rank": 8},
+    "601318.SS": {"northbound_holding_change_20d": 0.005, "northbound_rank": 6},
+    "600276.SS": {"northbound_holding_change_20d": -0.003, "northbound_rank": 19},
+    "601012.SS": {"northbound_holding_change_20d": -0.012, "northbound_rank": 21},
+    "601857.SS": {"northbound_holding_change_20d": 0.002, "northbound_rank": 16},
+    "600900.SS": {"northbound_holding_change_20d": 0.001, "northbound_rank": 17},
 }
+
+
+LISTED_APPROX = {
+    Market.A_SHARE: 5400,
+    Market.HK: 2600,
+    Market.US: 4800,
+}
+
+COVERAGE_DISCLAIMER = (
+    "样本只数不是全市场覆盖。全市场约数是研究提示，不是交易所官方普查，不构成投资建议。"
+)
+IPO_DISCLAIMER = (
+    "IPO 管道是研究样本日历，不是上交所/港交所/SEC 官方名单。"
+    "未上市名字不能当已有代码去打分。不构成投资建议。"
+)
+
+
+def coverage() -> dict:
+    counts = {market: 0 for market in Market}
+    for stock in STOCKS.values():
+        counts[stock.market] += 1
+    markets = [
+        {
+            "market": market.value,
+            "sample": counts[market],
+            "listed_approx": LISTED_APPROX[market],
+        }
+        for market in Market
+    ]
+    return {
+        "disclaimer": COVERAGE_DISCLAIMER,
+        "ipo_disclaimer": IPO_DISCLAIMER,
+        "markets": markets,
+        "sample_total": sum(counts.values()),
+        "listed_approx_total": sum(LISTED_APPROX.values()),
+        "industry_count": len(INDUSTRIES),
+        "ipo_count": len(IPOS),
+    }
+
+
+def ipos() -> list[IPODeal]:
+    return list(IPOS)
 
 
 def universe() -> list[Stock]:

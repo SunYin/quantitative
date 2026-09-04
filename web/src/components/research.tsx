@@ -182,6 +182,25 @@ export function StockLink({
   );
 }
 
+export function IpoStatusBadge({ status, locale }: { status: string; locale: Locale }) {
+  const key = `ipo.status.${status}`;
+  const label = t(locale, key);
+  const styles: Record<string, string> = {
+    hearing: "bg-amber-500/15 text-amber-300 border-amber-500/30",
+    filed: "bg-sky-500/15 text-sky-300 border-sky-500/30",
+    passed: "bg-emerald-500/15 text-emerald-300 border-emerald-500/30",
+    subscribed: "bg-violet-500/15 text-violet-300 border-violet-500/30",
+    priced: "bg-cyan-500/15 text-cyan-300 border-cyan-500/30",
+    listed: "bg-muted text-muted-foreground",
+    postponed: "bg-rose-500/15 text-rose-300 border-rose-500/30",
+  };
+  return (
+    <Badge variant="outline" className={styles[status] ?? "bg-muted text-muted-foreground"}>
+      {label === key ? status : label}
+    </Badge>
+  );
+}
+
 export function multiple(value: number | null | undefined, digits = 1) {
   if (value === null || value === undefined) return "—";
   return value.toLocaleString(undefined, { maximumFractionDigits: digits, minimumFractionDigits: 0 });

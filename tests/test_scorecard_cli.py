@@ -54,6 +54,8 @@ def test_json_snapshot_shape(tmp_path: Path):
     loaded = __import__("json").loads(path.read_text(encoding="utf-8"))
     assert loaded["strategies"] and loaded["industries"] and loaded["reports"]
     assert loaded["chains"]
+    assert loaded["coverage"]["sample_total"] == len(loaded["briefs"])
+    assert loaded["ipos"]
     assert any(chain["id"] == "ai" for chain in loaded["chains"])
 
 
