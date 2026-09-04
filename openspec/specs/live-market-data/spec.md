@@ -1,13 +1,13 @@
 # live-market-data Specification
 
 ## Purpose
-从公开行情接口覆盖样本宇宙的现价和一部分基本面（PE/PB/股息/ROE），失败时保持样本数据可用，并标明来源。
+从公开行情接口覆盖样本池的现价和一部分基本面（PE/PB/股息/ROE），失败时保持样本数据可用，并标明来源。
 
 ## Requirements
 
 ### Requirement: Live quote overlay with fallback
 
-系统 SHALL 尝试为样本股票获取近实时现价与涨跌；任一代码失败时 SHALL 保留该代码的样本价，不得让整个宇宙失败。
+系统 SHALL 尝试为样本股票获取近实时现价与涨跌；任一代码失败时 SHALL 保留该代码的样本价，不得让整个样本池失败。
 
 #### Scenario: Successful quote
 
@@ -19,7 +19,7 @@
 
 - **WHEN** 行情接口超时或不可用
 - **THEN** 系统 SHALL 回退到样本数据
-- **AND** SHALL 仍能列出完整宇宙
+- **AND** SHALL 仍能列出完整样本池
 
 ### Requirement: Partial fundamentals
 

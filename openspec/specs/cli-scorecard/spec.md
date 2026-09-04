@@ -2,7 +2,7 @@
 
 ## Purpose
 
-命令行入口把样本宇宙、个股、行业、研报和市场规则渲染成终端说明，以及自包含的 HTML / Markdown 记分卡。This capability is the operator interface for the sample research universe.
+命令行入口把样本池、个股、行业、研报和市场规则渲染成终端说明，以及自包含的 HTML / Markdown 记分卡。This capability is the operator interface for the sample research book.
 
 ## Requirements
 
@@ -54,7 +54,7 @@
 
 ### Requirement: JSON snapshot export
 
-系统 SHALL 提供 `json` 命令，把与 demo 记分卡相同的研究宇宙写成 JSON，供看板同步，且包含免责声明字段。
+系统 SHALL 提供 `json` 命令，把与 demo 记分卡相同的研究样本写成 JSON，供看板同步，且包含免责声明字段。
 
 #### Scenario: Write snapshot file
 
@@ -65,7 +65,7 @@
 #### Scenario: Snapshot matches CLI universe
 
 - **WHEN** 导出 JSON
-- **THEN** `briefs` 数量 SHALL 等于样本宇宙规模
+- **THEN** `briefs` 数量 SHALL 等于样本池规模
 - **AND** 每条 brief SHALL 包含 `symbol`、`quality`、`valuation`、`composite`
 
 ### Requirement: Optional live JSON export

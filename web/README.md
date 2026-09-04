@@ -11,7 +11,7 @@ npm run dev
 ```
 
 - `/` 总览
-- `/stocks` 个股宇宙与详情
+- `/stocks` 个股样本池与详情
 - `/industries` 行业吸引力
 - `/strategies` 四条研究策略
 - `/reports` 研报审阅

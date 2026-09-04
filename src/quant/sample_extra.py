@@ -937,7 +937,7 @@ IPOS: tuple[IPODeal, ...] = (
         currency="USD",
         proceeds=4.2e8,
         sponsor="Morgan Stanley (sample)",
-        notes="已上市但未纳入打分宇宙的样本，用来演示「上市 ≠ 进入研究组合」。",
+        notes="已上市但未纳入打分样本池，用来演示「上市 ≠ 进入研究组合」。",
         comparables=("LLY",),
         chain_id="health",
     ),

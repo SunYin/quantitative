@@ -7,7 +7,7 @@
 
 ### Requirement: Dashboard surfaces the research universe
 
-看板 SHALL 在总览页展示样本宇宙的综合分、质量、估值与研究仓位上限，并同时覆盖 A 股、港股与美股样本。
+看板 SHALL 在总览页展示样本池的综合分、质量、估值与研究仓位上限，并同时覆盖 A 股、港股与美股样本。
 
 #### Scenario: Overview lists cross-market names
 
@@ -82,7 +82,7 @@
 #### Scenario: Fallback still renders
 
 - **WHEN** 实时接口失败
-- **THEN** 页面 SHALL 仍显示样本宇宙与免责声明
+- **THEN** 页面 SHALL 仍显示样本池与免责声明
 
 ### Requirement: Chain view on the dashboard
 

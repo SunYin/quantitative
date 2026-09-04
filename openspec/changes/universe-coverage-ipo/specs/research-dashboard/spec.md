@@ -6,7 +6,7 @@
 
 #### Scenario: Coverage on universe listing
 
-- **WHEN** 用户查看宇宙或总览覆盖
+- **WHEN** 用户查看样本池或总览覆盖
 - **THEN** SHALL 分别列出 A、HK、US 的样本只数
 - **AND** 每个市场的样本 SHALL 不少于 8 只
 - **AND** SHALL 出现全市场约数，且约数大于样本

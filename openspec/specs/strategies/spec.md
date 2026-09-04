@@ -8,12 +8,12 @@
 
 ### Requirement: Quality-value ranking
 
-系统 SHALL 用 `0.45 × 质量 + 0.40 × 估值 + 0.15 × 技术代理` 对股票宇宙排序，并给出“重点研究 / 观察名单 / 质量不足 / 估值偏贵或中性”等动作。
+系统 SHALL 用 `0.45 × 质量 + 0.40 × 估值 + 0.15 × 技术代理` 对股票样本排序，并给出“重点研究 / 观察名单 / 质量不足 / 估值偏贵或中性”等动作。
 
-#### Scenario: Ranks the sample universe
+#### Scenario: Ranks the sample book
 
-- **WHEN** 对内置样本宇宙运行质量-价值策略
-- **THEN** 返回行数 SHALL 等于宇宙规模
+- **WHEN** 对内置样本池运行质量-价值策略
+- **THEN** 返回行数 SHALL 等于样本规模
 - **AND** 排序后第一名分数 SHALL 不低于最后一名
 
 #### Scenario: Quality gate

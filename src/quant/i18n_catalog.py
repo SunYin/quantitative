@@ -300,7 +300,7 @@ PHRASES: dict[str, str] = {
     "港股 18A 风格申报样本。未盈利生物科技，南向不一定可买。": "HK 18A-style filing sample. Unprofitable biotech; southbound may not apply.",
     "已定价待上市样本。本地生活利润仍取决于补贴，不是 AI 故事。": "Priced, waiting to list. Local-services profit still hinges on subsidies, not an AI story.",
     "S-1 申报样本：租 GPU 的云中间层。利润看差价和折旧，不是「AI 必涨」。": "S-1 filing sample: a GPU-rental cloud middle layer. Profit is the spread and depreciation, not 'AI must go up'.",
-    "已上市但未纳入打分宇宙的样本，用来演示「上市 ≠ 进入研究组合」。": "Listed but not in the scored sample — listing is not the same as entering the research book.",
+    "已上市但未纳入打分样本池，用来演示「上市 ≠ 进入研究组合」。": "Listed but not in the scored sample — listing is not the same as entering the research book.",
     "中金公司（样本）": "CICC (sample)",
     "中信证券（样本）": "CITIC Securities (sample)",
     "华泰联合（样本）": "Huatai United (sample)",
