@@ -5,18 +5,23 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
+from quant.live import LiveMeta, LiveQuote, active_quotes, quote_block, sample_live_meta
 from quant.markets import CONNECT_RULES, PROFILES
 from quant.models import Market, ScoreBreakdown, Stock
 from quant.scorecard import build_universe_scorecard
 from quant.strategies import StrategyResult
 
 
-def snapshot(card: dict | None = None) -> dict:
-    card = card or build_universe_scorecard()
+def snapshot(card: dict | None = None, live: LiveMeta | None = None) -> dict:
+    from quant.live import disclaimer_for
+
+    live = live or sample_live_meta()
+    card = card or build_universe_scorecard(disclaimer=disclaimer_for(live))
     return {
         "as_of": card["as_of"],
         "disclaimer": card["disclaimer"],
-        "briefs": [_brief(b) for b in card["briefs"]],
+        "live": live.as_dict(),
+        "briefs": [_brief(b, live.quotes.get(b["stock"].symbol) or active_quotes().get(b["stock"].symbol)) for b in card["briefs"]],
         "strategies": [_strategy(result) for result in card["strategies"].values()],
         "industries": [_industry(row) for row in card["industries"]],
         "reports": [_report(row) for row in card["reports"]],
@@ -26,10 +31,10 @@ def snapshot(card: dict | None = None) -> dict:
     }
 
 
-def write_snapshot(path: str | Path) -> Path:
+def write_snapshot(path: str | Path, live: LiveMeta | None = None) -> Path:
     target = Path(path)
     target.parent.mkdir(parents=True, exist_ok=True)
-    target.write_text(json.dumps(snapshot(), ensure_ascii=False, indent=2), encoding="utf-8")
+    target.write_text(json.dumps(snapshot(live=live), ensure_ascii=False, indent=2), encoding="utf-8")
     return target
 
 
@@ -64,23 +69,30 @@ def _stock(stock: Stock) -> dict:
         "northbound_eligible": stock.northbound_eligible,
         "ah_pair_symbol": stock.ah_pair_symbol,
         "notes": stock.notes,
+        "price": stock.price,
+        "change_pct": None,
         "pe_ttm": stock.pe_ttm,
         "pb": stock.pb,
         "fcf_yield": stock.fcf_yield,
         "dividend_yield": stock.dividend_yield,
+        "roe": stock.financials.roe,
     }
 
 
-def _brief(brief: dict) -> dict:
+def _brief(brief: dict, quote: LiveQuote | None = None) -> dict:
     stock = brief["stock"]
-    return {
+    row = {
         **_stock(stock),
         "composite": brief["composite"],
         "quality": _score(brief["quality"]),
         "valuation": _score(brief["valuation"]),
         "position_cap": brief["position_cap"],
         "connect": brief["connect"],
+        "quote": quote_block(quote),
     }
+    if quote is not None and quote.change_pct is not None:
+        row["change_pct"] = quote.change_pct
+    return row
 
 
 def _strategy(result: StrategyResult) -> dict:

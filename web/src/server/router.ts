@@ -10,28 +10,34 @@ import {
   listStrategies,
   snapshot,
 } from "@/lib/data";
+import { liveDisclaimer, overlayStock, overlayStocks } from "@/server/overlay";
 
 export const router = {
   meta: {
-    get: os.handler(() => ({
-      as_of: snapshot.as_of,
-      disclaimer: snapshot.disclaimer,
-      checklist: snapshot.checklist,
-      connect: snapshot.connect,
-    })),
+    get: os.handler(async () => {
+      const stocks = await overlayStocks(listStocks());
+      const { text, live } = liveDisclaimer(stocks);
+      return {
+        as_of: snapshot.as_of,
+        disclaimer: text,
+        live,
+        checklist: snapshot.checklist,
+        connect: snapshot.connect,
+      };
+    }),
   },
   universe: {
-    list: os.handler(() => listStocks()),
+    list: os.handler(async () => overlayStocks(listStocks())),
   },
   stock: {
     get: os
       .input(z.object({ symbol: z.string().min(1) }))
-      .handler(({ input }) => {
+      .handler(async ({ input }) => {
         const stock = getStock(input.symbol);
         if (!stock) {
           throw new ORPCError("NOT_FOUND", { message: `未知代码：${input.symbol}` });
         }
-        return stock;
+        return overlayStock(stock);
       }),
   },
   industry: {

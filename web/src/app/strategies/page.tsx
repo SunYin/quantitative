@@ -11,7 +11,7 @@ export default async function StrategiesPage() {
   return (
     <>
       <h1 className="text-3xl font-semibold tracking-tight">研究策略</h1>
-      <Disclaimer text={meta.disclaimer} asOf={meta.as_of} />
+      <Disclaimer text={meta.disclaimer} asOf={meta.as_of} live={meta.live} />
       <p className="text-sm text-muted-foreground">
         输出是研究优先级，不是下单指令。A/H 价差反映投资者结构，不是无风险套利。
       </p>

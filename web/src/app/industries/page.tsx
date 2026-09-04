@@ -7,7 +7,7 @@ export default async function IndustriesPage() {
   return (
     <>
       <h1 className="text-3xl font-semibold tracking-tight">行业吸引力</h1>
-      <Disclaimer text={meta.disclaimer} asOf={meta.as_of} />
+      <Disclaimer text={meta.disclaimer} asOf={meta.as_of} live={meta.live} />
       <div className="grid gap-4 lg:grid-cols-2">
         {industries.map((industry) => (
           <Card key={industry.name} id={industry.name}>

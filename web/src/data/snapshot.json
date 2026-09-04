@@ -1,6 +1,16 @@
 {
   "as_of": "2026-09-04",
   "disclaimer": "样本数据仅供方法演示，不构成投资建议，也不是实时行情。",
+  "live": {
+    "enabled": false,
+    "source": "sample",
+    "applied": 0,
+    "ok": [],
+    "failed": [],
+    "fetched_at": null,
+    "fallback": false,
+    "rescored": false
+  },
   "briefs": [
     {
       "symbol": "600519.SS",
@@ -15,10 +25,13 @@
       "northbound_eligible": true,
       "ah_pair_symbol": null,
       "notes": "北向核心持仓；品牌护城河极强，估值贵是常态。",
+      "price": 1480.0,
+      "change_pct": null,
       "pe_ttm": 22.5,
       "pb": 8.4,
       "fcf_yield": 0.041,
       "dividend_yield": 0.018,
+      "roe": 0.31,
       "composite": 70.1,
       "quality": {
         "total": 85.9,
@@ -96,6 +109,18 @@
         "has_ah_pair": false,
         "ah_pair": "",
         "implication": "北向可买：海外主动/被动资金会放大风格切换，北向持股是情绪而非基本面本身。"
+      },
+      "quote": {
+        "source": "sample",
+        "as_of": null,
+        "fields": {
+          "price": "sample",
+          "change_pct": "sample",
+          "pe_ttm": "sample",
+          "pb": "sample",
+          "dividend_yield": "sample",
+          "roe": "sample"
+        }
       }
     },
     {
@@ -111,10 +136,13 @@
       "northbound_eligible": true,
       "ah_pair_symbol": "3750.HK",
       "notes": "锂电周期+全球份额；A/H 价差是港股通研究的经典样本。",
+      "price": 210.0,
+      "change_pct": null,
       "pe_ttm": 19.8,
       "pb": 4.1,
       "fcf_yield": 0.028,
       "dividend_yield": 0.012,
+      "roe": 0.22,
       "composite": 64.8,
       "quality": {
         "total": 75.0,
@@ -192,6 +220,18 @@
         "has_ah_pair": true,
         "ah_pair": "3750.HK",
         "implication": "北向可买：海外主动/被动资金会放大风格切换，北向持股是情绪而非基本面本身。"
+      },
+      "quote": {
+        "source": "sample",
+        "as_of": null,
+        "fields": {
+          "price": "sample",
+          "change_pct": "sample",
+          "pe_ttm": "sample",
+          "pb": "sample",
+          "dividend_yield": "sample",
+          "roe": "sample"
+        }
       }
     },
     {
@@ -207,10 +247,13 @@
       "northbound_eligible": false,
       "ah_pair_symbol": "300750.SZ",
       "notes": "H 股样本价用于演示 A/H 溢价，不是实时盘口。",
+      "price": 194.0,
+      "change_pct": null,
       "pe_ttm": 16.2,
       "pb": 3.3,
       "fcf_yield": 0.034,
       "dividend_yield": 0.014,
+      "roe": 0.22,
       "composite": 69.7,
       "quality": {
         "total": 75.0,
@@ -288,6 +331,18 @@
         "has_ah_pair": true,
         "ah_pair": "300750.SZ",
         "implication": "南向可买：定价同时受海外资金与内地增量资金影响，需跟踪港股通持股变化。"
+      },
+      "quote": {
+        "source": "sample",
+        "as_of": null,
+        "fields": {
+          "price": "sample",
+          "change_pct": "sample",
+          "pe_ttm": "sample",
+          "pb": "sample",
+          "dividend_yield": "sample",
+          "roe": "sample"
+        }
       }
     },
     {
@@ -303,10 +358,13 @@
       "northbound_eligible": true,
       "ah_pair_symbol": "3968.HK",
       "notes": "零售银行质量标杆；A/H 长期溢价，适合讲折溢价而不是无风险套利。",
+      "price": 36.5,
+      "change_pct": null,
       "pe_ttm": 6.4,
       "pb": 0.92,
       "fcf_yield": null,
       "dividend_yield": 0.051,
+      "roe": 0.145,
       "composite": 58.9,
       "quality": {
         "total": 69.3,
@@ -386,6 +444,18 @@
         "has_ah_pair": true,
         "ah_pair": "3968.HK",
         "implication": "北向可买：海外主动/被动资金会放大风格切换，北向持股是情绪而非基本面本身。"
+      },
+      "quote": {
+        "source": "sample",
+        "as_of": null,
+        "fields": {
+          "price": "sample",
+          "change_pct": "sample",
+          "pe_ttm": "sample",
+          "pb": "sample",
+          "dividend_yield": "sample",
+          "roe": "sample"
+        }
       }
     },
     {
@@ -401,10 +471,13 @@
       "northbound_eligible": false,
       "ah_pair_symbol": "600036.SS",
       "notes": "港股通南向重仓品种之一，股息和折价是常见叙事。",
+      "price": 28.5,
+      "change_pct": null,
       "pe_ttm": 5.2,
       "pb": 0.74,
       "fcf_yield": null,
       "dividend_yield": 0.062,
+      "roe": 0.145,
       "composite": 64.0,
       "quality": {
         "total": 69.3,
@@ -482,6 +555,18 @@
         "has_ah_pair": true,
         "ah_pair": "600036.SS",
         "implication": "南向可买：定价同时受海外资金与内地增量资金影响，需跟踪港股通持股变化。"
+      },
+      "quote": {
+        "source": "sample",
+        "as_of": null,
+        "fields": {
+          "price": "sample",
+          "change_pct": "sample",
+          "pe_ttm": "sample",
+          "pb": "sample",
+          "dividend_yield": "sample",
+          "roe": "sample"
+        }
       }
     },
     {
@@ -497,10 +582,13 @@
       "northbound_eligible": false,
       "ah_pair_symbol": null,
       "notes": "港股通核心资产；游戏+广告+金融科技，监管与竞争是主风险。",
+      "price": 410.0,
+      "change_pct": null,
       "pe_ttm": 19.5,
       "pb": 3.6,
       "fcf_yield": 0.046,
       "dividend_yield": 0.011,
+      "roe": 0.2,
       "composite": 63.9,
       "quality": {
         "total": 73.8,
@@ -580,6 +668,18 @@
         "has_ah_pair": false,
         "ah_pair": "",
         "implication": "南向可买：定价同时受海外资金与内地增量资金影响，需跟踪港股通持股变化。"
+      },
+      "quote": {
+        "source": "sample",
+        "as_of": null,
+        "fields": {
+          "price": "sample",
+          "change_pct": "sample",
+          "pe_ttm": "sample",
+          "pb": "sample",
+          "dividend_yield": "sample",
+          "roe": "sample"
+        }
       }
     },
     {
@@ -595,10 +695,13 @@
       "northbound_eligible": false,
       "ah_pair_symbol": null,
       "notes": "本地生活竞争激烈，利润率对补贴和监管敏感。",
+      "price": 125.0,
+      "change_pct": null,
       "pe_ttm": 24.0,
       "pb": 3.9,
       "fcf_yield": 0.032,
       "dividend_yield": 0.0,
+      "roe": 0.16,
       "composite": 64.4,
       "quality": {
         "total": 73.9,
@@ -678,6 +781,18 @@
         "has_ah_pair": false,
         "ah_pair": "",
         "implication": "南向可买：定价同时受海外资金与内地增量资金影响，需跟踪港股通持股变化。"
+      },
+      "quote": {
+        "source": "sample",
+        "as_of": null,
+        "fields": {
+          "price": "sample",
+          "change_pct": "sample",
+          "pe_ttm": "sample",
+          "pb": "sample",
+          "dividend_yield": "sample",
+          "roe": "sample"
+        }
       }
     },
     {
@@ -693,10 +808,13 @@
       "northbound_eligible": false,
       "ah_pair_symbol": null,
       "notes": "美股质量+回购机器；PE 贵但 FCF 和资本回报极强。",
+      "price": 225.0,
+      "change_pct": null,
       "pe_ttm": 33.0,
       "pb": 48.0,
       "fcf_yield": 0.031,
       "dividend_yield": 0.0045,
+      "roe": 1.45,
       "composite": 59.5,
       "quality": {
         "total": 80.2,
@@ -777,6 +895,18 @@
         "has_ah_pair": false,
         "ah_pair": "",
         "implication": "美股：通过 ADR/普通股交易，与 A/H 价差无直接套利通道。"
+      },
+      "quote": {
+        "source": "sample",
+        "as_of": null,
+        "fields": {
+          "price": "sample",
+          "change_pct": "sample",
+          "pe_ttm": "sample",
+          "pb": "sample",
+          "dividend_yield": "sample",
+          "roe": "sample"
+        }
       }
     },
     {
@@ -792,10 +922,13 @@
       "northbound_eligible": false,
       "ah_pair_symbol": null,
       "notes": "算力周期龙头；高增长对高估值，颠覆风险来自客户自制与资本开支回落。",
+      "price": 120.0,
+      "change_pct": null,
       "pe_ttm": 42.0,
       "pb": 32.0,
       "fcf_yield": 0.019,
       "dividend_yield": 0.0003,
+      "roe": 0.91,
       "composite": 66.6,
       "quality": {
         "total": 85.3,
@@ -875,6 +1008,18 @@
         "has_ah_pair": false,
         "ah_pair": "",
         "implication": "美股：通过 ADR/普通股交易，与 A/H 价差无直接套利通道。"
+      },
+      "quote": {
+        "source": "sample",
+        "as_of": null,
+        "fields": {
+          "price": "sample",
+          "change_pct": "sample",
+          "pe_ttm": "sample",
+          "pb": "sample",
+          "dividend_yield": "sample",
+          "roe": "sample"
+        }
       }
     },
     {
@@ -890,10 +1035,13 @@
       "northbound_eligible": false,
       "ah_pair_symbol": null,
       "notes": "美股银行对照样本：同样银行，美股 PB 体系与 A/H 完全不同。",
+      "price": 210.0,
+      "change_pct": null,
       "pe_ttm": 12.2,
       "pb": 1.85,
       "fcf_yield": null,
       "dividend_yield": 0.023,
+      "roe": 0.16,
       "composite": 63.2,
       "quality": {
         "total": 74.9,
@@ -971,6 +1119,18 @@
         "has_ah_pair": false,
         "ah_pair": "",
         "implication": "美股：通过 ADR/普通股交易，与 A/H 价差无直接套利通道。"
+      },
+      "quote": {
+        "source": "sample",
+        "as_of": null,
+        "fields": {
+          "price": "sample",
+          "change_pct": "sample",
+          "pe_ttm": "sample",
+          "pb": "sample",
+          "dividend_yield": "sample",
+          "roe": "sample"
+        }
       }
     }
   ],

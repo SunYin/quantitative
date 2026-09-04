@@ -13,6 +13,9 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+export const dynamic = "force-dynamic";
+export const revalidate = 60;
+
 export const metadata: Metadata = {
   title: "跨市场研究看板",
   description: "A 股 / 港股 / 美股 / 港股通 研究记分卡。样本数据不构成投资建议。",

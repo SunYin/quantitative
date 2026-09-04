@@ -1,12 +1,16 @@
 import { notFound } from "next/navigation";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Disclaimer, FactorList, MarketBadge, pct } from "@/components/research";
+import {
+  ChangePct,
+  Disclaimer,
+  FactorList,
+  FieldSource,
+  MarketBadge,
+  Money,
+  SourceBadge,
+  pct,
+} from "@/components/research";
 import { api } from "@/lib/api";
-import { listStocks } from "@/lib/data";
-
-export function generateStaticParams() {
-  return listStocks().map((stock) => ({ symbol: stock.symbol }));
-}
 
 export default async function StockDetailPage({
   params,
@@ -21,6 +25,7 @@ export default async function StockDetailPage({
     notFound();
   }
   const meta = await api.meta.get();
+  const fields = stock.quote.fields;
 
   return (
     <>
@@ -32,20 +37,42 @@ export default async function StockDetailPage({
           </h1>
           <p className="text-muted-foreground">{stock.name_en}</p>
         </div>
-        <MarketBadge market={stock.market} />
+        <div className="flex flex-wrap gap-1">
+          <MarketBadge market={stock.market} />
+          <SourceBadge source={stock.quote.source} />
+        </div>
       </div>
-      <Disclaimer text={meta.disclaimer} asOf={meta.as_of} />
+      <Disclaimer text={meta.disclaimer} asOf={meta.as_of} live={meta.live} />
       <p className="text-sm text-muted-foreground">{stock.connect.implication}</p>
       <section className="grid gap-4 md:grid-cols-3">
         <Card>
           <CardHeader>
-            <CardTitle>综合 / 仓位</CardTitle>
+            <CardTitle>报价 / 仓位</CardTitle>
           </CardHeader>
           <CardContent className="space-y-2 text-sm">
-            <p className="text-3xl font-semibold tabular-nums">{stock.composite.toFixed(1)}</p>
+            <p className="text-3xl font-semibold">
+              <Money value={stock.price} currency={stock.currency} />
+              <FieldSource source={fields.price} />
+            </p>
+            <p>
+              涨跌 <ChangePct value={stock.change_pct} />
+              <FieldSource source={fields.change_pct} />
+            </p>
+            <p className="text-2xl font-semibold tabular-nums">{stock.composite.toFixed(1)} 综合</p>
             <p>研究仓位上限 {(stock.position_cap * 100).toFixed(1)}%</p>
             <p>行业 {stock.industry} · {stock.board}</p>
-            <p>PE {stock.pe_ttm ?? "—"} · PB {stock.pb ?? "—"} · 股息 {pct(stock.dividend_yield)}</p>
+            <p>
+              PE {stock.pe_ttm ?? "—"}
+              <FieldSource source={fields.pe_ttm} />
+              {" · "}PB {stock.pb ?? "—"}
+              <FieldSource source={fields.pb} />
+            </p>
+            <p>
+              股息 {pct(stock.dividend_yield)}
+              <FieldSource source={fields.dividend_yield} />
+              {" · "}ROE {pct(stock.roe)}
+              <FieldSource source={fields.roe} />
+            </p>
           </CardContent>
         </Card>
         <Card>

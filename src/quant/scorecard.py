@@ -12,7 +12,7 @@ from quant.sample_data import REPORTS, get_industry, industries, universe
 from quant.strategies import StrategyResult, run_all_strategies, stock_brief
 
 
-def build_universe_scorecard() -> dict:
+def build_universe_scorecard(*, disclaimer: str | None = None) -> dict:
     strategies = run_all_strategies()
     briefs = [stock_brief(s.symbol) for s in universe()]
     industry_rows = []
@@ -31,7 +31,8 @@ def build_universe_scorecard() -> dict:
         )
     return {
         "as_of": date.today().isoformat(),
-        "disclaimer": "样本数据仅供方法演示，不构成投资建议，也不是实时行情。",
+        "disclaimer": disclaimer
+        or "样本数据仅供方法演示，不构成投资建议，也不是实时行情。",
         "briefs": briefs,
         "strategies": strategies,
         "industries": industry_rows,
@@ -177,10 +178,10 @@ def render_html(card: dict | None = None) -> str:
 """
 
 
-def write_reports(output_dir: str | Path = "reports") -> dict[str, Path]:
+def write_reports(output_dir: str | Path = "reports", *, disclaimer: str | None = None) -> dict[str, Path]:
     directory = Path(output_dir)
     directory.mkdir(parents=True, exist_ok=True)
-    card = build_universe_scorecard()
+    card = build_universe_scorecard(disclaimer=disclaimer)
     md_path = directory / "scorecard.md"
     html_path = directory / "scorecard.html"
     md_path.write_text(render_markdown(card), encoding="utf-8")
@@ -216,12 +217,23 @@ def _strategy_html(result: StrategyResult) -> str:
 
 
 def describe_stock(symbol: str) -> str:
+    from quant.live import active_quotes, field_sources
+
     brief = stock_brief(symbol)
     stock = brief["stock"]
+    quote = active_quotes().get(stock.symbol)
+    sources = field_sources(quote)
+    source_line = "；".join(
+        f"{_field_zh(name)} {('Yahoo' if src == 'yahoo' else '样本')}" for name, src in sources.items()
+    )
     lines = [
         f"# {stock.name} ({stock.symbol})",
         f"- 市场：{stock.market.value} / {stock.board} / {stock.currency}",
         f"- 行业：{stock.industry} | {stock.gics_industry or stock.shenwan_industry}",
+        f"- 现价：{stock.price} {stock.currency}  PE {stock.pe_ttm if stock.pe_ttm is not None else '—'}  "
+        f"PB {stock.pb if stock.pb is not None else '—'}  股息 {stock.dividend_yield:.1%}  "
+        f"ROE {stock.financials.roe:.1%}",
+        f"- 字段来源：{source_line}",
         f"- 综合：{brief['composite']}  质量 {brief['quality'].total} ({brief['quality'].grade})  "
         f"估值 {brief['valuation'].total} ({brief['valuation'].grade})",
         f"- 互联互通：{brief['connect']['implication']}",
@@ -237,6 +249,17 @@ def describe_stock(symbol: str) -> str:
     if stock.notes:
         lines += ["", f"> {stock.notes}"]
     return "\n".join(lines) + "\n"
+
+
+def _field_zh(name: str) -> str:
+    return {
+        "price": "现价",
+        "change_pct": "涨跌",
+        "pe_ttm": "PE",
+        "pb": "PB",
+        "dividend_yield": "股息",
+        "roe": "ROE",
+    }.get(name, name)
 
 
 def describe_industry(name: str) -> str:

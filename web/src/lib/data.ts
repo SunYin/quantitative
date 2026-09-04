@@ -14,6 +14,29 @@ export type ScoreBlock = {
   factors: Factor[];
 };
 
+export type LiveSource = "yahoo" | "sample";
+
+export type QuoteMeta = {
+  source: "yahoo" | "sample" | "mixed";
+  as_of: string | null;
+  fields: {
+    price: LiveSource;
+    change_pct: LiveSource;
+    pe_ttm: LiveSource;
+    pb: LiveSource;
+    dividend_yield: LiveSource;
+    roe: LiveSource;
+  };
+};
+
+export type LiveSummary = {
+  quotes: "yahoo" | "sample" | "mixed";
+  scores: "sample" | "live-rescored";
+  fetched_at: string | null;
+  applied: number;
+  failed: number;
+};
+
 export type StockBrief = {
   symbol: string;
   name: string;
@@ -27,14 +50,18 @@ export type StockBrief = {
   northbound_eligible: boolean;
   ah_pair_symbol: string | null;
   notes: string;
+  price: number;
+  change_pct: number | null;
   pe_ttm: number | null;
   pb: number | null;
   fcf_yield: number | null;
   dividend_yield: number;
+  roe: number | null;
   composite: number;
   quality: ScoreBlock;
   valuation: ScoreBlock;
   position_cap: number;
+  quote: QuoteMeta;
   connect: {
     symbol: string;
     southbound_eligible: boolean;
@@ -109,6 +136,16 @@ export type MarketProfile = {
 export type Snapshot = {
   as_of: string;
   disclaimer: string;
+  live?: {
+    enabled: boolean;
+    source: string;
+    applied: number;
+    ok: string[];
+    failed: string[];
+    fetched_at: string | null;
+    fallback: boolean;
+    rescored: boolean;
+  };
   briefs: StockBrief[];
   strategies: Strategy[];
   industries: Industry[];
@@ -120,13 +157,37 @@ export type Snapshot = {
 
 export const snapshot = snapshotJson as Snapshot;
 
+const SAMPLE_QUOTE: QuoteMeta = {
+  source: "sample",
+  as_of: null,
+  fields: {
+    price: "sample",
+    change_pct: "sample",
+    pe_ttm: "sample",
+    pb: "sample",
+    dividend_yield: "sample",
+    roe: "sample",
+  },
+};
+
+function normalizeStock(item: StockBrief): StockBrief {
+  return {
+    ...item,
+    price: item.price ?? 0,
+    change_pct: item.change_pct ?? null,
+    roe: item.roe ?? null,
+    quote: item.quote ?? SAMPLE_QUOTE,
+  };
+}
+
 export function listStocks(): StockBrief[] {
-  return [...snapshot.briefs].sort((a, b) => b.composite - a.composite);
+  return snapshot.briefs.map(normalizeStock).sort((a, b) => b.composite - a.composite);
 }
 
 export function getStock(symbol: string): StockBrief | undefined {
   const key = decodeURIComponent(symbol).toUpperCase();
-  return snapshot.briefs.find((item) => item.symbol.toUpperCase() === key);
+  const found = snapshot.briefs.find((item) => item.symbol.toUpperCase() === key);
+  return found ? normalizeStock(found) : undefined;
 }
 
 export function listIndustries(): Industry[] {

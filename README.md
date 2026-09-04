@@ -2,7 +2,7 @@
 
 面向 **A 股、港股、美股、港股通 / 沪深股通** 的研究操作系统：同一套质量语言，不同的估值与交易语言。用来做行业分析、个股记分卡和卖方研报审阅。
 
-> 样本财务与价格是方法演示，不是实时行情，也不构成投资建议。
+> 样本财务是方法演示。看板会尽量叠加 Yahoo 的现价/涨跌和部分 PE/PB/股息/ROE；失败则回退样本。样本与实时数据均不构成投资建议。
 
 ## 你能用它做什么
 
@@ -19,25 +19,28 @@ python3 -m pip install -e ".[dev]"
 python3 -m quant universe
 python3 -m quant markets
 python3 -m quant analyze 00700.HK
+python3 -m quant analyze 00700.HK --live
 python3 -m quant industry 动力电池
 python3 -m quant research cmb-ah
 python3 -m quant demo
 ```
 
-`quant demo` 会在 `reports/scorecard.html` 生成完整记分卡。
+`quant demo` 会在 `reports/scorecard.html` 生成完整记分卡。`--live` 需要 `pip install -e ".[live]"`，用 Yahoo 覆盖现价和部分基本面后重算；接口失败时回退样本，退出码仍为 0。
 
 ### 研究看板（Next.js + oRPC + shadcn）
 
-打分仍在 Python。看板只读 `quant json` 快照，不在前端重写估值。
+打分仍在 Python。看板读取 `quant json` 快照，并在服务端用 Yahoo 覆盖展示字段（现价、涨跌、PE/PB/股息/ROE），质量与策略分默认不在前端重算。
 
 ```bash
 python3 -m quant json -o web/src/data/snapshot.json
+# 可选：覆盖后再导出（会重算分数）
+python3 -m quant json --live -o web/src/data/snapshot.json
 cd web
 npm install
 npm run dev
 ```
 
-打开 http://localhost:3000 ：总览、个股、行业、策略、研报、市场规则。
+打开 http://localhost:3000 ：总览、个股带实时报价（若 Yahoo 可用），行业、策略、研报、市场规则。页面会标明 Yahoo / 样本来源。
 
 ### 部署到 Railway
 

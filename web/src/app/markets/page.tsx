@@ -7,7 +7,7 @@ export default async function MarketsPage() {
   return (
     <>
       <h1 className="text-3xl font-semibold tracking-tight">市场规则</h1>
-      <Disclaimer text={meta.disclaimer} asOf={meta.as_of} />
+      <Disclaimer text={meta.disclaimer} asOf={meta.as_of} live={meta.live} />
       <div className="grid gap-4 md:grid-cols-3">
         {markets.map((market) => (
           <Card key={market.market}>

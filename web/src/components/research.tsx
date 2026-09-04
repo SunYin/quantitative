@@ -1,14 +1,84 @@
 import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
-import type { ScoreBlock } from "@/lib/data";
+import type { LiveSource, QuoteMeta, ScoreBlock } from "@/lib/data";
 
-export function Disclaimer({ text, asOf }: { text: string; asOf: string }) {
+export function Disclaimer({
+  text,
+  asOf,
+  live,
+}: {
+  text: string;
+  asOf: string;
+  live?: { quotes: string; scores: string; fetched_at: string | null };
+}) {
   return (
-    <p className="rounded-lg border border-amber-500/30 bg-amber-500/10 px-3 py-2 text-sm text-amber-100">
-      {text} 快照日期 {asOf}。
-    </p>
+    <div className="space-y-2">
+      <p className="rounded-lg border border-amber-500/30 bg-amber-500/10 px-3 py-2 text-sm text-amber-100">
+        {text} 快照日期 {asOf}。
+      </p>
+      {live ? (
+        <p className="text-xs text-muted-foreground">
+          报价来源 {liveLabel(live.quotes)} · 研究分数 {live.scores === "live-rescored" ? "Yahoo 覆盖后重算" : "样本财务"}
+          {live.fetched_at ? ` · 行情时间 ${live.fetched_at}` : ""}
+        </p>
+      ) : null}
+    </div>
   );
+}
+
+export function SourceBadge({ source }: { source: QuoteMeta["source"] }) {
+  const label = source === "yahoo" ? "实时 Yahoo" : source === "mixed" ? "实时+样本" : "样本";
+  const styles =
+    source === "yahoo"
+      ? "bg-emerald-500/15 text-emerald-300 border-emerald-500/30"
+      : source === "mixed"
+        ? "bg-sky-500/15 text-sky-300 border-sky-500/30"
+        : "bg-muted text-muted-foreground";
+  return (
+    <Badge variant="outline" className={styles}>
+      {label}
+    </Badge>
+  );
+}
+
+export function FieldSource({ source }: { source: LiveSource }) {
+  return (
+    <span className="ml-1 text-[10px] uppercase tracking-wide text-muted-foreground">
+      {source === "yahoo" ? "Yahoo" : "样本"}
+    </span>
+  );
+}
+
+export function ChangePct({ value }: { value: number | null | undefined }) {
+  if (value === null || value === undefined) {
+    return <span className="text-muted-foreground">—</span>;
+  }
+  const up = value > 0;
+  const down = value < 0;
+  const cls = up ? "text-emerald-400" : down ? "text-rose-400" : "text-muted-foreground";
+  const sign = up ? "+" : "";
+  return (
+    <span className={`tabular-nums ${cls}`}>
+      {sign}
+      {(value * 100).toFixed(2)}%
+    </span>
+  );
+}
+
+export function Money({ value, currency }: { value: number; currency: string }) {
+  return (
+    <span className="tabular-nums">
+      {value.toLocaleString(undefined, { maximumFractionDigits: 2 })}{" "}
+      <span className="text-xs text-muted-foreground">{currency}</span>
+    </span>
+  );
+}
+
+function liveLabel(value: string) {
+  if (value === "yahoo") return "Yahoo";
+  if (value === "mixed") return "Yahoo + 样本";
+  return "样本";
 }
 
 export function MarketBadge({ market }: { market: string }) {

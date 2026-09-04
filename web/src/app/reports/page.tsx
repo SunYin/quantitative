@@ -8,7 +8,7 @@ export default async function ReportsPage() {
   return (
     <>
       <h1 className="text-3xl font-semibold tracking-tight">研报审阅</h1>
-      <Disclaimer text={meta.disclaimer} asOf={meta.as_of} />
+      <Disclaimer text={meta.disclaimer} asOf={meta.as_of} live={meta.live} />
       <div className="grid gap-4 md:grid-cols-2">
         {reports.map((report) => (
           <Card key={report.id}>

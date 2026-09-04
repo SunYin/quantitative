@@ -45,9 +45,11 @@ def test_cli_research(capsys):
 def test_json_snapshot_shape(tmp_path: Path):
     payload = snapshot()
     assert payload["disclaimer"]
+    assert payload["live"]["enabled"] is False
     assert len(payload["briefs"]) == len(universe())
     first = payload["briefs"][0]
-    assert {"symbol", "quality", "valuation", "composite"} <= set(first)
+    assert {"symbol", "quality", "valuation", "composite", "price", "quote"} <= set(first)
+    assert first["quote"]["source"] == "sample"
     path = write_snapshot(tmp_path / "snapshot.json")
     loaded = __import__("json").loads(path.read_text(encoding="utf-8"))
     assert loaded["strategies"] and loaded["industries"] and loaded["reports"]

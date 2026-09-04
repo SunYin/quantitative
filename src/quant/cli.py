@@ -5,11 +5,12 @@ from __future__ import annotations
 import argparse
 import sys
 
+from quant.export import write_snapshot
+from quant.live import disclaimer_for, live_session
 from quant.markets import CONNECT_RULES, PROFILES
 from quant.models import Market
 from quant.research import reading_checklist
 from quant.sample_data import REPORTS, STOCKS
-from quant.export import write_snapshot
 from quant.scorecard import describe_industry, describe_report, describe_stock, write_reports
 
 
@@ -22,9 +23,11 @@ def main(argv: list[str] | None = None) -> int:
 
     demo = sub.add_parser("demo", help="生成全市场记分卡")
     demo.add_argument("-o", "--output", default="reports", help="输出目录")
+    demo.add_argument("--live", action="store_true", help="用 Yahoo 覆盖现价和部分基本面后重算")
 
     analyze = sub.add_parser("analyze", help="个股研究卡")
     analyze.add_argument("symbol", help="例如 00700.HK / 600519.SS / AAPL")
+    analyze.add_argument("--live", action="store_true", help="用 Yahoo 覆盖现价和部分基本面后展示")
 
     industry = sub.add_parser("industry", help="行业吸引力")
     industry.add_argument("name", help="例如 白酒 / 互联网平台 / 动力电池")
@@ -34,6 +37,7 @@ def main(argv: list[str] | None = None) -> int:
 
     dump = sub.add_parser("json", help="导出研究快照 JSON（供看板使用）")
     dump.add_argument("-o", "--output", default="web/src/data/snapshot.json", help="输出文件")
+    dump.add_argument("--live", action="store_true", help="用 Yahoo 覆盖现价和部分基本面后导出")
 
     sub.add_parser("markets", help="三地市场规则对照")
     sub.add_parser("checklist", help="读研报清单")
@@ -42,12 +46,16 @@ def main(argv: list[str] | None = None) -> int:
     args = parser.parse_args(argv)
 
     if args.cmd == "demo":
-        paths = write_reports(args.output)
-        print(f"wrote {paths['html']}")
-        print(f"wrote {paths['markdown']}")
+        with live_session(bool(getattr(args, "live", False))) as live:
+            paths = write_reports(args.output, disclaimer=disclaimer_for(live))
+            print(f"wrote {paths['html']}")
+            print(f"wrote {paths['markdown']}")
+            _print_live(live)
         return 0
     if args.cmd == "analyze":
-        print(describe_stock(args.symbol))
+        with live_session(bool(getattr(args, "live", False))) as live:
+            print(describe_stock(args.symbol))
+            _print_live(live)
         return 0
     if args.cmd == "industry":
         print(describe_industry(args.name))
@@ -56,8 +64,10 @@ def main(argv: list[str] | None = None) -> int:
         print(describe_report(args.report_id))
         return 0
     if args.cmd == "json":
-        path = write_snapshot(args.output)
-        print(f"wrote {path}")
+        with live_session(bool(getattr(args, "live", False))) as live:
+            path = write_snapshot(args.output, live=live)
+            print(f"wrote {path}")
+            _print_live(live)
         return 0
     if args.cmd == "markets":
         _print_markets()
@@ -91,6 +101,18 @@ def _print_markets() -> None:
     print("# 互联互通")
     for key, value in CONNECT_RULES.items():
         print(f"- {key}: {value}")
+
+
+def _print_live(live) -> None:
+    if not live.enabled:
+        return
+    if live.fallback or live.applied == 0:
+        print("live: Yahoo 不可用，已回退样本", file=sys.stderr)
+        return
+    print(
+        f"live: Yahoo 覆盖 {live.applied}/{live.applied + len(live.failed)} 只；失败 {len(live.failed)} 只仍用样本",
+        file=sys.stderr,
+    )
 
 
 if __name__ == "__main__":

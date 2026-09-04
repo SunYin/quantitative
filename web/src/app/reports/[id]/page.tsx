@@ -29,7 +29,7 @@ export default async function ReportDetailPage({
         {report.broker} · {report.rating} · {report.symbol} · 目标价 {report.target_price ?? "—"} / 现价{" "}
         {report.current_price ?? "—"}
       </p>
-      <Disclaimer text={meta.disclaimer} asOf={meta.as_of} />
+      <Disclaimer text={meta.disclaimer} asOf={meta.as_of} live={meta.live} />
       <div className="grid gap-4 md:grid-cols-2">
         <Card>
           <CardHeader>
