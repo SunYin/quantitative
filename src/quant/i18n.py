@@ -38,6 +38,7 @@ _ALIASES = {
 
 _FRAGMENT_EN = tuple(sorted(FRAGMENTS, key=lambda kv: len(kv[0]), reverse=True))
 _PHRASE_EN = tuple(sorted(PHRASES.items(), key=lambda kv: len(kv[0]), reverse=True))
+_ALL_EN = tuple(sorted((*PHRASES.items(), *FRAGMENTS), key=lambda kv: len(kv[0]), reverse=True))
 
 
 def normalize_locale(value: str | None) -> str:
@@ -116,10 +117,7 @@ def translate(text: str, locale: str | None = None) -> str:
     if text in entities:
         return entities[text]
     out = text
-    for src, dst in _FRAGMENT_EN:
-        if src in out:
-            out = out.replace(src, dst)
-    for src, dst in _PHRASE_EN:
+    for src, dst in _ALL_EN:
         if src in out:
             out = out.replace(src, dst)
     for src, dst in sorted(entities.items(), key=lambda kv: len(kv[0]), reverse=True):

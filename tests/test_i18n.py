@@ -76,6 +76,21 @@ def test_english_snapshot_has_limited_cjk():
         set_locale("zh-CN")
 
 
+def test_live_disclaimer_translates_cleanly():
+    set_locale("en")
+    try:
+        text = (
+            "现价、涨跌及部分 PE/PB/股息/ROE 在可获取时来自 Yahoo Finance（约 60 秒缓存）；"
+            "质量、估值与策略分仍基于研究样本财务，前端不重算打分。"
+            "样本与实时数据均不构成投资建议。"
+        )
+        out = translate(text)
+        assert remaining_cjk(out) == ""
+        assert "not investment advice" in out.lower()
+    finally:
+        set_locale("zh-CN")
+
+
 def test_describe_industry_respects_locale():
     set_locale("en")
     try:

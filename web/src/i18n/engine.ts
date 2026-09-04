@@ -59,12 +59,12 @@ export function translate(locale: Locale, text: string): string {
   const named = entities();
   if (named[text]) return named[text];
   let out = text;
-  const fragments = [...(catalog().fragments ?? [])].sort((a, b) => b.src.length - a.src.length);
-  for (const { src, en } of fragments) {
-    if (src && out.includes(src)) out = out.replaceAll(src, en);
-  }
-  for (const [src, dst] of Object.entries(phrases).sort((a, b) => b[0].length - a[0].length)) {
-    if (out.includes(src)) out = out.replaceAll(src, dst);
+  const pairs = [
+    ...Object.entries(phrases),
+    ...(catalog().fragments ?? []).map((item) => [item.src, item.en] as const),
+  ].sort((a, b) => b[0].length - a[0].length);
+  for (const [src, dst] of pairs) {
+    if (src && out.includes(src)) out = out.replaceAll(src, dst);
   }
   for (const [src, dst] of Object.entries(named).sort((a, b) => b[0].length - a[0].length)) {
     if (src.length < 2) continue;

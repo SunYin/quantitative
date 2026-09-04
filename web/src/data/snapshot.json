@@ -4295,6 +4295,9 @@
       "部分现价与 PE/PB/股息/ROE 来自 Yahoo Finance 公开行情；质量、估值与策略分仍基于研究样本财务。均不构成投资建议。": "Some prices and PE/PB/dividend/ROE come from Yahoo Finance; quality, valuation and strategy scores still use sample financials. Not investment advice.",
       "样本与分层都不是投资建议。": "The sample map and layers are not investment advice.",
       "样本与实时数据均不构成投资建议。": "Sample and live data are not investment advice.",
+      "现价、涨跌及部分 PE/PB/股息/ROE 在可获取时来自 Yahoo Finance（约 60 秒缓存）；质量、估值与策略分仍基于研究样本财务，前端不重算打分。样本与实时数据均不构成投资建议。": "Prices, daily change and some PE/PB/dividend/ROE come from Yahoo Finance when available (~60s cache); quality, valuation and strategy scores still use sample financials and are not rescored in the UI. Sample and live data are not investment advice.",
+      "现价、涨跌及部分 PE/PB/股息/ROE 在可获取时来自 Yahoo Finance（约 60 秒缓存）；质量/估值分来自 CLI --live 覆盖后重算。样本与实时数据均不构成投资建议。": "Prices, daily change and some PE/PB/dividend/ROE come from Yahoo Finance when available (~60s cache); quality/valuation scores were rescored after the CLI --live overlay. Sample and live data are not investment advice.",
+      "现价与基本面暂用研究样本（Yahoo 不可用或超时）；质量、估值与策略分仍基于研究样本财务，前端不重算打分。样本与实时数据均不构成投资建议。": "Prices and fundamentals are still the research sample (Yahoo unavailable or timed out); quality, valuation and strategy scores still use sample financials and are not rescored in the UI. Sample and live data are not investment advice.",
       "现价、涨跌及部分 PE/PB/股息/ROE 在可获取时来自 Yahoo Finance（约 60 秒缓存）": "Prices, daily change and some PE/PB/dividend/ROE come from Yahoo Finance when available (~60s cache)",
       "现价与基本面暂用研究样本（Yahoo 不可用或超时）": "Prices and fundamentals are still the research sample (Yahoo unavailable or timed out)",
       "质量/估值分来自 CLI --live 覆盖后重算": "Quality/valuation scores were rescored after the CLI --live overlay",
@@ -4810,6 +4813,10 @@
         "en": "CR5 "
       },
       {
+        "src": "综合 ",
+        "en": "Composite "
+      },
+      {
         "src": "质量 ",
         "en": "Quality "
       },
@@ -4878,16 +4885,24 @@
         "en": "PB "
       },
       {
+        "src": "上游",
+        "en": "Upstream"
+      },
+      {
+        "src": "中游",
+        "en": "Midstream"
+      },
+      {
+        "src": "下游",
+        "en": "Downstream"
+      },
+      {
         "src": " 字",
         "en": " chars"
       },
       {
         "src": " 个",
         "en": ""
-      },
-      {
-        "src": "、",
-        "en": ", "
       }
     ],
     "s2hk": {
