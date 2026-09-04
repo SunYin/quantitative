@@ -1,0 +1,51 @@
+schema: spec-driven
+
+context: |
+  Language: zh
+  All artifacts must be written in zh.
+  Keep OpenSpec structural headings and SHALL/MUST keywords in English.
+
+  项目：quantitative — 跨市场股票研究框架（A 股 / 港股 / 美股 / 港股通）。
+  当前实现：Python 包 `quant`（src/quant），CLI 为 `python -m quant`。
+  样本数据在 `src/quant/sample_data.py`。看板与 CLI `--live` 可叠加 Yahoo 现价和部分基本面，失败回退样本。
+  研究文档在 `docs/`，单元测试在 `tests/`，行情测试不依赖外网（用假行情）。
+
+  产品约束：
+  - 所有对外文案必须声明：不构成投资建议；实时字段与样本研究分要分开标明。
+  - 策略输出是研究优先级，不是下单指令。
+  - A/H 价差不得被描述为无风险套利。
+  - 港股通 / 北向资金是拥挤度，不是基本面证据。
+  - 三地用同一套质量语言，用不同的估值与交易语言。
+
+  代码约定：
+  - 打分与策略保持纯函数，数据适配层可替换。
+  - 新增市场或行业时先扩展模型，再改打分权重。
+  - 行为变化必须有 pytest 覆盖。
+  - 不要把卖方目标价直接当成决策。
+
+  后续前端（若提出）：优先复用 `quant` 的记分卡与策略结果，而不是在 UI 里重写估值公式。
+
+rules:
+  proposal:
+    - 写明非目标（Non-goals）
+    - 说明对 A/港/美/港股通 哪些市场有影响
+    - 若涉及价格或资金，重申“非投资建议”
+  specs:
+    - 用可观察行为写要求，避免实现细节
+    - 每个 Requirement 至少两个 Scenario，覆盖正常路径与边界
+    - 金融口径变化必须写清尺子（PE / PB / FCF / 南向持股等）
+  design:
+    - 优先复用 src/quant 现有纯函数，而不是复制公式
+    - 样本数据与实盘适配层分开
+  tasks:
+    - 每个任务可独立验证
+    - 包含针对性测试，而不是只写“跑全部测试”
+
+operations:
+  apply:
+    guidance:
+      - 先跑与改动相关的 pytest，再跑全量
+      - 不要把样本价格写成实时行情
+  archive:
+    guidance:
+      - 摘要只写行为变化，不写实现清单
