@@ -2,7 +2,9 @@
 
 import Link from "next/link";
 import { LocaleSwitcher } from "@/components/locale-switcher";
+import { TickerSearch } from "@/components/ticker-search";
 import { useI18n } from "@/components/locale-provider";
+import type { TickerHit } from "@/lib/ticker";
 
 const NAV = [
   { href: "/", key: "nav.overview" },
@@ -14,7 +16,7 @@ const NAV = [
   { href: "/markets", key: "nav.markets" },
 ] as const;
 
-export function Shell({ children }: { children: React.ReactNode }) {
+export function Shell({ children, samples }: { children: React.ReactNode; samples: TickerHit[] }) {
   const { t } = useI18n();
   return (
     <div className="min-h-full bg-background text-foreground">
@@ -34,7 +36,10 @@ export function Shell({ children }: { children: React.ReactNode }) {
               </Link>
             ))}
           </nav>
-          <LocaleSwitcher />
+          <div className="ml-auto flex w-full min-w-[14rem] flex-1 items-center gap-2 sm:w-auto">
+            <TickerSearch samples={samples} />
+            <LocaleSwitcher />
+          </div>
         </div>
       </header>
       <main className="mx-auto flex max-w-6xl flex-col gap-6 px-4 py-6">{children}</main>

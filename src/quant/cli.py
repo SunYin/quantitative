@@ -42,7 +42,7 @@ def main(argv: list[str] | None = None) -> int:
     _add_lang(demo)
 
     analyze = sub.add_parser("analyze", help="个股研究卡")
-    analyze.add_argument("symbol", help="例如 00700.HK / 600519.SS / AAPL")
+    analyze.add_argument("symbol", help="例如 0700.HK / 600519 / 腾讯 / AAPL")
     analyze.add_argument("--live", action="store_true", help="用 Yahoo 覆盖现价和部分基本面后展示")
     _add_lang(analyze)
 
@@ -79,9 +79,18 @@ def main(argv: list[str] | None = None) -> int:
             _print_live(live)
         return 0
     if args.cmd == "analyze":
-        with live_session(bool(getattr(args, "live", False))) as live:
-            print(describe_stock(args.symbol))
-            _print_live(live)
+        try:
+            with live_session(bool(getattr(args, "live", False))) as live:
+                print(describe_stock(args.symbol))
+                _print_live(live)
+        except KeyError:
+            print(
+                translate(
+                    f"样本池没有 {args.symbol}。CLI 只给样本打分，不编造质量/估值。看板可输入代码看 Yahoo 行情。不构成投资建议。"
+                ),
+                file=sys.stderr,
+            )
+            return 1
         return 0
     if args.cmd == "industry":
         print(describe_industry(args.name))

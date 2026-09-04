@@ -55,7 +55,12 @@ export function KlineChart({ initial }: { initial: ChartPayload }) {
         </div>
       </div>
       <p className="text-xs text-muted-foreground">
-        {payload.source === "yahoo" ? t("chart.yahooHint") : t("chart.sampleHint")} {t("chart.notAdvice")}
+        {payload.candles.length === 0
+          ? t("chart.empty")
+          : payload.source === "yahoo"
+            ? t("chart.yahooHint")
+            : t("chart.sampleHint")}{" "}
+        {t("chart.notAdvice")}
       </p>
       <CandleSvg
         candles={payload.candles}
@@ -141,12 +146,17 @@ function CandleSvg({
   onHover: (index: number | null) => void;
   pending: boolean;
 }) {
+  const { t } = useI18n();
   const ma5 = useMemo(() => movingAverage(candles, 5), [candles]);
   const ma20 = useMemo(() => movingAverage(candles, 20), [candles]);
   const layout = useMemo(() => layoutChart(candles), [candles]);
 
   if (candles.length === 0) {
-    return <div className="h-72 rounded-lg border border-border/80 bg-card" />;
+    return (
+      <div className="flex h-72 items-center justify-center rounded-lg border border-border/80 bg-card px-4 text-center text-sm text-muted-foreground">
+        {t("chart.empty")}
+      </div>
+    );
   }
 
   const { width, priceH, volH, pad, minP, maxP, maxV, innerW } = layout;

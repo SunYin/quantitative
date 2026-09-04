@@ -1,4 +1,5 @@
 import { parseYahooQuotes, type Candle, type ChartRange, RANGE_DAYS } from "@/lib/candles";
+import { guessCurrency, tickerCandidates } from "@/lib/ticker";
 import YahooFinance from "yahoo-finance2";
 
 export type LiveFields = {
@@ -23,9 +24,19 @@ const TTL_MS = 60_000;
 const QUOTE_TIMEOUT_MS = 8_000;
 const FUND_TIMEOUT_MS = 5_000;
 
+export type YahooIdentity = {
+  symbol: string;
+  name: string;
+  nameEn: string;
+  currency: string;
+  exchange: string | null;
+  quote: LiveFields;
+};
+
 let cache: { at: number; quotes: Record<string, LiveFields> } | null = null;
 let inflight: Promise<Record<string, LiveFields>> | null = null;
 const chartCache = new Map<string, { at: number; candles: Candle[] }>();
+const identityCache = new Map<string, { at: number; value: YahooIdentity | null }>();
 const CHART_TIMEOUT_MS = 10_000;
 
 export function toYahooSymbol(symbol: string): string {
@@ -35,6 +46,60 @@ export function toYahooSymbol(symbol: string): string {
     return `${Number.parseInt(hk[1], 10).toString().padStart(4, "0")}.HK`;
   }
   return raw;
+}
+
+export function parseYahooIdentity(payload: unknown, fallbackSymbol: string): YahooIdentity | null {
+  const rowPayload = Array.isArray(payload) ? payload[0] : payload;
+  const quote = parseQuote(rowPayload);
+  if (!quote || quote.price == null) return null;
+  if (!rowPayload || typeof rowPayload !== "object") return null;
+  const row = rowPayload as Record<string, unknown>;
+  const yahooSymbol = String(row.symbol ?? fallbackSymbol);
+  const longName = typeof row.longName === "string" ? row.longName : "";
+  const shortName = typeof row.shortName === "string" ? row.shortName : "";
+  const name = shortName || longName || yahooSymbol;
+  const currency =
+    typeof row.currency === "string" && row.currency ? row.currency : guessCurrency(yahooSymbol);
+  const exchange =
+    (typeof row.fullExchangeName === "string" && row.fullExchangeName) ||
+    (typeof row.exchange === "string" && row.exchange) ||
+    null;
+  return {
+    symbol: yahooSymbol,
+    name,
+    nameEn: longName || shortName || yahooSymbol,
+    currency,
+    exchange,
+    quote,
+  };
+}
+
+export async function lookupYahooIdentity(query: string): Promise<YahooIdentity | null> {
+  const key = query.trim().toUpperCase();
+  if (!key) return null;
+  if (process.env.NEXT_PHASE === "phase-production-build") return null;
+  const hit = identityCache.get(key);
+  if (hit && Date.now() - hit.at < TTL_MS) return hit.value;
+
+  const client = getClient();
+  const tried = new Set<string>();
+  for (const cand of tickerCandidates(query)) {
+    const ysym = toYahooSymbol(cand);
+    if (tried.has(ysym)) continue;
+    tried.add(ysym);
+    try {
+      const raw = await withTimeout(client.quote(ysym), QUOTE_TIMEOUT_MS);
+      const parsed = parseYahooIdentity(raw, ysym);
+      if (parsed) {
+        identityCache.set(key, { at: Date.now(), value: parsed });
+        return parsed;
+      }
+    } catch {
+      // try the next alias; a miss is not a sample scorecard
+    }
+  }
+  identityCache.set(key, { at: Date.now(), value: null });
+  return null;
 }
 
 export async function fetchChart(symbol: string, range: ChartRange): Promise<Candle[]> {

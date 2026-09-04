@@ -5,6 +5,7 @@ import { Shell } from "@/components/shell";
 import { htmlLang } from "@/i18n/config";
 import { t } from "@/i18n/messages";
 import { getLocale } from "@/i18n/server";
+import { sampleTickers } from "@/lib/data";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -37,7 +38,7 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
     >
       <body className="min-h-full font-sans">
         <LocaleProvider locale={locale}>
-          <Shell>{children}</Shell>
+          <Shell samples={sampleTickers()}>{children}</Shell>
         </LocaleProvider>
       </body>
     </html>

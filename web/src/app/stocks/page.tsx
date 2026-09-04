@@ -1,4 +1,5 @@
 import { CoverageBoard } from "@/components/coverage-board";
+import { TickerSearch } from "@/components/ticker-search";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import {
@@ -11,6 +12,7 @@ import {
   StockLink,
 } from "@/components/research";
 import { api } from "@/lib/api";
+import { sampleTickers } from "@/lib/data";
 import { getI18n } from "@/i18n/server";
 
 export default async function StocksPage() {
@@ -24,6 +26,8 @@ export default async function StocksPage() {
     <>
       <h1 className="text-3xl font-semibold tracking-tight">{t("stocks.title")}</h1>
       <p className="text-muted-foreground">{t("stocks.lead")}</p>
+      <p className="text-sm text-muted-foreground">{t("search.hint")}</p>
+      <TickerSearch samples={sampleTickers()} size="page" />
       <Disclaimer locale={locale} text={meta.disclaimer} asOf={meta.as_of} live={meta.live} />
       <CoverageBoard locale={locale} coverage={coverage} />
       <Card>

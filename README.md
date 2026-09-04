@@ -9,6 +9,7 @@
 - 给茅台、招行 A/H、腾讯、美团、苹果、英伟达、平安、礼来等样本打**质量 / 估值 / 综合分**
 - 做**行业吸引力**与**产业链**（例如 `quant industry AI` 看算力上下游和成分股）
 - 点开个股看 **日 K**（Yahoo 历史；失败则样本路径示意）。A/港红涨绿跌，美股绿涨红跌。
+- **输入代码或名称查询**（顶栏 / 个股页）：命中样本池看质量/估值研究卡；不在样本池但 Yahoo 有公开行情则只显示报价和 K 线，不编造研究分。港股 `0700`/`00700`、A 股 6 位数字、中文名均可。
 - 产业链用 **Mermaid 流程图** 看上下游（看板 `/industries`、`/chains/ai`，或 `quant industry AI`）
 - 计算 **A/H 溢价** 与南向/北向资金拥挤度
 - 用清单和启发式给**研报**打分，抓逻辑句、数字和红旗
@@ -22,6 +23,9 @@ python3 -m quant universe
 python3 -m quant ipos
 python3 -m quant markets
 python3 -m quant analyze 00700.HK
+python3 -m quant analyze 0700.HK
+python3 -m quant analyze 600519
+python3 -m quant analyze 腾讯
 python3 -m quant analyze 00700.HK --live
 python3 -m quant industry 动力电池
 python3 -m quant industry AI
@@ -44,7 +48,7 @@ npm install
 npm run dev
 ```
 
-打开 http://localhost:3000 ：总览会按 A / 港 / 美列出**样本只数**和全市场约数；行业、策略、研报、**新股/IPO**、市场规则。页面会标明 Yahoo / 样本来源。顶栏可切 **简体 / 繁體 / EN**（写入 cookie；无选择时看浏览器语言）。
+打开 http://localhost:3000 ：总览会按 A / 港 / 美列出**样本只数**和全市场约数；行业、策略、研报、**新股/IPO**、市场规则。顶栏可输入股票代码或名称查询。页面会标明 Yahoo / 样本来源。顶栏可切 **简体 / 繁體 / EN**（写入 cookie；无选择时看浏览器语言）。
 
 `/ipos` 是研究样本日历（上会/申报/过会/申购等），不是交易所官方名单；未上市名字不能当已有代码去打分。约数也不是官方普查。样本与实时数据均不构成投资建议。
 

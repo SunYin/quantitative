@@ -13,11 +13,15 @@ import {
   getCoverage,
   listIpos,
   getIpo,
+  searchStocks,
   snapshot,
+  type LiveQuote,
+  type StockLookup,
 } from "@/lib/data";
 import { liveDisclaimer, overlayStock, overlayStocks } from "@/server/overlay";
-import { fetchChart } from "@/server/yahoo";
+import { fetchChart, lookupYahooIdentity, toYahooSymbol } from "@/server/yahoo";
 import { RANGE_DAYS, sampleCandles, type ChartRange } from "@/lib/candles";
+import { guessCurrency, guessListing } from "@/lib/ticker";
 
 export const router = {
   meta: {
@@ -46,6 +50,40 @@ export const router = {
         }
         return overlayStock(stock);
       }),
+    lookup: os
+      .input(z.object({ query: z.string().min(1) }))
+      .handler(async ({ input }): Promise<StockLookup> => {
+        const query = decodeURIComponent(input.query).trim();
+        const suggestions = searchStocks(query);
+        const sample = getStock(query);
+        if (sample) {
+          return { kind: "sample", query, stock: await overlayStock(sample), suggestions };
+        }
+        const live = await lookupYahooIdentity(query);
+        if (live) {
+          const listing = guessListing(live.symbol, live.exchange);
+          const quote: LiveQuote = {
+            symbol: live.symbol,
+            name: live.name,
+            name_en: live.nameEn,
+            market: listing.market,
+            board: listing.board,
+            currency: live.currency,
+            exchange: live.exchange,
+            price: live.quote.price ?? null,
+            change_pct: live.quote.changePct ?? null,
+            pe_ttm: live.quote.peTtm ?? null,
+            pb: live.quote.pb ?? null,
+            dividend_yield: live.quote.dividendYield ?? null,
+            as_of: live.quote.asOf ?? null,
+          };
+          return { kind: "live", query, quote, suggestions };
+        }
+        return { kind: "miss", query, suggestions };
+      }),
+    search: os
+      .input(z.object({ query: z.string() }))
+      .handler(({ input }) => searchStocks(input.query)),
     chart: os
       .input(
         z.object({
@@ -55,31 +93,45 @@ export const router = {
       )
       .handler(async ({ input }) => {
         const stock = getStock(input.symbol);
-        if (!stock) {
-          throw new ORPCError("NOT_FOUND", { message: `未知代码：${input.symbol}` });
-        }
-        const overlaid = await overlayStock(stock);
         const range = input.range as ChartRange;
-        let source: "yahoo" | "sample" = "sample";
+        if (stock) {
+          const overlaid = await overlayStock(stock);
+          let source: "yahoo" | "sample" = "sample";
+          let candles = [] as ReturnType<typeof sampleCandles>;
+          try {
+            const live = await fetchChart(stock.symbol, range);
+            if (live.length >= 8) {
+              candles = live;
+              source = "yahoo";
+            }
+          } catch {
+            candles = [];
+          }
+          if (source !== "yahoo") {
+            candles = sampleCandles(stock.symbol, overlaid.price, RANGE_DAYS[range]);
+          }
+          return {
+            symbol: stock.symbol,
+            market: stock.market,
+            currency: overlaid.currency,
+            range,
+            source,
+            candles,
+          };
+        }
         let candles = [] as ReturnType<typeof sampleCandles>;
         try {
-          const live = await fetchChart(stock.symbol, range);
-          if (live.length >= 8) {
-            candles = live;
-            source = "yahoo";
-          }
+          candles = await fetchChart(input.symbol, range);
         } catch {
           candles = [];
         }
-        if (source !== "yahoo") {
-          candles = sampleCandles(stock.symbol, overlaid.price, RANGE_DAYS[range]);
-        }
+        const listing = guessListing(input.symbol);
         return {
-          symbol: stock.symbol,
-          market: stock.market,
-          currency: overlaid.currency,
+          symbol: toYahooSymbol(input.symbol),
+          market: listing.market,
+          currency: guessCurrency(input.symbol, listing.market),
           range,
-          source,
+          source: "yahoo" as const,
           candles,
         };
       }),

@@ -21,7 +21,7 @@ export function LocaleSwitcher() {
   }
 
   return (
-    <div className="ml-auto flex items-center gap-1" aria-label={t(locale, "lang.label")}>
+    <div className="flex items-center gap-1" aria-label={t(locale, "lang.label")}>
       {LOCALES.map((item) => (
         <Button
           key={item}

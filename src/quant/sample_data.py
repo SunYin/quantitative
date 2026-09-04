@@ -13,6 +13,7 @@ from quant.models import (
     Stock,
     ValueChain,
 )
+from quant.ticker import ticker_candidates
 from quant.sample_extra import (
     IPOS,
     extra_chains,
@@ -1239,11 +1240,30 @@ def universe() -> list[Stock]:
 
 def get_stock(symbol: str) -> Stock:
     key = symbol.strip()
-    if key in STOCKS:
-        return STOCKS[key]
-    upper = {k.upper(): k for k in STOCKS}
-    if key.upper() in upper:
-        return STOCKS[upper[key.upper()]]
+    if not key:
+        raise KeyError("unknown sample symbol: empty")
+    upper_map = {k.upper(): k for k in STOCKS}
+    for cand in ticker_candidates(key):
+        if cand in STOCKS:
+            return STOCKS[cand]
+        if cand.upper() in upper_map:
+            return STOCKS[upper_map[cand.upper()]]
+    needle = _norm(key)
+    exact = [
+        stock
+        for stock in STOCKS.values()
+        if needle in {_norm(stock.symbol), _norm(stock.name), _norm(stock.name_en)}
+    ]
+    if len(exact) == 1:
+        return exact[0]
+    if needle and len(needle) >= 2:
+        partial = [
+            stock
+            for stock in STOCKS.values()
+            if needle in _norm(stock.name) or needle in _norm(stock.name_en)
+        ]
+        if len(partial) == 1:
+            return partial[0]
     raise KeyError(f"unknown sample symbol: {symbol}")
 
 

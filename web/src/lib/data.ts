@@ -1,4 +1,5 @@
 import snapshotJson from "@/data/snapshot.json";
+import { findSampleTicker, suggestTickers, type TickerHit } from "@/lib/ticker";
 
 export type Factor = {
   name: string;
@@ -255,14 +256,48 @@ function normalizeStock(item: StockBrief): StockBrief {
   };
 }
 
+export type LiveQuote = {
+  symbol: string;
+  name: string;
+  name_en: string;
+  market: string;
+  board: string;
+  currency: string;
+  exchange: string | null;
+  price: number | null;
+  change_pct: number | null;
+  pe_ttm: number | null;
+  pb: number | null;
+  dividend_yield: number | null;
+  as_of: string | null;
+};
+
+export type StockLookup =
+  | { kind: "sample"; query: string; stock: StockBrief; suggestions: StockBrief[] }
+  | { kind: "live"; query: string; quote: LiveQuote; suggestions: StockBrief[] }
+  | { kind: "miss"; query: string; suggestions: StockBrief[] };
+
 export function listStocks(): StockBrief[] {
   return snapshot.briefs.map(normalizeStock).sort((a, b) => b.composite - a.composite);
 }
 
+export function sampleTickers(): TickerHit[] {
+  return snapshot.briefs.map((item) => ({
+    symbol: item.symbol,
+    name: item.name,
+    name_en: item.name_en,
+    market: item.market,
+  }));
+}
+
 export function getStock(symbol: string): StockBrief | undefined {
-  const key = decodeURIComponent(symbol).toUpperCase();
-  const found = snapshot.briefs.find((item) => item.symbol.toUpperCase() === key);
+  const key = decodeURIComponent(symbol).trim();
+  const found = findSampleTicker(key, snapshot.briefs);
   return found ? normalizeStock(found) : undefined;
+}
+
+export function searchStocks(query: string): StockBrief[] {
+  return suggestTickers(query, snapshot.briefs).map(normalizeStock);
 }
 
 export function listIndustries(): Industry[] {
