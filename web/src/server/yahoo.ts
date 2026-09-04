@@ -15,6 +15,8 @@ type YahooClient = {
   quoteSummary?: (query: string, opts?: Record<string, unknown>) => Promise<unknown>;
 };
 
+type YahooCtor = new (opts?: Record<string, unknown>) => YahooClient;
+
 const TTL_MS = 60_000;
 const QUOTE_TIMEOUT_MS = 8_000;
 const FUND_TIMEOUT_MS = 5_000;
@@ -54,7 +56,7 @@ function getClient(): YahooClient {
   const imported = YahooFinance as unknown;
   if (typeof imported === "function") {
     try {
-      return new (imported as unknown as new () => YahooClient)();
+      return new (imported as unknown as YahooCtor)({ suppressNotices: ["yahooSurvey"] });
     } catch {
       return imported as unknown as YahooClient;
     }
@@ -130,7 +132,16 @@ function parseQuote(payload: unknown): LiveFields | null {
   const changePctRaw = num(row.regularMarketChangePercent);
   const peTtm = positive(num(row.trailingPE));
   const pb = positive(num(row.priceToBook));
-  const dividendYield = asRatio(num(row.trailingAnnualDividendYield ?? row.dividendYield), 1);
+  const trailingYield = num(row.trailingAnnualDividendYield);
+  const yieldPct = num(row.dividendYield);
+  let dividendYield: number | undefined;
+  if (trailingYield != null && Math.abs(trailingYield) <= 1) {
+    dividendYield = trailingYield;
+  } else if (yieldPct != null) {
+    dividendYield = yieldPct / 100;
+  } else if (trailingYield != null) {
+    dividendYield = trailingYield / 100;
+  }
   const roe = asRatio(num(row.returnOnEquity), 5);
   if (price == null && changePctRaw == null && peTtm == null && pb == null && dividendYield == null && roe == null) {
     return null;

@@ -153,6 +153,11 @@ export function StockLink({ symbol, name }: { symbol: string; name: string }) {
   );
 }
 
+export function multiple(value: number | null | undefined, digits = 1) {
+  if (value === null || value === undefined) return "—";
+  return value.toLocaleString(undefined, { maximumFractionDigits: digits, minimumFractionDigits: 0 });
+}
+
 export function pct(value: number | null | undefined, digits = 1) {
   if (value === null || value === undefined) return "—";
   return `${(value * 100).toFixed(digits)}%`;

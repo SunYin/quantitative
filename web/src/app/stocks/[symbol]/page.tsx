@@ -8,6 +8,7 @@ import {
   MarketBadge,
   Money,
   SourceBadge,
+  multiple,
   pct,
 } from "@/components/research";
 import { api } from "@/lib/api";
@@ -62,9 +63,9 @@ export default async function StockDetailPage({
             <p>研究仓位上限 {(stock.position_cap * 100).toFixed(1)}%</p>
             <p>行业 {stock.industry} · {stock.board}</p>
             <p>
-              PE {stock.pe_ttm ?? "—"}
+              PE {multiple(stock.pe_ttm)}
               <FieldSource source={fields.pe_ttm} />
-              {" · "}PB {stock.pb ?? "—"}
+              {" · "}PB {multiple(stock.pb)}
               <FieldSource source={fields.pb} />
             </p>
             <p>

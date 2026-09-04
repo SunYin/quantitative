@@ -126,5 +126,6 @@ openspec validate --all
 - `openspec/specs/research-reports` — 研报审阅与清单
 - `openspec/specs/cli-scorecard` — CLI、HTML 记分卡与 JSON 快照
 - `openspec/specs/research-dashboard` — Next.js 研究看板
+- `openspec/specs/live-market-data` — Yahoo 现价/部分基本面覆盖与回退
 
-约定写在 `openspec/config.yaml`：制品用中文；标题和 SHALL/MUST 保持英文；样本价格不是实时行情，输出不是投资建议。
+约定写在 `openspec/config.yaml`：制品用中文；标题和 SHALL/MUST 保持英文；实时字段与样本研究分要分开标明，输出不是投资建议。

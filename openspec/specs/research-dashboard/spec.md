@@ -18,7 +18,8 @@
 #### Scenario: Disclaimer is visible
 
 - **WHEN** 用户打开任一看板页面
-- **THEN** 页面 SHALL 声明样本数据不是实时行情且不构成投资建议
+- **THEN** 页面 SHALL 声明不构成投资建议
+- **AND** SHALL 区分实时报价（若获取成功）与研究分数来源
 
 ### Requirement: Typed read APIs for research slices
 
@@ -65,3 +66,18 @@
 - **WHEN** 用户打开市场规则页
 - **THEN** 页面 SHALL 区分南向港股通与北向沪深股通
 - **AND** SHALL 说明名单与额度不是全市场开放
+
+### Requirement: Live fields on stock views
+
+总览与个股页 SHALL 显示实时现价/涨跌（若获取成功），并保留质量与估值研究分。
+
+#### Scenario: Live price on overview
+
+- **WHEN** Yahoo 报价成功
+- **THEN** 股票表 SHALL 出现实时价格或涨跌
+- **AND** 综合/质量/估值分仍来自研究引擎
+
+#### Scenario: Fallback still renders
+
+- **WHEN** 实时接口失败
+- **THEN** 页面 SHALL 仍显示样本宇宙与免责声明
