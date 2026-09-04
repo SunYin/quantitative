@@ -39,6 +39,19 @@ npm run dev
 
 打开 http://localhost:3000 ：总览、个股、行业、策略、研报、市场规则。
 
+### 部署到 Railway
+
+仓库根目录是 Python 研究引擎，看板在 `web/`。直接把仓库丢给 Railway 时，Railpack/Nixpacks 分不清构建目标，会报 **Failed to build an image**。
+
+本仓库已加根目录 `Dockerfile` + `railway.toml`，只构建 Next.js 看板，并监听 `PORT` / `0.0.0.0`。
+
+Railway 服务请这样设：
+
+1. 部署 **包含 `web/` 的分支**（不要只部署几乎空的 `main`）。
+2. 根目录保持仓库根，让 Railway 使用检测到的 `Dockerfile`；或把 Root Directory 设为 `web`（会用 `web/Dockerfile`）。
+3. 不要再手写 Python start command。
+4. 生成域名后打开 `/`，应看到免责声明和样本宇宙。
+
 ## 研究层级
 
 ```
@@ -108,6 +121,7 @@ openspec validate --all
 - `openspec/specs/scoring` — 质量 / 估值 / 行业打分
 - `openspec/specs/strategies` — 质量-价值、A/H、行业轮动、互联互通
 - `openspec/specs/research-reports` — 研报审阅与清单
-- `openspec/specs/cli-scorecard` — CLI 与 HTML 记分卡
+- `openspec/specs/cli-scorecard` — CLI、HTML 记分卡与 JSON 快照
+- `openspec/specs/research-dashboard` — Next.js 研究看板
 
 约定写在 `openspec/config.yaml`：制品用中文；标题和 SHALL/MUST 保持英文；样本价格不是实时行情，输出不是投资建议。
